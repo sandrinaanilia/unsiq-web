@@ -1,21 +1,51 @@
-import React from 'react';
-import logo from "../assets/img/LOGO.png"; // Perbaikan jalur impor gambar
+import gambar from "../assets/img/LOGO.png"; // Perbaikan jalur impor gambar
+import arrow from "../assets/img/arrow.png"
+import {useNavigate} from "react-router-dom";
 
 const Navbar = () => {
-  return (
-    <div>
-      <div>
-        <img src={logo} alt="" />
-        <span className="logo-text">PPTQ UNSIQ 2</span>
-
-      </div>
-      <ul>
-        <li>
-           
-        </li>
-      </ul>
-    </div>
-  );
+    const navigate = useNavigate()
+    return (
+        <nav className="navbar">
+            <div className="logo">
+                <img src={gambar} alt="PPTQ UNSIQ 2" />
+                <span className="logo-text">PPTQ UNSIQ 2</span>
+            </div>
+            <ul className="menu">
+                <li>
+                    <button onClick={()=>navigate("/")}>Beranda</button>
+                </li>
+                <li className="w-fit dropdown">
+                    <div className="flex flex-row gap-2 items-center">
+                        <button>Profil</button>
+                        <img src={arrow} className="w-2 h-2 rotate-180"/>
+                    </div>
+                    <span className="material-icon dropdown-icon"></span>
+                    <ul className="dropdown-menu">
+                        <li>
+                            <button onClick={()=>navigate("/about")}>Tentang Kami</button>
+                        </li>
+                        <li>
+                            <a href="galeri.html">Galeri</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#c2">Berita</a>
+                </li>
+                <li>
+                    <a href="info.html">Pendaftaran</a>
+                </li>
+                <li>
+                    <a href="forum.html">Forum</a>
+                </li>
+            </ul>
+            <div className="login">
+                <a href="login.html" className="login-btn">
+                    Masuk
+                </a>
+            </div>
+        </nav>
+    );
 }
 
 export default Navbar;

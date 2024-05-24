@@ -15,10 +15,13 @@ body {
 .navbar {
   background-color: white;
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 5px;
+  padding: 5px;
   margin: auto;
+  position: fixed;
+  z-index: 10;
 }
 
 .logo {
@@ -69,6 +72,8 @@ body {
 
 .dropdown:hover .dropdown-menu {
   display: block;
+  z-index: 10;
+  width: max-content;
 }
 
 .dropdown-menu li {

@@ -1,14 +1,16 @@
 import '../src/css/Beranda.css'
-import './App.css'
-import Beranda from './Components/Beranda'
+import Beranda from './page/Beranda.jsx'
+import About from "./page/About.jsx";
+import {Route, Routes} from "react-router-dom";
 
 function App() {
 
-  return (
-    <div>
-      <Beranda />
-    </div>
-  );
+    return (
+        <Routes>
+            <Route path="/" element={<Beranda/>}/>
+            <Route path="/about" element={<About/>}/>
+        </Routes>
+    );
 }
 
 export default App;

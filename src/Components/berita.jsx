@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css'; // Gantilah dengan path yang sesuai dengan file CSS Anda
 
 function Navbar() {
