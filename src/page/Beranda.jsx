@@ -1,4 +1,3 @@
-import gambar from "../assets/img/LOGO.png";
 import email from "../assets/img/email.jpeg";
 import youtube from "../assets/img/Youtube.jpg";
 import buku from "../assets/img/buku.png";
