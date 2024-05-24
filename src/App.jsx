@@ -5,10 +5,10 @@ import Beranda from './Components/Beranda'
 function App() {
 
   return (
-    <>
-<Beranda />
-    </>
-  )
+    <div>
+      <Beranda />
+    </div>
+  );
 }
 
-export default App
+export default App;
