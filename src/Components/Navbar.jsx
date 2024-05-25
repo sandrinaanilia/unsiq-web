@@ -25,7 +25,7 @@ const Navbar = () => {
                             <button onClick={()=>navigate("/about")}>Tentang Kami</button>
                         </li>
                         <li>
-                            <a href="galeri.html">Galeri</a>
+                            <a href="/galeri">Galeri</a>
                         </li>
                     </ul>
                 </li>
@@ -33,14 +33,14 @@ const Navbar = () => {
                     <a href="#c2">Berita</a>
                 </li>
                 <li>
-                    <a href="info.html">Pendaftaran</a>
+                    <a href="/pendaftaran">Pendaftaran</a>
                 </li>
                 <li>
-                    <a href="forum.html">Forum</a>
+                    <a href="/forum">Forum</a>
                 </li>
             </ul>
             <div className="login">
-                <a href="login.html" className="login-btn">
+                <a href="/login" className="login-btn">
                     Masuk
                 </a>
             </div>
