@@ -1,6 +1,3 @@
-import email from "../assets/img/email.jpeg";
-import ig from "../assets/img/ig.jpg";
-import youtube from "../assets/img/Youtube.jpg";
 import buku from "../assets/img/buku.png";
 import quran from "../assets/img/tulis.png";
 import ceramah from "../assets/img/ceramah.png";
@@ -19,6 +16,7 @@ import alumni3 from "../assets/img/alumni3.png";
 import alumni4 from "../assets/img/alumni4.png";
 import masjid2 from "../assets/img/MASJID2.jpg";
 import Navbar from "../Components/Navbar.jsx";
+import Footer from "../Components/Footer.jsx";
 import Card from "../Components/Card.jsx";
 import Fasilitas from "../Components/Fasilitas.jsx";
 
@@ -234,29 +232,7 @@ const Beranda = () => {
             </div>
           </div>
         </section>
-
-        <footer className="footer">
-          <div className="footer-left">
-            <div className="footer-icon">
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                <img src={ig} alt="Instagram" />
-              </a>
-            </div>
-            <div className="footer-icon">
-              <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-                <img src={youtube} alt="YouTube" />
-              </a>
-            </div>
-            <div className="footer-icon">
-              <a href="mailto:example@example.com">
-                <img src={email} alt="Email" />
-              </a>
-            </div>
-          </div>
-          <div className="right-section">
-            <p>&#169; 2024 Pondok Pesantren UNSIQ II. All rights reserved.</p>
-          </div>
-        </footer>
+        <Footer/>
       </>
   );
 };

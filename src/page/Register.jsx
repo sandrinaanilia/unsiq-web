@@ -1,61 +1,98 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Logo from '../assets/img/welcome2.jpeg'; // Make sure to replace this path with the correct path to your logo
 
-const Register = () => {
+function Register() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [role, setRole] = useState('Mahasiswa');
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission
+  };
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50">
-      <div className="flex max-w-5xl w-full bg-white shadow-lg rounded-lg overflow-hidden">
-        {/* Left side: Login form */}
-        <div className="w-1/2 p-8">
-          <h1 className="text-3xl font-bold text-teal-600 mb-6">Masuk ke akun Anda</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="flex flex-col md:flex-row items-center justify-center bg-white shadow-lg rounded-2xl p-10 max-w-4xl w-full">
 
-          {/* Toggle buttons */}
-          <div className="flex mb-6">
-            <button
-              className={`flex-1 py-2 rounded-l-lg focus:outline-none ${role === 'Mahasiswa' ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-600'}`}
-              onClick={() => setRole('Mahasiswa')}
-            >
-              Mahasiswa
-            </button>
-            <button
-              className={`flex-1 py-2 rounded-r-lg focus:outline-none ${role === 'Admin' ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-600'}`}
-              onClick={() => setRole('Admin')}
-            >
-              Admin
-            </button>
-          </div>
-
-          {/* Login form */}
-          <form>
-          <div className="mb-4">
-              <input type="nama" placeholder="Nama" className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600" />
-            </div>
-            <div className="mb-4">
-              <input type="email" placeholder="Email" className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600" />
-            </div>
-            <div className="mb-4">
-              <input type="password" placeholder="Kata sandi" className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600" />
-            </div>
-            <div className="mb-4 text-right">
-              <Link to="#" className="text-teal-600 hover:underline">Lupa kata sandi?</Link>
-            </div>
-            <button className="w-full bg-teal-600 text-white py-3 rounded-md hover:bg-teal-700 transition duration-300">Masuk</button>
-          </form>
-
-          {/* Register link */}
-          <div className="mt-4 text-center">
-            <p>Sudah punya akun? <Link to="/login" className="text-teal-600 hover:underline">Masuk</Link></p>
-          </div>
+        {/* Left side */}
+        <div className="flex flex-col items-center justify-center w-full md:w-1/2 p-6">
+          <img src={Logo} alt="Logo" className="w-240 mb-4 mx-auto hidden md:block" />
         </div>
 
-        {/* Right side: Welcome message */}
-        <div className="w-1/2 bg-teal-600 text-white flex flex-col justify-center items-center p-10">
-          <div className="text-center">
-            <img src={welcome} alt="Logo" className="mb-4 w-24 mx-auto" />
-            <h2 className="text-2xl font-bold">Selamat Datang</h2>
-            <p className="mt-2">di Portal Website PPTQ Mahasiswa UNSIQ 2</p>
+        {/* Right side */}
+        <div className="flex flex-col items-center justify-center w-full md:w-1/2 p-6">
+          <div className="w-full max-w-md">
+            <h2 className="text-3xl font-bold text-teal-600 mb-2">Buat Akun</h2>
+            <p className="text-gray-400 mb-8">gunakan email Anda untuk pendaftaran</p>
+
+            {/* Toggle buttons */}
+            <div className="flex mb-6 rounded-md hover:bg-teal-700 transition duration-300">
+              <button
+                className={`flex-1 py-2 rounded-l-lg focus:outline-none ${role === 'Mahasiswa' ? 'bg-teal-600 text-white font-bold' : 'bg-emerald-50 text-emerald-600 font-bold'}`}
+                onClick={() => setRole('Mahasiswa')}
+              >
+                Mahasiswa
+              </button>
+              <button
+                className={`flex-1 py-2 rounded-r-lg focus:outline-none ${role === 'Admin' ? 'bg-teal-600 text-white font-bold' : 'bg-emerald-50 text-emerald-600 font-bold'}`}
+                onClick={() => setRole('Admin')}
+              >
+                Admin
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-gray-700">
+                  Nama Lengkap
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600"
+                    placeholder="Nama"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </label>
+              </div>
+              <div>
+                <label className="block text-gray-700">
+                  Email
+                  <input
+                    type="email"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </label>
+              </div>
+              <div>
+                <label className="block text-gray-700">
+                  Kata Sandi
+                  <input
+                    type="password"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600"
+                    placeholder="Kata Sandi"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </label>
+              </div>
+              <div className="mb-4 text-right">
+                <a href="#" className="text-teal-600 hover:underline">Lupa kata sandi?</a>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-teal-600 text-white py-3 rounded-md hover:bg-teal-700 transition duration-300"
+              >
+                Daftar
+              </button>
+            </form>
+            <p className="mt-4 text-center text-gray-600">
+              Sudah punya akun? <a href="/login" className="text-teal-600 hover:underline">Masuk</a>
+            </p>
           </div>
         </div>
       </div>
