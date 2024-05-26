@@ -8,6 +8,8 @@ import Register from "./page/Register.jsx";
 import Forum from "./page/Forum.jsx";
 import BeritaTerbaru from "./page/BeritaTerbaru.jsx";
 
+
+
 import { Route, Routes } from "react-router-dom";
 
 function App() {

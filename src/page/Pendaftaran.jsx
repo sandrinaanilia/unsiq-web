@@ -14,12 +14,12 @@ function Pendaftaran() {
     <>
       <Navbar />
       
-      <div className="bg-teal-600 h-40 ]flex items-center justify-center text-white font-bold text-5xl">
-
-Informasi Pendaftaran
+      <div className="bg-teal-600 h-80 flex items-center justify-center">
+      <h1 className="text-white font-bold text-5xl">Informasi Pendaftaran</h1>
+    
 
 </div>
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-40 py-16 ">
         <h1 className="text-3xl font-bold text-center mb-8">
           Telah Dibuka Penerimaan Santri Baru Pondok Pesantren
           <br />
@@ -95,10 +95,10 @@ Informasi Pendaftaran
                     placeholder="No. Telepon"
                   />
                 </div>
+                <div className='flex justify-center'></div>
                 <button
                   type="submit"
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
+                  className=" flex justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                   Kirim
                 </button>
               </form>
@@ -107,6 +107,7 @@ Informasi Pendaftaran
           )}
         </div>
       </div>
+      
         <Footer />
     </>
   );

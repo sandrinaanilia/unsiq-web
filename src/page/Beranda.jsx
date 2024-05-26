@@ -84,8 +84,8 @@ const Beranda = () => {
       </section>
 
       <div className="facilities">
-        <h2>Fasilitas</h2>
-        <p>Fasilitas di PPTQ Mahasiswa UNSIQ 2</p>
+        <h2 className="facilities-title">Fasilitas</h2>
+        <p className="facilities-desc">Fasilitas di PPTQ Mahasiswa UNSIQ 2</p>
         <div className="facility-container">
           <Fasilitas image={gedung} title="Gedung Pesantren" desc="Gedung untuk menunjang para santri dalam berkehidupan sehari-hari" />
           <Fasilitas image={masjid2} title="Masjid" desc="Masjid untuk tempat beribadah dan kegiatan mengaji para santri selama di pondok" />
@@ -198,7 +198,7 @@ const Beranda = () => {
       </section>
 
       <section className="location-section">
-        <h2>Lokasi Pondok</h2>
+        <h2 className="location-title">Lokasi Pondok</h2>
         <div className="location-content">
           <div className="contact-info">
             <div className="info-item">
