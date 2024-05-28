@@ -7,8 +7,10 @@ const BeritaTerbaru = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-teal-600 h-40 flex items-center justify-center text-white font-bold text-5xl">Berita Terbaru</div>
-      <section className="news py-8">
+      <div className="bg-teal-600 h-80 flex items-center justify-center">
+        <h1 className="text-white py-36 h-10 font-bold text-4xl md:text-4xl text-center">Berita Terbaru</h1>
+      </div>
+            <section className="news py-8">
         <div className="container mx-auto px-4">
           <article className="bg-white shadow-md rounded-lg overflow-hidden">
             <div className="p-6">
