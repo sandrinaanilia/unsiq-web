@@ -1,9 +1,24 @@
 import gambar from "../assets/img/LOGO.png"; // Perbaikan jalur impor gambar
 import arrow from "../assets/img/arrow.png";
 import { useNavigate } from "react-router-dom";
+import { useSelector} from "react-redux";
+import { useState} from "react";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const isLogin = useSelector(state=>state.isLogin)
+  // const dispatch = useDispatch()
+  const [loginState, setLoginState] = useState(isLogin)
+  // useEffect(() => {
+  //   setLoginState(isLogin)
+  // }, [isLogin]);
+
+  const handleLogin = ()=>{
+    // dispatch(SignIn())
+    setLoginState(true)
+    // console.log(isLogin)
+  }
+
   return (
     <nav className="navbar">
       <div className="logo">
@@ -33,16 +48,22 @@ const Navbar = () => {
           <a href="#c2">Berita</a>
         </li>
         <li>
-          <a href="/pendaftaran">Pendaftaran</a>
+          <button onClick={() => navigate("/pendaftaran")}>pendaftaran</button>
         </li>
         <li>
           <a href="/forum">Forum</a>
         </li>
       </ul>
       <div className="login">
-        <a href="/login" className="login-btn">
-          Masuk
-        </a>
+        {loginState?
+            <div className="flex flex-row">
+              <div>GAMBAR</div>
+              <div>Lonceng</div>
+            </div>
+            :
+            <button className="login-btn" onClick={handleLogin}>
+              Masuk
+            </button>}
       </div>
     </nav>
   );
