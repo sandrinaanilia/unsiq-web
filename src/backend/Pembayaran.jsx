@@ -1,6 +1,6 @@
 import Navbar from "../Components/Navbar.jsx";
 import Footer from "../Components/Footer.jsx";
-import DashboardUser from "../assets/img/dashboarduser";
+import DashboardUser from "../assets/img/dashboarduser.png";
 
 const Pembayaran = () => {
   return (

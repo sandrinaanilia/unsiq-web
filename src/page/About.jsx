@@ -16,7 +16,7 @@ const About = () => {
     setShowPopup(false);
   };
 
-  const activities = [
+  const activities1 = [
     { time: '03.00-04.30', activity: 'Bangun Pagi & Qiyamul Lail' },
     { time: '03.00-04.30', activity: 'Sholat Subuh berjamaah dilanjutkan setoran' },
     { time: '03.00-04.30', activity: 'Sarapan' },
@@ -26,6 +26,7 @@ const About = () => {
     { time: '03.00-04.30', activity: 'Setoran Al-Qur’an' },
     { time: '03.00-04.30', activity: 'Istirahat dan Tidur malam' },
   ];
+  
 
   return (
     <>
@@ -78,11 +79,14 @@ const About = () => {
           </div>
           <img src={foto7} alt="Foto PPTQ UNSIQ 2" className="w-full h-auto max-w-md md:max-w-lg lg:max-w-xl object-cover rounded-lg" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-10">
+        <div className="flex justify-end grid grid-cols-1 md:grid-cols-4 gap-4 mt-10 ">
           <button onClick={handleShowPopup} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">Aktivitas Harian</button>
-          <button className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">Aktivitas Bulanan</button>
-          <button className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">Ekstrakurikuler</button>
+          <button onClick={handleShowPopup} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">Aktivitas Bulanan</button>
+          </div>
+          <div className="grid flex justify-end grid-cols-1 md:grid-cols-4 gap-4 mt-10">
+          <button onClick={handleShowPopup} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">Aktivitas ekstrakurikuler</button>
         </div>
+
       </section>
 
       <section className="bg-gray-100 text-center py-8">
@@ -106,7 +110,7 @@ const About = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {activities.map((activity, index) => (
+                  {activities1.map((activity, index) => (
                     <tr key={index}>
                       <td className="text-left p-2">{activity.time}</td>
                       <td className="text-left p-2">{activity.activity}</td>
@@ -119,6 +123,7 @@ const About = () => {
           </div>
         </div>
       )}
+
 
       <Footer />
     </>

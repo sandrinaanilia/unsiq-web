@@ -95,6 +95,21 @@ function Forum() {
     ));
   };
 
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [clickedButton, setClickedButton] = useState("");
+
+  const handleFormClick = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  const handleButtonClick = (button) => {
+    setClickedButton(button);
+    setTimeout(() => {
+      setClickedButton("");
+      setIsFormVisible(false);
+    }, 300);
+  };
+
   return (
     <>
       <Navbar />
@@ -163,6 +178,8 @@ function Forum() {
           </button>
         </form>
       </div>
+
+      
       <Footer />
     </>
   ); 

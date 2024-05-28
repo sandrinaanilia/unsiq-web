@@ -10,6 +10,8 @@ import Berita1 from "./page/Berita1.jsx";
 import Berita2 from "./page/Berita2.jsx";
 import Berita3 from "./page/Berita3.jsx";
 import Berita4 from "./page/Berita4.jsx";
+import Pembayaran from "./backend/Pembayaran.jsx";
+
 
 
 
@@ -31,6 +33,8 @@ function App() {
       <Route path="/berita3" element={<Berita3 />} />
       <Route path="/berita4" element={<Berita4 />} />
       <Route path="/beritabesar" element={<BeritaBesar />} />
+      <Route path="/pembayaran" element={<Pembayaran />} />
+
     </Routes>
   );
 }

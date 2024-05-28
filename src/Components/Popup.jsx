@@ -1,7 +1,7 @@
 // components/Popup.js
 import React from 'react';
 
-const Popup = ({ show, onClose, title, content }) => {
+const Popup1 = ({ show, onClose, title, content }) => {
   if (!show) return null;
 
   return (
@@ -12,6 +12,7 @@ const Popup = ({ show, onClose, title, content }) => {
         <button
           className="bg-teal-600 text-white px-4 py-2 rounded"
           onClick={onClose}
+        
         >
           Close
         </button>
@@ -20,4 +21,4 @@ const Popup = ({ show, onClose, title, content }) => {
   );
 };
 
-export default Popup;
+export default Popup1;
