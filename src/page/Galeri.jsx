@@ -12,7 +12,9 @@ const Galeri = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-teal-600 h-80 flex items-center justify-center text-white font-bold text-5xl">Galeri</div>
+      <div className="bg-teal-600 h-80 flex items-center justify-center">
+        <h1 className="text-white py-36 h-10 font-bold text-4xl md:text-4xl text-center">Galeri</h1>
+      </div>
       <section className="galeri py-8 bg-gray-100">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-4">

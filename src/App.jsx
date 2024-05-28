@@ -11,6 +11,8 @@ import Berita2 from "./page/Berita2.jsx";
 import Berita3 from "./page/Berita3.jsx";
 import Berita4 from "./page/Berita4.jsx";
 
+
+
 import { Route, Routes } from "react-router-dom";
 import BeritaBesar from "./page/BeritaBesar.jsx";
 
