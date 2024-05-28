@@ -12,11 +12,11 @@ const Galeri = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-teal-600 h-40 flex items-center justify-center text-white font-bold text-5xl">Galeri</div>
+      <div className="bg-teal-600 h-80 flex items-center justify-center text-white font-bold text-5xl">Galeri</div>
       <section className="galeri py-8 bg-gray-100">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-4">
-            <div className="grid grid-cols-1">
+            <div className="grid grid-cols-1 mx-auto ">
               <ImageCard image={foto1} title="" className="w-full h-96 rounded-lg" />
             </div>
             <div className="grid grid-cols-3 gap-4">
@@ -31,7 +31,7 @@ const Galeri = () => {
           </div>
         </div>
         <div className="next-content flex justify-center mt-8">
-          <a href="#" className="bg-teal-600 font-semibol text-white 100 transition p-2 rounded">
+          <a href="#" className="bg-teal-600 hover:bg-white text-white hover:text-black border hover:border-black font-semibold transition p-2 rounded">
             Selanjutnya
           </a>
         </div>

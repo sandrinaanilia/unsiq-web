@@ -84,8 +84,8 @@ const Beranda = () => {
       </section>
 
       <div className="facilities">
-        <h2>Fasilitas</h2>
-        <p>Fasilitas di PPTQ Mahasiswa UNSIQ 2</p>
+        <h2 className="facilities-title">Fasilitas</h2>
+        <p className="facilities-desc">Fasilitas di PPTQ Mahasiswa UNSIQ 2</p>
         <div className="facility-container">
           <Fasilitas image={gedung} title="Gedung Pesantren" desc="Gedung untuk menunjang para santri dalam berkehidupan sehari-hari" />
           <Fasilitas image={masjid2} title="Masjid" desc="Masjid untuk tempat beribadah dan kegiatan mengaji para santri selama di pondok" />
@@ -100,7 +100,7 @@ const Beranda = () => {
         </h2>
         <div className="berita-container">
           <div className="berita-main">
-            <a href="#" className="berita-link">
+            <a href="/beritabesar" className="berita-link">
               <img src={berita} alt="Pelaksanaan Pengajian Malam Nuzulul" />
               <div className="berita-content">
                 <span className="tag">Terbaru</span>
@@ -115,7 +115,7 @@ const Beranda = () => {
           </div>
           <div className="sidebar">
             <div className="small-news">
-              <a href="#" className="small-news-link">
+              <a href="/berita1" className="small-news-link">
                 <img src={berita1} alt="Tim Hadroh IPOQSH" />
                 <div className="small-news-content">
                   <h4>TIM HADROH IPOQSH TU...</h4>
@@ -125,7 +125,7 @@ const Beranda = () => {
               </a>
             </div>
             <div className="small-news">
-              <a href="#" className="small-news-link">
+              <a href="/berita2" className="small-news-link">
                 <img src={berita2} alt="Informasi Daftar Ula..." />
                 <div className="small-news-content">
                   <h4>INFORMASI DAFTAR ULA...</h4>
@@ -135,7 +135,7 @@ const Beranda = () => {
               </a>
             </div>
             <div className="small-news">
-              <a href="#" className="small-news-link">
+              <a href="/berita3" className="small-news-link">
                 <img src={berita3} alt="Halal Bihalal & Tasya..." />
                 <div className="small-news-content">
                   <h4>HALAL BIHALAL & TASYA...</h4>
@@ -145,7 +145,7 @@ const Beranda = () => {
               </a>
             </div>
             <div className="small-news">
-              <a href="/beritaterbaru" className="small-news-link">
+              <a href="/berita4" className="small-news-link">
                 <img src={berita4} alt="PPTQ Unsiq 2 Berhasil..." />
                 <div className="small-news-content">
                   <h4>PPTQ Unsiq 2 Berhasil...</h4>
@@ -198,7 +198,7 @@ const Beranda = () => {
       </section>
 
       <section className="location-section">
-        <h2>Lokasi Pondok</h2>
+        <h2 className="location-title">Lokasi Pondok</h2>
         <div className="location-content">
           <div className="contact-info">
             <div className="info-item">

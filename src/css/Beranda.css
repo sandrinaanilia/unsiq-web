@@ -51,7 +51,7 @@ body {
 }
 
 .menu li:last-child {
-  margin-right:  0;
+  margin-right: 0;
 }
 
 .menu li a {
@@ -202,6 +202,7 @@ body {
   padding: 5px 20px;
   text-decoration: none;
   border-radius: 20px;
+  border: 1px solid black;
   display: inline-block;
 }
 
@@ -221,6 +222,7 @@ body {
   background-color: #f8f8f8;
   text-align: center;
   position: relative;
+  font-family: "Poppins";
 }
 
 .program-unggulan .section-title {
@@ -301,6 +303,11 @@ body {
 .title-daftar {
   color: black;
   padding: 20px;
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 10px;
+  text-align: left;
+  margin-top: 20px;
 }
 
 .daftar h2 {
@@ -348,12 +355,25 @@ body {
 .facilities {
   text-align: center;
   padding: 20px;
+  font-size: 20px;
+  font-family: "Poppins";
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../assets/img/background.jpg") no-repeat center center/cover;
   color: white; /* Mengatur warna teks menjadi putih agar kontras dengan background */
 }
 
+.facilities-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px; /* Mengurangi jarak bawah */
+  display: inline-block; /* Membuat elemen menjadi inline-block */
+  border-bottom: 4px solid white; /* Menambahkan garis bawah */
+  padding-bottom: 2px; /* Menambahkan padding bawah */
+  width: fit-content; /* Menyesuaikan lebar elemen dengan konten */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 .facilities h2 {
-  margin-bottom: 5px; /* Mengurangi jarak bawah */
+  margin-bottom: 10px; /* Mengurangi jarak bawah */
 }
 
 .facility-container {
@@ -361,6 +381,7 @@ body {
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .facility {
@@ -651,6 +672,14 @@ p {
 /* Lokasi Pondok */
 .location-section {
   text-align: center;
+  font-family: "Poppins";
+  font-size: 20px;
+}
+
+.location-title {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .location-content {

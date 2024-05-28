@@ -3,11 +3,13 @@ import Navbar from "../Components/Navbar.jsx";
 import Footer from "../Components/Footer.jsx";
 import FotoBerita from "../assets/img/foto berita.jpg";
 
-const BeritaTerbaru = () => {
+const Berita4 = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-teal-600 h-40 flex items-center justify-center text-white font-bold text-5xl">Berita Terbaru</div>
+      <div className="bg-teal-600 h-80 flex items-center justify-center">
+        <h1 className="text-white font-bold text-5xl">Berita Terbaru</h1>
+      </div>
       <section className="news py-8">
         <div className="container mx-auto px-4">
           <article className="bg-white shadow-md rounded-lg overflow-hidden">
@@ -42,4 +44,4 @@ const BeritaTerbaru = () => {
   );
 };
 
-export default BeritaTerbaru;
+export default Berita4;
