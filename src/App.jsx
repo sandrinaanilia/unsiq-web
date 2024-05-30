@@ -11,6 +11,7 @@ import Berita2 from "./page/Berita2.jsx";
 import Berita3 from "./page/Berita3.jsx";
 import Berita4 from "./page/Berita4.jsx";
 import Dashboard from "./page/Dashboard.jsx";
+import DataSantri from "./page/DataSantri.jsx";
 import Pembayaran from "./backend/Pembayaran.jsx";
 import UbahSandi from "./backend/UbahSandi.jsx";
 import Lonceng from "./backend/Lonceng.jsx";
@@ -37,6 +38,7 @@ function App() {
       <Route path="/berita4" element={<Berita4 />} />
       <Route path="/beritabesar" element={<BeritaBesar />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/datasantri" element={<DataSantri/>} />
       <Route path="/pembayaran" element={<Pembayaran />} />
       <Route path="/ubahsandi" element={<UbahSandi />} />
       <Route path="/lonceng" element={<Lonceng />} />
