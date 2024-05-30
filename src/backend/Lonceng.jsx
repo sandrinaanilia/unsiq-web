@@ -1,47 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react"; // Pisahkan useState dari React
+import { useNavigate } from 'react-router-dom';
 import Navbar from "../Components/Navbar.jsx";
 import Footer from "../Components/Footer.jsx";
 import DashboardUser from "../assets/img/dashboarduser.png";
 import Pembayaran from "../assets/img/dollar.png";
 import Pengaturan from "../assets/img/setting.png";
-
 import Keluar from "../assets/img/keluar.png";
-import { useNavigate } from 'react-router-dom';
 
-const Modal = ({ showModal, setShowModal }) => {
-  if (!showModal) return null;
-
-  return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-5 rounded-lg shadow-lg">
-        <h2 className="text-xl font-bold mb-4">Perubahan Disimpan</h2>
-        <p className="mb-4">Kata sandi Anda telah berhasil diubah.</p>
-        <div className="flex justify-center">
-          <button 
-            className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onClick={() => setShowModal(false)}
-          >
-            Tutup
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const UbahSandi = () => {
+const Lonceng = () => {
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
-
-  const handleSaveChanges = () => {
-    setShowModal(true);
-    // Here you can add additional logic to handle the password change
-  };
 
   return (
     <>
       <Navbar />
-      
       <div className="flex justify-center py-10 px-10 min-h-screen">
         <div className="w-1/8 bg-white shadow-xl rounded-lg mr-10">
           <nav className="p-10">
@@ -79,8 +51,7 @@ const UbahSandi = () => {
                 </div>
               </li>
             </ul>
-          </nav> 
-          
+          </nav>
           <div className="flex items-center p-4 bg-white shadow-lg rounded-lg">
             <div className="relative w-16 h-16">
               <img src={DashboardUser} alt="Profile" className="rounded-full w-16 h-16 object-cover" />
@@ -92,47 +63,38 @@ const UbahSandi = () => {
             </div>
             <span className="ml-4 text-xl font-bold text-gray-800">Farhan Alamsyah</span>
           </div>
-        </div> 
-        <div className="bg-white"></div>
-
+        </div>
         <div className="flex flex-col w-3/4 bg-white shadow-lg rounded-lg p-4">
           <div className="p-4 bg-white mt-4">
-            {/* Banner Section */}
-            <div className="bg-teal-600 text-white text-center py-2 rounded mb-4">
-              <h1 className="text-xl font-bold">Ubah dan klik Simpan Perubahan</h1>
+            <div className="bg-teal-600 text-white text-left py-2 rounded mb-4">
+              <h1 className="text-base font-bold">Pengumuman</h1>
             </div>
-            <h2 className="text-xl font-bold text-gray-700 mb-4">Ubah Kata Sandi</h2>
-            <p className="text-gray-600 mb-4">Pastikan akun Anda menggunakan kata sandi yang panjang dan acak untuk tetap aman.</p>
-            <div className="mb-4">
-              <label htmlFor="lama" className="block text-gray-700 font-bold mb-2">Kata Sandi Lama</label>
-              <input type="password" id="lama" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Kata Sandi Lama" />
+            <div className="flex justify-end">
+              <span className="text-teal-600 text-xl font-bold">Sudah Dibaca</span>
             </div>
-            <div className="mb-4">
-              <label htmlFor="baru" className="block text-gray-700 font-bold mb-2">Kata Sandi Baru</label>
-              <input type="password" id="baru" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Kata Sandi Baru" />
+            <div className="w-3/4 p-4 bg-white">
+              <div className="border rounded p-4 bg-teal-50">
+                <div className="flex flex-col items-start border-b pb-2 mb-2">
+                  <span>Silahkan lakukan pembayaran daftar ulang dan upload bukti pembayaran sebelum 20 mei 2024</span>
+                  <span className="text-gray-500 text-sm mt-2">20 Juni, 09:10</span>
+                </div>
+                
+              </div>
             </div>
-            <div className="mb-4">
-              <label htmlFor="konfirmasi" className="block text-gray-700 font-bold mb-2">Konfirmasi Kata Sandi Baru</label>
-              <input type="password" id="konfirmasi" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Konfirmasi Kata Sandi Baru" />
-            </div>
-            <div className="flex justify-center">
-              <button 
-                className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
-                onClick={handleSaveChanges}
-              >
-                Simpan Perubahan
-              </button>
-            </div>
+            <div className="w-3/4 p-4 bg-white">
+              <div className="border rounded p-4 bg-teal-50">
+                <div className="flex flex-col items-start border-b pb-2 mb-2">
+                  <span>Pendaftaran Anda Sudah Berhasil</span>
+                  <span className="text-gray-500 text-sm mt-2">20 Juni, 09:10</span>
+                </div>
+                </div>
+                </div>
           </div>
         </div>
       </div>
-
-      <Modal showModal={showModal} setShowModal={setShowModal} />
-
       <Footer />
     </>
   );
 };
 
-export default UbahSandi;
-
+export default Lonceng;

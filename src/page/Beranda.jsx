@@ -76,7 +76,7 @@ const Beranda = () => {
               <h2>Telah Dibuka Penerimaan Santri Baru</h2>
               <h3>Pondok Pesantren Tahfidzul Qur’an Mahasiswa UNSIQ 2 Tahun 2024 / 2025</h3>
             </div>
-            <a href="info.html" className="daftar-button">
+            <a href="x" className="daftar-button">
               Daftar Sekarang
             </a>
           </div>

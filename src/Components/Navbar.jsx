@@ -40,18 +40,18 @@ const Navbar = () => {
               <button onClick={() => navigate("/about")}>Tentang Kami</button>
             </li>
             <li>
-              <a href="/galeri">Galeri</a>
+            <button onClick={() => navigate("/galeri")}>Galeri</button>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#c2">Berita</a>
+        <button onClick={() => navigate("/#c2")}>Berita</button>
         </li>
         <li>
-          <button onClick={() => navigate("/pendaftaran")}>pendaftaran</button>
+          <button onClick={() => navigate("/pendaftaran")}>Pendaftaran</button>
         </li>
         <li>
-          <a href="/forum">Forum</a>
+        <button onClick={() => navigate("/forum")}>forum</button>
         </li>
       </ul>
       <div className="login">
