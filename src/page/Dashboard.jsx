@@ -9,9 +9,55 @@ import User from "../assets/img/iconuser.png";
 const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isSettingsPopupOpen, setIsSettingsPopupOpen] = useState(false);
+  const [isLogoutPopupOpen, setIsLogoutPopupOpen] = useState(false); // State for logout popup
+
+  const openSettingsPopup = () => {
+    setIsSettingsPopupOpen(true);
+  };
+
+  const closeSettingsPopup = () => {
+    setIsSettingsPopupOpen(false);
+  };
+
+  const openLogoutPopup = () => {
+    setIsLogoutPopupOpen(true);
+  };
+
+  const closeLogoutPopup = () => {
+    setIsLogoutPopupOpen(false);
+  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const toggleChangePassword = () => {
+    setIsChangePasswordOpen(!isChangePasswordOpen);
+  };
+
+  const handleChangePassword = (e) => {
+    e.preventDefault();
+    // Lakukan validasi kata sandi baru
+    if (newPassword !== confirmPassword) {
+      setPasswordError('Kata sandi baru tidak cocok');
+      return;
+    }
+
+    setPasswordError('');
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+    setIsChangePasswordOpen(false);
   };
 
   return (
@@ -44,9 +90,9 @@ const Dashboard = () => {
             </div>
             {isDropdownOpen && (
               <ul className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
-                <li className="p-2 hover:bg-gray-200 cursor-pointer">Profile</li>
-                <li className="p-2 hover:bg-gray-200 cursor-pointer">Settings</li>
-                <li className="p-2 hover:bg-gray-200 cursor-pointer">Logout</li>
+                <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openPopup}>Profile</li>
+                <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openSettingsPopup}>Pengaturan</li>
+                <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openLogoutPopup}>Keluar</li> {/* Open logout popup */}
               </ul>
             )}
           </div>
@@ -120,6 +166,128 @@ const Dashboard = () => {
             </ul>
           </div>
         </div>
+
+        {/* Popup for Profile */}
+        {isPopupOpen && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-xl font-bold mb-4">Profil</h2>
+              <form className="flex flex-col gap-4">
+                <div className="flex items-center gap-2">
+                  <img src={Profil} alt="Profile" className="w-12 h-12 rounded-full" />
+                  <span className="text-black font-bold">Admin</span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="namaLengkap">Nama Lengkap:</label>
+                  <input 
+                    type="text" 
+                    id="namaLengkap" 
+                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
+                    placeholder="Abdurohman Hamam"
+                    value="Abdurohman Hamam"
+                    readOnly
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email">Email:</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
+                    placeholder="abdurohman@gmail.com" 
+                    value="Abdurohman@gmail.com"
+                    readOnly
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="noTelp">Nomor Telepon:</label>
+                  <input 
+                    type="tel" 
+                    id="noTelp" 
+                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
+                    placeholder="08977654323"
+                    value="08977654323"
+                    readOnly
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="jabatan">Jabatan:</label>
+                  <input 
+                    type="text" 
+                    id="jabatan" 
+                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
+                    placeholder="Sekretaris 2"
+                    value="Sekretaris 2"
+                    readOnly
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="kataSandi">Kata Sandi:</label>
+                  <input 
+                    type="password" 
+                    id="kataSandi" 
+                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
+                    placeholder="*********"
+                    value="Abd*******98"
+                    readOnly
+                  />
+                </div>
+                <div className="flex justify-end">
+                  <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closePopup}>Simpan</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+        {/* Popup for Settings */}
+        {isSettingsPopupOpen && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-xl font-bold mb-4">Pengaturan</h2>
+              <form className="flex flex-col gap-4">
+                <div className="flex items-center gap-2">
+                  <img src={Profil} alt="Profile" className="w-12 h-12 rounded-full" />
+                  <span className="text-black font-bold">Admin</span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="namaLengkap">Nama Lengkap:</label>
+                  <input 
+                    type="text" 
+                    id="namaLengkap" 
+                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
+                    placeholder="Abdurohman Hamam"
+                    value="Abdurohman Hamam"
+                    readOnly
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label>Ubah Kata Sandi:</label>
+                  <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={toggleChangePassword}>Ubah Kata Sandi</button>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label>Hapus Akun:</label>
+                  <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">Hapus Akun</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+        {/* Popup for Logout */}
+        {isLogoutPopupOpen && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-xl font-bold mb-4">Keluar dari akun anda?</h2> 
+              <div className="flex justify-end gap-4">
+                <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeLogoutPopup}>Tidak</button> 
+                <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => {
+                  // Add your logout logic here
+                  console.log("Logout!");
+                  closeLogoutPopup();
+                }}>Keluar</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
