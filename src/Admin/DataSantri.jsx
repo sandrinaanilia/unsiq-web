@@ -8,6 +8,7 @@ const DataSantri = () => {
   const [filter, setFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('All');
+  
 
   const data = [
     { name: "Sayifulloh", nim: "2021150108", year: 2024, category: "Beasiswa 5 Juz" },

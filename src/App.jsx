@@ -10,11 +10,15 @@ import Berita1 from "./page/Berita1.jsx";
 import Berita2 from "./page/Berita2.jsx";
 import Berita3 from "./page/Berita3.jsx";
 import Berita4 from "./page/Berita4.jsx";
-import Dashboard from "./page/Dashboard.jsx";
-import DataSantri from "./page/DataSantri.jsx";
-import Pembayaran from "./backend/Pembayaran.jsx";
-import UbahSandi from "./backend/UbahSandi.jsx";
-import Lonceng from "./backend/Lonceng.jsx";
+import Dashboard from "./Admin/Dashboard.jsx";
+import DataSantri from "./Admin/DataSantri.jsx";
+import InformasiPendaftaran from "./Admin/InformasiPendaftaran.jsx";
+import Pembayaran from "./DashboardUser/Pembayaran.jsx";
+import UbahSandi from "./DashboardUser/UbahSandi.jsx";
+import Lonceng from "./DashboardUser/Lonceng.jsx";
+import Pengumuman from "./Admin/Pengumuman.jsx";
+import BerkasDataSantri from "./Admin/BerkasDataSantri.jsx";
+
 
 
 
@@ -42,6 +46,12 @@ function App() {
       <Route path="/pembayaran" element={<Pembayaran />} />
       <Route path="/ubahsandi" element={<UbahSandi />} />
       <Route path="/lonceng" element={<Lonceng />} />
+      <Route path="/informasipendaftaran" element={<InformasiPendaftaran />} />
+      <Route path="/pengumuman" element={<Pengumuman />} />
+      <Route path="/berkasdatasantri" element={<BerkasDataSantri/>} />
+
+
+
 
 
     </Routes>

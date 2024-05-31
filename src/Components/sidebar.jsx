@@ -2,6 +2,7 @@ import React from 'react';
 import logoponpesma from '../assets/img/logoponpesma.png';
 
 const Sidebar = () => {
+  
   return (
     
     <div className="sidebar h-full bg-gray-800 text-white flex flex-col items-center py-4">
