@@ -19,6 +19,10 @@ import Lonceng from "./DashboardUser/Lonceng.jsx";
 import Pengaturan from "./DashboardUser/Pengaturan.jsx";
 import Pengumuman from "./Admin/Pengumuman.jsx";
 import BerkasDataSantri from "./Admin/BerkasDataSantri.jsx";
+import EditBerkasData from "./Admin/EditBerkasData.jsx";
+
+import GaleriAdmin from "./Admin/GaleriAdmin.jsx";
+
 
 import { Route, Routes } from "react-router-dom";
 import BeritaBesar from "./page/BeritaBesar.jsx";
@@ -47,6 +51,9 @@ function App() {
       <Route path="/informasipendaftaran" element={<InformasiPendaftaran />} />
       <Route path="/pengumuman" element={<Pengumuman />} />
       <Route path="/berkasdatasantri" element={<BerkasDataSantri />} />
+      <Route path="/editberkasdata" element={<EditBerkasData />} />
+      <Route path="/galeri" element={<GaleriAdmin />} />
+
     </Routes>
   );
 }

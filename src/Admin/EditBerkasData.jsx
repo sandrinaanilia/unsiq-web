@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function BerkasDataSantri() {
+function EditBerkasData() {
+  const navigate = useNavigate();
   const [namaLengkap, setNamaLengkap] = useState('');
   const [tempatLahir, setTempatLahir] = useState('');
   const [tanggalLahir, setTanggalLahir] = useState('');
@@ -31,10 +33,10 @@ function BerkasDataSantri() {
     });
   };
 
-  return ( 
+  return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-8xl">
-        <h2 className="text-3xl font-bold text-teal-700 mb-4">Berkas Data Santri</h2>
+        <h2 className="text-3xl font-bold text-teal-700 mb-4">Edit Berkas Data Santri</h2>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
@@ -45,7 +47,7 @@ function BerkasDataSantri() {
                 type="text"
                 id="namaLengkap"
                 className="appearance-none border-gray-400 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={namaLengkap}
+                value="Sayifullah hadiningrat" readOnly
                 onChange={(e) => setNamaLengkap(e.target.value)}
               />
             </div>
@@ -195,18 +197,24 @@ function BerkasDataSantri() {
               />
             </div>
           </div>
-          <div className="flex items-center justify-end">
+          <div className="flex justify-end space-x-2">
+          <button onClick={() => navigate("/berkasdatasantri")} className="border border-black hover:bg-teal-600 hover:text-white text-teal-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Batal
+                          </button>
+         
+
             <button
-              type="submit"
-              className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+                className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
-              Kembali
+                Perbarui
             </button>
-          </div>
+            </div>
+
         </form>
       </div>
     </div>
   );
 }
 
-export default BerkasDataSantri;
+export default EditBerkasData;
