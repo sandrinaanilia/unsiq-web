@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import logoponpesma from '../assets/img/logoponpesma.png';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import logoponpesma from "../assets/img/logoponpesma.png";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const Sidebar = () => {
           <i className="fas fa-newspaper"></i>
           <span className="text-shadow">Berita</span>
         </button>
-        <button onClick={() => navigate("/galeri")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
+        <button onClick={() => navigate("/galeriadmin")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
           <i className="fas fa-images"></i>
           <span className="text-shadow">Galeri</span>
         </button>
