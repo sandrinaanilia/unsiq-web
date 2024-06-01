@@ -16,12 +16,9 @@ import InformasiPendaftaran from "./Admin/InformasiPendaftaran.jsx";
 import Pembayaran from "./DashboardUser/Pembayaran.jsx";
 import UbahSandi from "./DashboardUser/UbahSandi.jsx";
 import Lonceng from "./DashboardUser/Lonceng.jsx";
+import Pengaturan from "./DashboardUser/Pengaturan.jsx";
 import Pengumuman from "./Admin/Pengumuman.jsx";
 import BerkasDataSantri from "./Admin/BerkasDataSantri.jsx";
-
-
-
-
 
 import { Route, Routes } from "react-router-dom";
 import BeritaBesar from "./page/BeritaBesar.jsx";
@@ -42,18 +39,14 @@ function App() {
       <Route path="/berita4" element={<Berita4 />} />
       <Route path="/beritabesar" element={<BeritaBesar />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/datasantri" element={<DataSantri/>} />
+      <Route path="/datasantri" element={<DataSantri />} />
       <Route path="/pembayaran" element={<Pembayaran />} />
+      <Route path="/pengaturan" element={<Pengaturan />} />
       <Route path="/ubahsandi" element={<UbahSandi />} />
       <Route path="/lonceng" element={<Lonceng />} />
       <Route path="/informasipendaftaran" element={<InformasiPendaftaran />} />
       <Route path="/pengumuman" element={<Pengumuman />} />
-      <Route path="/berkasdatasantri" element={<BerkasDataSantri/>} />
-
-
-
-
-
+      <Route path="/berkasdatasantri" element={<BerkasDataSantri />} />
     </Routes>
   );
 }
