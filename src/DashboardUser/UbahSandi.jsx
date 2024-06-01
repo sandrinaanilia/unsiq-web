@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar.jsx";
 import Footer from "../Components/Footer.jsx";
 import DashboardUser from "../assets/img/dashboarduser.png";
 import Pembayaran from "../assets/img/dollar.png";
 import Pengaturan from "../assets/img/setting.png";
-
 import Keluar from "../assets/img/keluar.png";
-import { useNavigate } from 'react-router-dom';
+import Paper from "../assets/img/paper.png";
 
 const Modal = ({ showModal, setShowModal }) => {
   if (!showModal) return null;
@@ -17,10 +17,7 @@ const Modal = ({ showModal, setShowModal }) => {
         <h2 className="text-xl font-bold mb-4">Perubahan Disimpan</h2>
         <p className="mb-4">Kata sandi Anda telah berhasil diubah.</p>
         <div className="flex justify-center">
-          <button 
-            className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onClick={() => setShowModal(false)}
-          >
+          <button className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => setShowModal(false)}>
             Tutup
           </button>
         </div>
@@ -41,47 +38,48 @@ const UbahSandi = () => {
   return (
     <>
       <Navbar />
-      
       <div className="flex justify-center py-10 px-10 min-h-screen">
-        <div className="w-1/8 bg-white shadow-xl rounded-lg mr-10">
-          <nav className="p-10">
+        <div className="w-1/8 bg-white shadow-xl rounded-lg mr-10 flex flex-col">
+          <nav className="p-6 mt-20">
             <ul>
               <li>
-                <div className="flex items-center py-2 px-8 mt-3 text-gray-600 hover:bg-gray-100 hover:text-gray-700 rounded-lg">
-                  <img src="" alt="" className="w-6 h-6 mr-3" />
-                  <button className="w-full font-bold text-left" onClick={() => navigate("/formulirpendaftaran")}>
-                    Formulir Pendaftaran
-                  </button>
-                </div>
+                <button
+                  className={`flex items-center py-2 px-8 mt-3 w-full text-left ${
+                    window.location.pathname === "/formulirpendaftaran" ? "bg-teal-600 text-white" : "text-gray-600"
+                  } hover:bg-teal-600 hover:text-white rounded-lg justify-start`}
+                  onClick={() => navigate("/formulirpendaftaran")}
+                >
+                  <img src={Paper} alt="Formulir Pendaftaran" className="w-6 h-6 mr-3" />
+                  <span className="font-bold">Formulir Pendaftaran</span>
+                </button>
               </li>
               <li>
-                <div className="flex items-center py-2 px-8 mt-3 text-gray-600 hover:bg-gray-100 hover:text-gray-700 rounded-lg">
+                <button
+                  className={`flex items-center py-2 px-8 mt-3 w-full text-left ${window.location.pathname === "/pembayaran" ? "bg-teal-600 text-white" : "text-gray-600"} hover:bg-teal-600 hover:text-white rounded-lg justify-start`}
+                  onClick={() => navigate("/pembayaran")}
+                >
                   <img src={Pembayaran} alt="Pembayaran" className="w-6 h-6 mr-3" />
-                  <button className="w-full font-bold text-left" onClick={() => navigate("/pembayaran")}>
-                    Pembayaran
-                  </button>
-                </div>
+                  <span className="font-bold">Pembayaran</span>
+                </button>
               </li>
               <li>
-                <div className="flex items-center py-2 px-8 mt-3 bg-teal-600 text-white hover:bg-gray-100 hover:text-gray-700 rounded-lg">
+                <button className={`flex items-center py-2 px-8 mt-3 w-full text-left bg-teal-600 text-white hover:bg-teal-600 hover:text-white rounded-lg justify-start`} onClick={() => navigate("/pengaturan")}>
                   <img src={Pengaturan} alt="Pengaturan Profil" className="w-6 h-6 mr-3" />
-                  <button className="w-full font-bold text-left" onClick={() => navigate("/pengaturanprofil")}>
-                    Pengaturan Profil
-                  </button>
-                </div>
+                  <span className="font-bold">Pengaturan Profil</span>
+                </button>
               </li>
               <li>
-                <div className="flex items-center py-2 px-8 mt-3 text-gray-600 hover:bg-gray-100 hover:text-gray-700 rounded-lg">
+                <button
+                  className={`flex items-center py-2 px-8 mt-3 w-full text-left ${window.location.pathname === "/keluar" ? "bg-teal-600 text-white" : "text-gray-600"} hover:bg-teal-600 hover:text-white rounded-lg justify-start`}
+                  onClick={() => navigate("/keluar")}
+                >
                   <img src={Keluar} alt="Keluar" className="w-6 h-6 mr-3" />
-                  <button className="w-full font-bold text-left" onClick={() => navigate("/keluar")}>
-                    Keluar
-                  </button>
-                </div>
+                  <span className="font-bold">Keluar</span>
+                </button>
               </li>
             </ul>
-          </nav> 
-          
-          <div className="flex items-center p-4 bg-white shadow-lg rounded-lg">
+          </nav>
+          <div className="flex items-center p-4 bg-white shadow-lg rounded-lg mx-10 my-4">
             <div className="relative w-16 h-16">
               <img src={DashboardUser} alt="Profile" className="rounded-full w-16 h-16 object-cover" />
               <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full border">
@@ -92,47 +90,47 @@ const UbahSandi = () => {
             </div>
             <span className="ml-4 text-xl font-bold text-gray-800">Farhan Alamsyah</span>
           </div>
-        </div> 
-        <div className="bg-white"></div>
-
-        <div className="flex flex-col w-3/4 bg-white shadow-lg rounded-lg p-4">
-          <div className="p-4 bg-white mt-4">
-            {/* Banner Section */}
-            <div className="bg-teal-600 text-white text-center py-2 rounded mb-4">
-              <h1 className="text-xl font-bold">Ubah dan klik Simpan Perubahan</h1>
+        </div>
+        <div className="flex flex-col w-3/4 bg-white shadow-lg rounded-lg p-6">
+          <div className="p-4 bg-white mt-20">
+            <div className="bg-teal-600 text-white text-left py-5 px-4 rounded mb-4">
+              <h1 className="text-base font-bold">Ubah dan klik Simpan Perubahan</h1>
             </div>
-            <h2 className="text-xl font-bold text-gray-700 mb-4">Ubah Kata Sandi</h2>
-            <p className="text-gray-600 mb-4">Pastikan akun Anda menggunakan kata sandi yang panjang dan acak untuk tetap aman.</p>
-            <div className="mb-4">
-              <label htmlFor="lama" className="block text-gray-700 font-bold mb-2">Kata Sandi Lama</label>
-              <input type="password" id="lama" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Kata Sandi Lama" />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="baru" className="block text-gray-700 font-bold mb-2">Kata Sandi Baru</label>
-              <input type="password" id="baru" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Kata Sandi Baru" />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="konfirmasi" className="block text-gray-700 font-bold mb-2">Konfirmasi Kata Sandi Baru</label>
-              <input type="password" id="konfirmasi" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Konfirmasi Kata Sandi Baru" />
-            </div>
-            <div className="flex justify-center">
-              <button 
-                className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
-                onClick={handleSaveChanges}
-              >
-                Simpan Perubahan
-              </button>
+            <div className="p-4 bg-white mt-4">
+              {/* Banner Section */}
+              <h2 className="text-xl font-bold text-gray-700 mb-4">Ubah Kata Sandi</h2>
+              <p className="text-gray-600 mb-4">Pastikan akun Anda menggunakan kata sandi yang panjang dan acak untuk tetap aman.</p>
+              <div className="mb-4">
+                <label htmlFor="lama" className="block text-gray-700 font-bold mb-2">
+                  Kata Sandi Lama
+                </label>
+                <input type="password" id="lama" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Kata Sandi Lama" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="baru" className="block text-gray-700 font-bold mb-2">
+                  Kata Sandi Baru
+                </label>
+                <input type="password" id="baru" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Kata Sandi Baru" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="konfirmasi" className="block text-gray-700 font-bold mb-2">
+                  Konfirmasi Kata Sandi Baru
+                </label>
+                <input type="password" id="konfirmasi" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Konfirmasi Kata Sandi Baru" />
+              </div>
+              <div className="flex justify-center">
+                <button className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleSaveChanges}>
+                  Simpan Perubahan
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
       <Modal showModal={showModal} setShowModal={setShowModal} />
-
       <Footer />
     </>
   );
 };
 
 export default UbahSandi;
-

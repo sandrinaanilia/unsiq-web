@@ -52,7 +52,7 @@ const Lonceng = () => {
               <li>
                 <button
                   className={`flex items-center py-2 px-8 mt-3 w-full text-left ${window.location.pathname === "/pengaturanprofil" ? "bg-teal-600 text-white" : "text-gray-600"} hover:bg-teal-600 hover:text-white rounded-lg justify-start`}
-                  onClick={() => navigate("/pengaturanprofil")}
+                  onClick={() => navigate("/pengaturan")}
                 >
                   <img src={Pengaturan} alt="Pengaturan Profil" className="w-6 h-6 mr-3" />
                   <span className="font-bold">Pengaturan Profil</span>
