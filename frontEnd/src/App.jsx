@@ -55,7 +55,6 @@ function App() {
       <Route path="/galeri" element={<GaleriAdmin />} />
       <Route path="/formulirpendaftaran" element={<FormulirPendaftaran />} />
       <Route path="/forumdiskusi" element={<ForumDiskusi />} />
-
     </Routes>
   );
 }
