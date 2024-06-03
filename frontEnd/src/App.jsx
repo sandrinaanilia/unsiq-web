@@ -23,6 +23,10 @@ import EditBerkasData from "./Admin/EditBerkasData.jsx";
 import FormulirPendaftaran from "./DashboardUser/FormulirPendaftaran.jsx";
 import GaleriAdmin from "./Admin/GaleriAdmin.jsx";
 import ForumDiskusi from "./Admin/ForumDiskusi.jsx";
+import DashboardBerita from "./Admin/DashboardBerita.jsx";
+import TambahBerita from "./Admin/TambahBerita.jsx";
+import TambahBerita1 from "./Admin/TambahBerita1.jsx";
+import EditBerita from "./Admin/EditBerita.jsx";
 
 import { Route, Routes } from "react-router-dom";
 import BeritaBesar from "./page/BeritaBesar.jsx";
@@ -55,6 +59,10 @@ function App() {
       <Route path="/galeri" element={<GaleriAdmin />} />
       <Route path="/formulirpendaftaran" element={<FormulirPendaftaran />} />
       <Route path="/forumdiskusi" element={<ForumDiskusi />} />
+      <Route path="/dashboardberita" element={<DashboardBerita />} />
+      <Route path="/tambahberita" element={<TambahBerita />} />
+      <Route path="/tambahberita1" element={<TambahBerita1 />} />
+      <Route path="/editberita" element={<EditBerita />} />
     </Routes>
   );
 }
