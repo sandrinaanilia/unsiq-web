@@ -23,6 +23,7 @@ const ForumDiskusi = () => {
         author: 'Farhan Alamsyah',
         content: 'Saya ingin mendaftar di pondok pesantren unsiq II isi formulir pendaftaran di data diri ya?',
         time: '2 jam yang lalu',
+        imgSrc: "Theo",
         replies: [
           {
             id: 1,
@@ -34,7 +35,7 @@ const ForumDiskusi = () => {
       {
         id: 2,
         author: 'Theo Rahmadhan',
-        imgSrc: "", // Replace with actual image URL
+        imgSrc: "Theo", // Replace with actual image URL
         content: 'UNSIQ II punya fasilitas apa aja?',
         time: '6 jam yang lalu',
         replies: [],
@@ -340,13 +341,15 @@ const ForumDiskusi = () => {
         <ul>
           {discussions.map((discussion, index) => (
             <li
+            x
               key={index}
               className={`flex items-center p-2 mb-2 ${index === 0 ? 'bg-white' : 'bg-gray-200'} ${discussion.unread ? 'font-bold' : ''}`}
             >
               <div className="w-12 h-12 rounded-full bg-gray-300 mr-4"></div>
               <div>
-                <div className="text-sm">{discussion.name}</div>
-                <div className="text-xs text-right text-gray-500">{discussion.time}</div>
+                <div className="text-sm">{discussion.name}
+                </div>
+                <div className="text-xs justify-end text-right text-gray-500">{discussion.time}</div>
                 <div className="text-xs">{discussion.message}</div>
               </div>
             </li>
@@ -356,24 +359,27 @@ const ForumDiskusi = () => {
       <div className="w-2/3 bg-white p-4 flex flex-col justify-between">
         <div>
           <div className="flex items-center border mb-4">
-            <div className="w-12 h-12 rounded-full bg-gray-300 mr-4"></div>
+            <div className="w-12 h-12 rounded-full bg-gray-300 mr-4">
+            <img src={Theo} alt="user" className="" />
+
+            </div>
             <div>
               <div className="text-sm font-bold">Farhan Alamsyah</div>
               <div className="text-xs text-gray-500">2 jam yang lalu</div>
             </div>
           </div>
           <div className="mb-4">
-            <div className="bg-gray-200 p-4 rounded-md mb-2">
+            <div className="bg-white p-4 border border-teal-600 rounded-md mb-7">
               Saya ingin mendaftar di pondok pesantren unsiq II isi formulir pendaftaran di data diri ya?
             </div>
-            <div className="bg-green-200 p-4 rounded-md ml-auto text-right">
+            <div className="bg-teal-600 p-4 rounded-md ml-auto text-white text-right">
               Untuk alur pendaftaran bisa dilihat di halaman informasi pendaftaran ya kak
             </div>
           </div>
         </div>
         <div className="flex items-center mt-4">
-          <input type="text" className="flex-1 border rounded-md p-2" placeholder="Ketik pesan..." />
-          <button className="ml-2 bg-blue-500 text-white p-2 rounded-md">Kirim</button>
+          <input type="text" className="f lex-1 border rounded-md p-2" placeholder="Ketik pesan..." />
+          <button className="ml-2 bg-teal-600 text-white p-2 rounded-md">Kirim</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import arrow from "../assets/img/arrow.png";
 import Sidebar from "../Components/sidebar";
 import Profil from "../assets/img/hamam.png";
@@ -7,6 +8,7 @@ import Akun from "../assets/img/pesan.png";
 import User from "../assets/img/iconuser.png";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -99,13 +101,13 @@ const Dashboard = () => {
         </div>
 
         {/* Summary Boxes */}
-        <div className="flex justify-between p-6 gap-6">
-          <div className="bg-teal-600 text-white p-6 rounded-lg shadow-lg w-1/8 flex items-center justify-between">
+        <div className="flex justify-between p-9 gap-6">
+        <div className="bg-teal-600 text-white p-6 rounded-lg shadow-lg w-1/3 flex items-center justify-between">
             <div>
               <h3 className="text-xl font-bold">Akun Baru</h3>
               <span className="text-4xl">34</span>
             </div>
-            <img src={User} alt="Account" className="w-16 h-16" />
+            <img src={User} alt="Account" className="w-20 h-20" />
           </div>
           <div className="bg-green-500 text-white p-6 rounded-lg shadow-lg w-1/3 flex items-center justify-between">
             <div>
@@ -123,17 +125,16 @@ const Dashboard = () => {
               <h3 className="text-xl font-bold">Pesan Baru</h3>
               <span className="text-4xl">1</span>
             </div>
-            <img src={Akun} alt="Message" className="w-16 h-16" />
+            <img src={Akun} alt="Message" className="w-20 h-20x" />
           </div>
         </div>
 
-        {/* Main Content */}
-        <div className="p-6 flex flex-wrap gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-80">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-bold">Pendaftar Baru</h2>
-              <a href="#" className="text-teal-500">lihat</a>
-            </div>
+        <div className="p-3 flex flex-wrap gap-8 justify-center">
+      <div className="bg-white border border-gray-300 p-10 px-8 py-12 rounded-lg shadow-lg w-96">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold">Pendaftar Baru</h2>
+          <a href="#" className="text-teal-500">lihat</a>
+        </div>
             <ul>
               {["Sayifulloh", "Boy", "Feri"].map((name, index) => (
                 <li key={index} className="flex justify-between items-center border-b-2 py-2">
@@ -144,20 +145,20 @@ const Dashboard = () => {
             </ul>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-lg w-80">
+          <div className="bg-white border border-gray-300 p-10 px-8 py-12 rounded-lg shadow-lg w-96">
             <h2 className="text-lg font-bold mb-4">Informasi Pembayaran</h2>
             <ul>
               {["Sayifulloh", "Boy", "Feri"].map((name, index) => (
                 <li key={index} className="flex justify-between items-center border-b-2 py-2">
                   <span>{index + 1}. {name}</span>
-                  <button className="bg-teal-500 text-white px-2 py-1 rounded-full text-xs">Lihat pembayaran</button>
+                  <button onClick={() => navigate("/galeri")} className="bg-teal-500 text-white px-2 py-1 rounded-full text-xs">Liihat Pembayaran</button>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* New Activity Section */}
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full">
+          <div className="bg-white p-6 border border-gray-300 rounded-lg shadow-lg w-100">
             <h2 className="text-2xl font-bold mb-4">Aktivitas</h2>
             <ul className="list-disc pl-5 space-y-2">
               <li>Pendataan Mahasiswa reguler dan beasiswa serta upload surat pernyataan dan daftar ulang</li>

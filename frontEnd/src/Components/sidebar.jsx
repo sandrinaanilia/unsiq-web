@@ -28,7 +28,7 @@ const Sidebar = () => {
           <i className="fas fa-bell"></i>
           <span className="text-shadow">Pengumuman</span>
         </button>
-        <button onClick={() => navigate("/berita")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
+        <button onClick={() => navigate("/dashboardberita")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
           <i className="fas fa-newspaper"></i>
           <span className="text-shadow">Berita</span>
         </button>

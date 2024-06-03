@@ -1,5 +1,7 @@
 import gambar from "../assets/img/LOGO.png"; // Perbaikan jalur impor gambar
 import arrow from "../assets/img/arrow.png";
+import user from "../assets/img/user3.png";
+import lonceng from "../assets/img/lonceng.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector} from "react-redux";
 import { useState} from "react";
@@ -56,9 +58,9 @@ const Navbar = () => {
       </ul>
       <div className="login">
         {loginState?
-            <div className="flex flex-row">
-              <div>GAMBAR</div>
-              <div>Lonceng</div>
+            <div className="flex justify-end p-4 flex-row">  
+              <img src={lonceng} className="w-1/1 px-5 h-10" alt="lonceng "/>
+              <img src={user} className="w-1/4 h-10" alt="user"/>
             </div>
             :
             <button className="login-btn" onClick={handleLogin}>
