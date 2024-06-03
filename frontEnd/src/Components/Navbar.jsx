@@ -3,21 +3,22 @@ import arrow from "../assets/img/arrow.png";
 import user from "../assets/img/user3.png";
 import lonceng from "../assets/img/lonceng.png";
 import { useNavigate } from "react-router-dom";
-import { useSelector} from "react-redux";
-import { useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {SignIn} from "../store/auth.js";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const isLogin = useSelector(state=>state.isLogin)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const [loginState, setLoginState] = useState(isLogin)
-  // useEffect(() => {
-  //   setLoginState(isLogin)
-  // }, [isLogin]);
+  useEffect(() => {
+    setLoginState(isLogin)
+  }, [isLogin]);
 
   const handleLogin = ()=>{
-    // dispatch(SignIn())
-    setLoginState(true)
+    dispatch(SignIn())
+    // setLoginState(true)
     // console.log(isLogin)
   }
 

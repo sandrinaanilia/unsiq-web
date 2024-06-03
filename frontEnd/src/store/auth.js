@@ -5,10 +5,10 @@ const auth = createSlice({
     initialState:{isLogin:false},
     reducers:{
         SignIn(state){
-            state.islogin = true
+            state.isLogin = true
         },
         logout(state){
-          state.islogin=false
+          state.isLogin=false
         }
     }
 })
