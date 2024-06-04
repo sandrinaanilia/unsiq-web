@@ -143,16 +143,16 @@ const Pengumuman = () => {
         {/* Announcement Section */}
         <div className="p-4">
           <h1 className="text-2xl font-bold mb-4">Pengumuman</h1>
-          <button className="text-teal-500 mb-4" onClick={handleAddAnnouncement}>
+          <button className="text-teal-600 font-bold mb-4" onClick={handleAddAnnouncement}>
             + Tambah Pengumuman
           </button>
           <div className="space-y-4">
             {announcements.map((ann) => (
               <div key={ann.id} className="bg-gray-100 p-4 rounded-lg shadow-md">
                 <p>{ann.text}</p>
-                <p className="text-sm text-teal-500">{ann.autoMessage}</p>
+                <p className="text-sm text-teal-600">{ann.autoMessage}</p>
                 <div className="flex justify-end space-x-2 mt-2">
-                  <button className="bg-teal-500 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={() => handleEditAnnouncement(ann)}>
+                  <button className="bg-teal-600 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={() => handleEditAnnouncement(ann)}>
                     Edit
                   </button>
                   <button className="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none" onClick={() => handleDeleteAnnouncement(ann.id)}>
@@ -192,7 +192,7 @@ const Pengumuman = () => {
                 </div>
               </form>
               <div className="flex justify-end mt-4">
-                <button className="bg-teal-500 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={closePopup}>
+                <button className="bg-teal-600 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={closePopup}>
                   Tutup
                 </button>
               </div>
@@ -221,7 +221,7 @@ const Pengumuman = () => {
                 <button className="bg-gray-500 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none" onClick={() => setIsEditPopupOpen(false)}>
                   Batal
                 </button>
-                <button className="bg-teal-500 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={handleSaveAnnouncement}>
+                <button className="bg-teal-600 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={handleSaveAnnouncement}>
                   Simpan
                 </button>
               </div>
@@ -243,7 +243,7 @@ const Pengumuman = () => {
                 </div>
               </form>
               <div className="flex justify-end mt-4">
-                <button className="bg-teal-500 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={closeSettingsPopup}>
+                <button className="bg-teal-600 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={closeSettingsPopup}>
                   Tutup
                 </button>
               </div>
@@ -259,22 +259,22 @@ const Pengumuman = () => {
               <form className="flex flex-col gap-4" onSubmit={handleChangePassword}>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="currentPassword">Kata Sandi Saat Ini:</label>
-                  <input type="password" id="currentPassword" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} required />
+                  <input type="password" id="currentPassword" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-600" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} required />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="newPassword">Kata Sandi Baru:</label>
-                  <input type="password" id="newPassword" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
+                  <input type="password" id="newPassword" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-600" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="confirmPassword">Konfirmasi Kata Sandi Baru:</label>
-                  <input type="password" id="confirmPassword" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+                  <input type="password" id="confirmPassword" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-600" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
                 </div>
                 {passwordError && <p className="text-red-500">{passwordError}</p>}
                 <div className="flex justify-end mt-4">
                   <button className="bg-gray-500 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none mr-2" onClick={toggleChangePassword}>
                     Batal
                   </button>
-                  <button type="submit" className="bg-teal-500 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none">
+                  <button type="submit" className="bg-teal-600 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none">
                     Ubah
                   </button>
                 </div>

@@ -30,8 +30,6 @@ import CeritaAlumni from "./Admin/CeritaAlumni.jsx";
 
 import { Route, Routes } from "react-router-dom";
 import BeritaBesar from "./page/BeritaBesar.jsx";
-import BeritaSetelahDitambah from "./Admin/BeritaSetelahDitambah.jsx";
-import CeritaAlumniSetelahDitambah from "./Admin/CeritaAlumniSetelahDitambah.jsx";
 
 function App() {
   return (
@@ -62,10 +60,8 @@ function App() {
       <Route path="/formulirpendaftaran" element={<FormulirPendaftaran />} />
       <Route path="/forumdiskusi" element={<ForumDiskusi />} />
       <Route path="/dashboardberita" element={<DashboardBerita />} />
-      <Route path="/beritasetelahditambah" element={<BeritaSetelahDitambah />} />
       <Route path="/viewberita" element={<ViewBerita />} />
       <Route path="/ceritaalumni" element={<CeritaAlumni />} />
-      <Route path="/ceritaalumnisetelahditambah" element={<CeritaAlumniSetelahDitambah />} />
     </Routes>
   );
 }

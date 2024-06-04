@@ -18,9 +18,9 @@ const InformasiPendaftaran = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [showEditConfirmation, setShowEditConfirmation] = useState(false);
-  const [judul, setJudul] = useState('');
-  const [tanggal, setTanggal] = useState('');
-  const [deskripsi, setDeskripsi] = useState('');
+  const [judul, setJudul] = useState("");
+  const [tanggal, setTanggal] = useState("");
+  const [deskripsi, setDeskripsi] = useState("");
   const [file, setFile] = useState(null);
 
   const handleSubmit = (e) => {
@@ -38,11 +38,11 @@ const InformasiPendaftaran = () => {
   const handleDelete = () => {
     console.log("Deleting santri:", selectedSantri);
     setShowDeleteConfirmation(false);
-  }
+  };
 
   const handleCancelDelete = () => {
     setShowDeleteConfirmation(false);
-  }
+  };
   const openSettingsPopup = () => {
     setIsSettingsPopupOpen(true);
   };
@@ -157,7 +157,7 @@ const InformasiPendaftaran = () => {
                   <input type="password" id="kataSandi" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="*********" value="Abd*******98" readOnly />
                 </div>
                 <div className="flex justify-end">
-                  <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closePopup}>
+                  <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closePopup}>
                     Simpan
                   </button>
                 </div>
@@ -181,12 +181,12 @@ const InformasiPendaftaran = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label>Ubah Kata Sandi:</label>
-                  <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={toggleChangePassword}>
+                  <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={toggleChangePassword}>
                     Ubah Kata Sandi
                   </button>
                 </div>
                 <div className="flex justify-end">
-                  <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeSettingsPopup}>
+                  <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeSettingsPopup}>
                     Tutup
                   </button>
                 </div>
@@ -206,7 +206,7 @@ const InformasiPendaftaran = () => {
                   <input
                     type="password"
                     id="currentPassword"
-                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-600"
                     placeholder="Masukkan kata sandi saat ini"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
@@ -217,7 +217,7 @@ const InformasiPendaftaran = () => {
                   <input
                     type="password"
                     id="newPassword"
-                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-600"
                     placeholder="Masukkan kata sandi baru"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
@@ -228,7 +228,7 @@ const InformasiPendaftaran = () => {
                   <input
                     type="password"
                     id="confirmPassword"
-                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-600"
                     placeholder="Konfirmasi kata sandi baru"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
@@ -236,10 +236,10 @@ const InformasiPendaftaran = () => {
                   {passwordError && <span className="text-red-500">{passwordError}</span>}
                 </div>
                 <div className="flex justify-end gap-4">
-                  <button type="button" className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={toggleChangePassword}>
+                  <button type="button" className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600" onClick={toggleChangePassword}>
                     Batal
                   </button>
-                  <button type="submit" className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                  <button type="submit" className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600">
                     Simpan
                   </button>
                 </div>
@@ -251,7 +251,7 @@ const InformasiPendaftaran = () => {
           <div className="bg-white shadow-md rounded-lg overflow-x-auto p-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Berkas Pendaftaran</h2>
-              <button className="text-teal-500 font-bold text-l">+ Tambah Postingan</button>
+              <button className="text-teal-600 font-bold text-l">+ Tambah Postingan</button>
             </div>
             <div className="space-y-4">
               {["Brosur Pondok PPTQ Mahasiswa Unsiq 2", "Syarat pendaftaran dan materi tes", "Surat Pernyataan", "Rincian Biaya daftar ulang"].map((item, index) => (
@@ -261,22 +261,24 @@ const InformasiPendaftaran = () => {
                     <span className="text-l font-semibold ">{item}</span>
                   </div>
                   <div className="flex space-x-2">
-                  <li>
-                          <button onClick={() => { 
-                            setShowEditConfirmation(true);
-                            setSelectedSantri(santri); 
-                          }} className="bg-green-500 text-white px-2 py-1 rounded">
-                            Edit
-                          </button>
-                        </li>
-                        <li>
-                          <button onClick={() => {
-                            setShowDeleteConfirmation(true);
-                            setSelectedSantri(santri);
-                          }} className="bg-red-500 text-white px-2 py-1 rounded">
-                            Delete
-                          </button>
-                        </li>
+                    <button
+                      onClick={() => {
+                        setShowEditConfirmation(true);
+                        setSelectedSantri(santri);
+                      }}
+                      className="bg-green-500 text-white px-2 py-1 rounded"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowDeleteConfirmation(true);
+                        setSelectedSantri(santri);
+                      }}
+                      className="bg-red-500 text-white px-2 py-1 rounded"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               ))}
@@ -290,7 +292,7 @@ const InformasiPendaftaran = () => {
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">Keluar dari akun anda?</h2>
               <div className="flex justify-end gap-4">
-                <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeLogoutPopup}>
+                <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600" onClick={closeLogoutPopup}>
                   Tidak
                 </button>
                 <button
@@ -307,93 +309,68 @@ const InformasiPendaftaran = () => {
             </div>
           </div>
         )}
-          {showDeleteConfirmation && (
+        {showDeleteConfirmation && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg">
               <p>Apa anda yakin ingin menghapus</p>
               <p className="text-center">postingan ini?</p>
 
               <div className="flex justify-end mt-6">
-                <button onClick={handleCancelDelete} className="mr-2 px-4 py-2 bg-gray-300 rounded">Cancel</button>
-                <button onClick={handleDelete} className="px-4 py-2 bg-red-500  text-white rounded">Delete</button>
+                <button onClick={handleCancelDelete} className="mr-2 px-4 py-2 bg-gray-300 rounded">
+                  Cancel
+                </button>
+                <button onClick={handleDelete} className="px-4 py-2 bg-red-500  text-white rounded">
+                  Delete
+                </button>
               </div>
             </div>
           </div>
         )}
 
-      {showEditConfirmation && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-5xl">
-            <h2 className="text-2xl text-teal-600 font-bold mb-4">Tambah Informasi</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="flex mb-4 space-x-4">
-                <label htmlFor="judul" className="block text-gray-700 text-sm font-bold mb-2">
-                  Judul
-                </label>
-                <input
-                  type="text"
-                  id="judul"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  value={judul}
-                  onChange={handleJudulChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="tanggal" className="block text-gray-700 text-sm font-bold mb-2">
-                  Tanggal
-                </label>
-                <input
-                  type="date"
-                  id="tanggal"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  value={tanggal}
-                  onChange={handleTanggalChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="deskripsi" className="block text-gray-700 text-sm font-bold mb-2">
-                  Deskripsi
-                </label>
-                <textarea
-                  id="deskripsi"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  value={deskripsi}
-                  onChange={handleDeskripsiChange}
-                />
-              </div>
-              <div className="mb-4">
-              <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="photo">
-                Tambah Foto
-              </label>
-                <input
-                  type="file"
-                  id="file"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  onChange={handleFileChange}
-                />
-              </div>
-              <div className="flex justify-end">
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="bg-gray-400 border border-radius-teal-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded mr-2"
-                >
-                  Batal
-                </button>
-                <button
-                  type="submit"
-                  className="bg-teal-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                >
-                  Unggah
-                </button>
-              </div>
-            </form>
+        {showEditConfirmation && (
+          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-5xl">
+              <h2 className="text-2xl text-teal-600 font-bold mb-4">Tambah Informasi</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="flex mb-4 space-x-4">
+                  <label htmlFor="judul" className="block text-gray-700 text-sm font-bold mb-2">
+                    Judul
+                  </label>
+                  <input type="text" id="judul" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={judul} onChange={handleJudulChange} />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="tanggal" className="block text-gray-700 text-sm font-bold mb-2">
+                    Tanggal
+                  </label>
+                  <input type="date" id="tanggal" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={tanggal} onChange={handleTanggalChange} />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="deskripsi" className="block text-gray-700 text-sm font-bold mb-2">
+                    Deskripsi
+                  </label>
+                  <textarea id="deskripsi" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={deskripsi} onChange={handleDeskripsiChange} />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="photo">
+                    Tambah Foto
+                  </label>
+                  <input type="file" id="file" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={handleFileChange} />
+                </div>
+                <div className="flex justify-end">
+                  <button type="button" onClick={onClose} className="bg-gray-400 border border-radius-teal-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded mr-2">
+                    Batal
+                  </button>
+                  <button type="submit" className="bg-teal-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Unggah
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
-      </div>
-  )
-}
+    </div>
+  );
+};
 
 export default InformasiPendaftaran;

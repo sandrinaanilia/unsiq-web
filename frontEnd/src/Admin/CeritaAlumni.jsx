@@ -120,12 +120,24 @@ const CeritaAlumni = () => {
                   <p>Alumni th 2022</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <button>
-                  <img src={edit} alt="Edit" className="h-6 w-6" />
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => {
+                    setShowEditConfirmation(true);
+                    setSelectedSantri(santri);
+                  }}
+                  className="bg-green-500 text-white px-2 py-1 rounded"
+                >
+                  Edit
                 </button>
-                <button>
-                  <img src={deleteicon} alt="Delete" className="h-6 w-6" />
+                <button
+                  onClick={() => {
+                    setShowDeleteConfirmation(true);
+                    setSelectedSantri(santri);
+                  }}
+                  className="bg-red-500 text-white px-2 py-1 rounded"
+                >
+                  Delete
                 </button>
               </div>
             </div>
@@ -138,12 +150,24 @@ const CeritaAlumni = () => {
                   <p>Alumni th 2023</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <button>
-                  <img src={edit} alt="Edit" className="h-6 w-6" />
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => {
+                    setShowEditConfirmation(true);
+                    setSelectedSantri(santri);
+                  }}
+                  className="bg-green-500 text-white px-2 py-1 rounded"
+                >
+                  Edit
                 </button>
-                <button>
-                  <img src={deleteicon} alt="Delete" className="h-6 w-6" />
+                <button
+                  onClick={() => {
+                    setShowDeleteConfirmation(true);
+                    setSelectedSantri(santri);
+                  }}
+                  className="bg-red-500 text-white px-2 py-1 rounded"
+                >
+                  Delete
                 </button>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import arrow from "../assets/img/arrow.png";
 import Sidebar from "../Components/sidebar";
@@ -9,7 +9,7 @@ import User from "../assets/img/iconuser.png";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isSettingsPopupOpen, setIsSettingsPopupOpen] = useState(false);
@@ -51,14 +51,14 @@ const Dashboard = () => {
     e.preventDefault();
     // Lakukan validasi kata sandi baru
     if (newPassword !== confirmPassword) {
-      setPasswordError('Kata sandi baru tidak cocok');
+      setPasswordError("Kata sandi baru tidak cocok");
       return;
     }
 
-    setPasswordError('');
-    setCurrentPassword('');
-    setNewPassword('');
-    setConfirmPassword('');
+    setPasswordError("");
+    setCurrentPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
     setIsChangePasswordOpen(false);
   };
 
@@ -73,28 +73,26 @@ const Dashboard = () => {
             <button className="absolute left-2 top-2">
               <img src={searchIcon} alt="Search" className="w-6 h-6" />
             </button>
-            <input 
-              type="text" 
-              placeholder="Search..." 
-              className="bg-gray-100 pl-10 p-2 rounded-lg focus:outline-none"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+            <input type="text" placeholder="Search..." className="bg-gray-100 pl-10 p-2 rounded-lg focus:outline-none" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
           </div>
           <div className="relative">
-            <div 
-              className="flex items-center cursor-pointer" 
-              onClick={toggleDropdown}
-            >
+            <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
               <img src={Profil} alt="Profile" className="w-12 h-12 rounded-full mr-2" />
               <span className="text-black">Abdurohman Hamam</span>
-              <img src={arrow} alt="Dropdown Arrow" className={`w-2 h-2 ml-2 ${isDropdownOpen ? 'rotate-0' : 'rotate-180'}`} />
+              <img src={arrow} alt="Dropdown Arrow" className={`w-2 h-2 ml-2 ${isDropdownOpen ? "rotate-0" : "rotate-180"}`} />
             </div>
             {isDropdownOpen && (
               <ul className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
-                <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openPopup}>Profile</li>
-                <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openSettingsPopup}>Pengaturan</li>
-                <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openLogoutPopup}>Keluar</li> {/* Open logout popup */}
+                <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openPopup}>
+                  Profile
+                </li>
+                <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openSettingsPopup}>
+                  Pengaturan
+                </li>
+                <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openLogoutPopup}>
+                  Keluar
+                </li>{" "}
+                {/* Open logout popup */}
               </ul>
             )}
           </div>
@@ -102,7 +100,7 @@ const Dashboard = () => {
 
         {/* Summary Boxes */}
         <div className="flex justify-between p-9 gap-6">
-        <div className="bg-teal-600 text-white p-6 rounded-lg shadow-lg w-1/3 flex items-center justify-between">
+          <div className="bg-teal-600 text-white p-6 rounded-lg shadow-lg w-1/3 flex items-center justify-between">
             <div>
               <h3 className="text-xl font-bold">Akun Baru</h3>
               <span className="text-4xl">34</span>
@@ -130,15 +128,19 @@ const Dashboard = () => {
         </div>
 
         <div className="p-3 flex flex-wrap gap-8 justify-center">
-      <div className="bg-white border border-gray-300 p-10 px-8 py-12 rounded-lg shadow-lg w-96">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Pendaftar Baru</h2>
-          <a href="#" className="text-teal-500">lihat</a>
-        </div>
+          <div className="bg-white border border-gray-300 p-10 px-8 py-12 rounded-lg shadow-lg w-96">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Pendaftar Baru</h2>
+              <a href="#" className="text-teal-600">
+                lihat
+              </a>
+            </div>
             <ul>
               {["Sayifulloh", "Boy", "Feri"].map((name, index) => (
                 <li key={index} className="flex justify-between items-center border-b-2 py-2">
-                  <span>{index + 1}. {name}</span>
+                  <span>
+                    {index + 1}. {name}
+                  </span>
                   <span>5 Mei 2024 22:30</span>
                 </li>
               ))}
@@ -150,8 +152,12 @@ const Dashboard = () => {
             <ul>
               {["Sayifulloh", "Boy", "Feri"].map((name, index) => (
                 <li key={index} className="flex justify-between items-center border-b-2 py-2">
-                  <span>{index + 1}. {name}</span>
-                  <button onClick={() => navigate("/galeri")} className="bg-teal-500 text-white px-2 py-1 rounded-full text-xs">Liihat Pembayaran</button>
+                  <span>
+                    {index + 1}. {name}
+                  </span>
+                  <button onClick={() => navigate("/galeri")} className="bg-teal-500 text-white px-2 py-1 rounded-full text-xs">
+                    Liihat Pembayaran
+                  </button>
                 </li>
               ))}
             </ul>
@@ -180,61 +186,28 @@ const Dashboard = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="namaLengkap">Nama Lengkap:</label>
-                  <input 
-                    type="text" 
-                    id="namaLengkap" 
-                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
-                    placeholder="Abdurohman Hamam"
-                    value="Abdurohman Hamam"
-                    readOnly
-                  />
+                  <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" readOnly />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="email">Email:</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
-                    placeholder="abdurohman@gmail.com" 
-                    value="Abdurohman@gmail.com"
-                    readOnly
-                  />
+                  <input type="email" id="email" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="abdurohman@gmail.com" value="Abdurohman@gmail.com" readOnly />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="noTelp">Nomor Telepon:</label>
-                  <input 
-                    type="tel" 
-                    id="noTelp" 
-                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
-                    placeholder="08977654323"
-                    value="08977654323"
-                    readOnly
-                  />
+                  <input type="tel" id="noTelp" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="08977654323" value="08977654323" readOnly />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="jabatan">Jabatan:</label>
-                  <input 
-                    type="text" 
-                    id="jabatan" 
-                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
-                    placeholder="Sekretaris 2"
-                    value="Sekretaris 2"
-                    readOnly
-                  />
+                  <input type="text" id="jabatan" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Sekretaris 2" value="Sekretaris 2" readOnly />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="kataSandi">Kata Sandi:</label>
-                  <input 
-                    type="password" 
-                    id="kataSandi" 
-                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
-                    placeholder="*********"
-                    value="Abd*******98"
-                    readOnly
-                  />
+                  <input type="password" id="kataSandi" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="*********" value="Abd*******98" readOnly />
                 </div>
                 <div className="flex justify-end">
-                  <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closePopup}>Simpan</button>
+                  <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closePopup}>
+                    Simpan
+                  </button>
                 </div>
               </form>
             </div>
@@ -252,18 +225,13 @@ const Dashboard = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="namaLengkap">Nama Lengkap:</label>
-                  <input 
-                    type="text" 
-                    id="namaLengkap" 
-                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" 
-                    placeholder="Abdurohman Hamam"
-                    value="Abdurohman Hamam"
-                    readOnly
-                  />
+                  <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" readOnly />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label>Ubah Kata Sandi:</label>
-                  <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={toggleChangePassword}>Ubah Kata Sandi</button>
+                  <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={toggleChangePassword}>
+                    Ubah Kata Sandi
+                  </button>
                 </div>
                 <div className="flex flex-col gap-2">
                   <label>Hapus Akun:</label>
@@ -277,14 +245,21 @@ const Dashboard = () => {
         {isLogoutPopupOpen && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-xl font-bold mb-4">Keluar dari akun anda?</h2> 
+              <h2 className="text-xl font-bold mb-4">Keluar dari akun anda?</h2>
               <div className="flex justify-end gap-4">
-                <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeLogoutPopup}>Tidak</button> 
-                <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500" onClick={() => {
-                  // Add your logout logic here
-                  console.log("Logout!");
-                  closeLogoutPopup();
-                }}>Keluar</button>
+                <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeLogoutPopup}>
+                  Tidak
+                </button>
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  onClick={() => {
+                    // Add your logout logic here
+                    console.log("Logout!");
+                    closeLogoutPopup();
+                  }}
+                >
+                  Keluar
+                </button>
               </div>
             </div>
           </div>
