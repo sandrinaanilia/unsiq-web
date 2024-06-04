@@ -57,16 +57,12 @@ const Navbar = () => {
         <button onClick={() => navigate("/forum")}>forum</button>
         </li>
       </ul>
-      <div className="login">
-        {loginState?
-            <div className="flex justify-end p-4 flex-row">  
-              <img src={lonceng} className="w-1/1 px-5 h-10" alt="lonceng "/>
-              <img src={user} className="w-1/4 h-10" alt="user"/>
+      <div className="login-btn">
+       
+            <div className="flex justify-end flex-row">  
+            <button onClick={() => navigate("/login")}>Masuk</button>
             </div>
-            :
-            <button className="login-btn" onClick={handleLogin}>
-              Masuk
-            </button>}
+      
       </div>
     </nav>
   );

@@ -5,9 +5,7 @@ import Profil from "../assets/img/hamam.png";
 import searchIcon from "../assets/img/search.png";
 import fotoberita1 from "../assets/img/foto besar.jpg";
 import fotoberita2 from "../assets/img/berita1.jpg";
-import view from "../assets/img/view.png";
-import edit from "../assets/img/edit.png";
-import deleteicon from "../assets/img/delete.png";
+
 
 const DashboardBerita = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,7 +18,33 @@ const DashboardBerita = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [showEditConfirmation, setShowEditConfirmation] = useState(false);
+  const [judul, setJudul] = useState('');
+  const [tanggal, setTanggal] = useState('');
+  const [deskripsi, setDeskripsi] = useState('');
+  const [file, setFile] = useState(null);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+  };
+
+  const handleJudulChange = (e) => setJudul(e.target.value);
+  const handleTanggalChange = (e) => setTanggal(e.target.value);
+  const handleDeskripsiChange = (e) => setDeskripsi(e.target.value);
+  const handleFileChange = (e) => setFile(e.target.files[0]);
+
+  const onClose = () => setShowEditConfirmation(false);
+
+  const handleDelete = () => {
+    console.log("Deleting santri:", selectedSantri);
+    setShowDeleteConfirmation(false);
+  }
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false);
+  }
   const openSettingsPopup = () => {
     setIsSettingsPopupOpen(true);
   };
@@ -277,6 +301,7 @@ const DashboardBerita = () => {
             </div>
           </div>
         )}
+        
         {/* Main Content */}
         <div className="flex-1 p-10">
           <header className="flex justify-between items-center mb-8">
@@ -292,17 +317,25 @@ const DashboardBerita = () => {
                   <p>Deskripsi singkat tentang berita ini.</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <button>
-                  <img src={view} alt="View" className="h-6 w-6" />
-                </button>
-                <button>
-                  <img src={edit} alt="Edit" className="h-6 w-6" />
-                </button>
-                <button>
-                  <img src={deleteicon} alt="Delete" className="h-6 w-6" />
-                </button>
-              </div>
+              <div className="flex space-x-2">
+                  <li>
+                          <button onClick={() => { 
+                            setShowEditConfirmation(true);
+                            setSelectedSantri(santri); 
+                          }} className="bg-green-500 text-white px-2 py-1 rounded">
+                            Edit
+                          </button>
+                        </li>
+                        <li>
+                          <button onClick={() => {
+                            setShowDeleteConfirmation(true);
+                            setSelectedSantri(santri);
+                          }} className="bg-red-500 text-white px-2 py-1 rounded">
+                            Delete
+                          </button>
+                        </li>
+                  </div>
+
             </div>
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center">
@@ -312,20 +345,112 @@ const DashboardBerita = () => {
                   <p>Deskripsi singkat tentang berita ini.</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <button>
-                  <img src={view} alt="View" className="h-6 w-6" />
-                </button>
-                <button>
-                  <img src={edit} alt="Edit" className="h-6 w-6" />
-                </button>
-                <button>
-                  <img src={deleteicon} alt="Delete" className="h-6 w-6" />
-                </button>
+              <div className="flex justify-end mt-6">
+                
+              <div className="flex space-x-2">
+                  <li>
+                          <button onClick={() => { 
+                            setShowEditConfirmation(true);
+                            setSelectedSantri(santri); 
+                          }} className="bg-green-500 text-white px-2 py-1 rounded">
+                            Edit
+                          </button>
+                        </li>
+                        <li>
+                          <button onClick={() => {
+                            setShowDeleteConfirmation(true);
+                            setSelectedSantri(santri);
+                          }} className="bg-red-500 text-white px-2 py-1 rounded">Delete
+                          </button>
+                        </li>
+                  </div>
               </div>
             </div>
           </div>
         </div>
+        {showDeleteConfirmation && (
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <p>Apa anda yakin ingin menghapus</p>
+              <p className="text-center">postingan ini?</p>
+
+              <div className="flex justify-end mt-6">
+                <button onClick={handleCancelDelete} className="mr-2 px-4 py-2 bg-gray-300 rounded">Cancel</button>
+                <button onClick={handleDelete} className="px-4 py-2 bg-red-500  text-white rounded">Delete</button>
+              </div>
+            </div>
+          </div>
+        )}
+          {showEditConfirmation && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-5xl">
+            <h2 className="text-2xl text-teal-600 font-bold mb-4">Tambah Informasi</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="flex mb-4 space-x-4">
+                <label htmlFor="judul" className="block text-gray-700 text-sm font-bold mb-2">
+                  Judul
+                </label>
+                <input
+                  type="text"
+                  id="judul"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  value={judul}
+                  onChange={handleJudulChange}
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="tanggal" className="block text-gray-700 text-sm font-bold mb-2">
+                  Tanggal
+                </label>
+                <input
+                  type="date"
+                  id="tanggal"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  value={tanggal}
+                  onChange={handleTanggalChange}
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="deskripsi" className="block text-gray-700 text-sm font-bold mb-2">
+                  Deskripsi
+                </label>
+                <textarea
+                  id="deskripsi"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  value={deskripsi}
+                  onChange={handleDeskripsiChange}
+                />
+              </div>
+              <div className="mb-4">
+              <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="photo">
+                Tambah Foto
+              </label>
+                <input
+                  type="file"
+                  id="file"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  onChange={handleFileChange}
+                />
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="bg-gray-400 border border-radius-teal-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded mr-2"
+                >
+                  Batal
+                </button>
+                <button
+                  type="submit"
+                  className="bg-teal-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Unggah
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
       </div>
     </div>
   );
