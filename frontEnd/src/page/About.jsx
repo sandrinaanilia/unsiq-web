@@ -7,6 +7,9 @@ import foto7 from "../assets/img/foto7.png";
 
 const About = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [showPopup1, setShowPopup1] = useState(false);
+  const [showPopup2, setShowPopup2] = useState(false);
+
 
   const handleShowPopup = () => {
     setShowPopup(true);
@@ -15,7 +18,21 @@ const About = () => {
   const handleClosePopup = () => {
     setShowPopup(false);
   };
+  const handleShowPopup1 = () => {
+    setShowPopup1(true);
+  };
 
+  const handleClosePopup1 = () => {
+    setShowPopup1(false);
+  };
+
+  const handleShowPopup2 = () => {
+    setShowPopup2(true);
+  };
+
+  const handleClosePopup2 = () => {
+    setShowPopup2(false);
+  };
   const activities1 = [
     { time: "03.00-04.30", activity: "Bangun Pagi & Qiyamul Lail" },
     { time: "03.00-04.30", activity: "Sholat Subuh berjamaah dilanjutkan setoran" },
@@ -25,6 +42,22 @@ const About = () => {
     { time: "03.00-04.30", activity: "Sholat Isya berjamaah" },
     { time: "03.00-04.30", activity: "Setoran Al-Qur’an" },
     { time: "03.00-04.30", activity: "Istirahat dan Tidur malam" },
+  ];
+
+  const activities2 = [
+    {  activity: " Masa Ta’aruf" },
+    {  activity: "Ziarah" },
+    { activity: " Tasmin" },
+    { activity: "Ro’an" },
+    { activity: "Muhadloroh" },
+    { activity: " Agenda Ramadhan" },
+    
+  ];
+  const activities3 = [
+    {  activity: "Futsal    " },
+    {  activity: "Tiroah" },
+    { activity: "Rebana" },
+    
   ];
 
   return (
@@ -80,15 +113,12 @@ const About = () => {
         </div>
         <div className=" justify-end grid grid-cols-1 md:grid-cols-4 gap-4 mt-10 ">
           <button onClick={handleShowPopup} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">
-            Aktivitas Harian
-          </button>
-          <button onClick={handleShowPopup} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">
-            Aktivitas Bulanan
-          </button>
-        </div>
-        <div className="grid  justify-end grid-cols-1 md:grid-cols-4 gap-4 mt-10">
-          <button onClick={handleShowPopup} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">
-            Aktivitas ekstrakurikuler
+          AKTIVITAS HARIAN          </button>
+          <button onClick={handleShowPopup1} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">
+            AKTIVITAS BULANAN          </button>
+       
+          <button onClick={handleShowPopup2} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">
+           EKSTRAKULIKULER
           </button>
         </div>
       </section>
@@ -104,8 +134,9 @@ const About = () => {
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-96">
-            <h2 className="text-2xl font-bold mb-4">AKTIVITAS HARIAN</h2>
-            <div className="overflow-y-auto max-h-96">
+          <h4 className="text-2xl font-bold text-black p-2">Informasi</h4>
+            <h2 className="text-2xl font-bold mb-4">AKTIFITAS HARIAN</h2>        
+                <div className="overflow-y-auto max-h-96">
               <table className="w-full">
                 <thead>
                   <tr>
@@ -129,7 +160,51 @@ const About = () => {
           </div>
         </div>
       )}
-
+{showPopup1 && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+          <h4 className="text-2xl font-bold text-black p-2">Informasi</h4>
+            <h2 className="text-2xl font-bold mb-4">AKTIVITAS BULANAN</h2>            
+            <div className="overflow-y-auto max-h-96">
+              <table className="w-full">
+                
+                <tbody>
+                  {activities2.map((activity, index) => (
+                    <tr key={index}>
+                      <td className="text-left p-2">{activity.activity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <button onClick={handleClosePopup1} className="bg-teal-600 text-white text-center py-2 px-4 rounded-lg cursor-pointer hover:bg-teal-700">
+              Tutup
+            </button>
+          </div>
+        </div>
+      )}
+      {showPopup2 && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+          <h4 className="text-2xl font-bold text-black p-2">Informasi</h4>
+            <h2 className="text-2xl font-bold mb-4">EKSTRAKULIKULER</h2>
+            <div className="overflow-y-auto max-h-96">
+              <table className="w-full">
+                <tbody>
+                  {activities3.map((activity, index) => (
+                    <tr key={index}>
+                      <td className="text-left p-2">{activity.activity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <button onClick={handleClosePopup2} className="bg-teal-600 text-white text-center py-2 px-4 rounded-lg cursor-pointer hover:bg-teal-700">
+              Tutup
+            </button>
+          </div>
+        </div>
+      )}
       <Footer />
     </>
   );

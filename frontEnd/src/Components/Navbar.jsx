@@ -54,7 +54,7 @@ const Navbar = () => {
           <button onClick={() => navigate("/pendaftaran")}>Pendaftaran</button>
         </li>
         <li>
-        <button onClick={() => navigate("/forum")}>forum</button>
+        <button onClick={() => navigate("/forum")}>Forum</button>
         </li>
       </ul>
       <div className="login-btn">

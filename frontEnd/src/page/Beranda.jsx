@@ -31,7 +31,7 @@ const Beranda = () => {
           <h1 className="hero-title">Selamat Datang di Pondok Pesantren Tahfidzul Qur’an Mahasiswa Unsiq II</h1>
           <p className="address">Jl. Kh Abdurrohman Wahid, desa Krasak, Kecamatan Mojotengah Kabupaten Wonosobo</p>
           <p className="announcement">Penerimaan Santri baru tahun ajaran 2024/2025</p>
-          <a href="info.html" className="cta-button">
+          <a href="/pendaftaran" className="cta-button">
             Daftar Sekarang
           </a>
         </div>
@@ -76,7 +76,7 @@ const Beranda = () => {
               <h2>Telah Dibuka Penerimaan Santri Baru</h2>
               <h3>Pondok Pesantren Tahfidzul Qur’an Mahasiswa UNSIQ 2 Tahun 2024 / 2025</h3>
             </div>
-            <a href="x" className="daftar-button">
+            <a href="/pendaftaran" className="daftar-button">
               Daftar Sekarang
             </a>
           </div>
