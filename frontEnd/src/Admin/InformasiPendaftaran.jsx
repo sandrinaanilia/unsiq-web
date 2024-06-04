@@ -235,7 +235,6 @@ const InformasiPendaftaran = () => {
                     <span className="text-l font-semibold ">{item}</span>
                   </div>
                   <div className="flex space-x-2">
-                    <button className="bg-blue-400 text-white px-2 py-1 rounded">View</button>
                     <button className="bg-green-400 text-white px-2 py-1 rounded">Edit</button>
                     <button className="bg-red-400 text-white px-2 py-1 rounded">Delete</button>
                   </div>

@@ -162,14 +162,7 @@ const DataSantri = () => {
                     <td className="py-2 px-4 border-b border-gray-400">{santri.category}</td>
                     <td className="py-2 px-4 border-b border-gray-400">
                       <ul className="flex space-x-2 text-green-500 mr-2">
-                        <li>
-                          <button onClick={() => { 
-                            setShowDeleteConfirmation(true);
-                            setSelectedSantri(santri); 
-                          }} className="bg-blue-400 text-white px-2 py-1 rounded">
-                            view
-                          </button>
-                        </li>
+                       
                         <li>
                           <button onClick={() => { 
                             setShowEditConfirmation(true);
