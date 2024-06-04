@@ -27,11 +27,14 @@ import DashboardBerita from "./Admin/DashboardBerita.jsx";
 import TambahBerita from "./Admin/TambahBerita.jsx";
 import TambahBerita1 from "./Admin/TambahBerita1.jsx";
 import EditBerita from "./Admin/EditBerita.jsx";
+import ViewBerita from "./Admin/ViewBerita.jsx";
 import CeritaAlumni from "./Admin/CeritaAlumni.jsx";
-
 
 import { Route, Routes } from "react-router-dom";
 import BeritaBesar from "./page/BeritaBesar.jsx";
+import BeritaSetelahDitambah from "./Admin/BeritaSetelahDitambah.jsx";
+import TambahCeritaAlumni from "./Admin/TambahCeritaAlumni.jsx";
+import CeritaAlumniSetelahDitambah from "./Admin/CeritaAlumniSetelahDitambah.jsx";
 
 function App() {
   return (
@@ -65,8 +68,11 @@ function App() {
       <Route path="/tambahberita" element={<TambahBerita />} />
       <Route path="/tambahberita1" element={<TambahBerita1 />} />
       <Route path="/editberita" element={<EditBerita />} />
+      <Route path="/beritasetelahditambah" element={<BeritaSetelahDitambah />} />
+      <Route path="/viewberita" element={<ViewBerita />} />
       <Route path="/ceritaalumni" element={<CeritaAlumni />} />
-
+      <Route path="/tambahceritaalumni" element={<TambahCeritaAlumni />} />
+      <Route path="/ceritaalumnisetelahditambah" element={<CeritaAlumniSetelahDitambah />} />
     </Routes>
   );
 }

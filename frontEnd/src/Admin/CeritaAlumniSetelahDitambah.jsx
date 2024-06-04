@@ -5,10 +5,11 @@ import Profil from "../assets/img/hamam.png";
 import searchIcon from "../assets/img/search.png";
 import alumni1 from "../assets/img/alumni1.png";
 import alumni2 from "../assets/img/alumni2.png";
+import alumniterbaru from "../assets/img/alumni3.png";
 import edit from "../assets/img/edit.png";
 import deleteicon from "../assets/img/delete.png";
 
-const CeritaAlumni = () => {
+const CeritaAlumniSetelahDitambah = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -111,6 +112,24 @@ const CeritaAlumni = () => {
           </header>
 
           <div className="bg-white p-6 rounded-lg shadow">
+            {/* News Item Terbaru */}
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex items-center">
+                <img src={alumniterbaru} alt="News 1" className="h-16 w-16 rounded-full mr-4" />
+                <div>
+                  <h2 className="text-lg font-medium">Zain Lutfi itmamul Wafa Alh., S.Ag</h2>
+                  <p>Alumni th 2022</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <button>
+                  <img src={edit} alt="Edit" className="h-6 w-6" />
+                </button>
+                <button>
+                  <img src={deleteicon} alt="Delete" className="h-6 w-6" />
+                </button>
+              </div>
+            </div>
             {/* News Item 1 */}
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center">
@@ -299,4 +318,4 @@ const CeritaAlumni = () => {
   );
 };
 
-export default CeritaAlumni;
+export default CeritaAlumniSetelahDitambah;
