@@ -2,11 +2,12 @@ import Navbar from "../Components/Navbar.jsx";
 import Footer from "../Components/Footer.jsx";
 import ImageCard from "../Components/ImageCard.jsx";
 import foto1 from "../assets/img/foto 1.jpg";
-import foto2 from "../assets/img/foto 2.jpg";
-import foto3 from "../assets/img/foto 3.png";
-import foto4 from "../assets/img/foto 4.jpg";
-import foto5 from "../assets/img/foto5.jpg";
-import foto6 from "../assets/img/foto6.jpg";
+import foto2 from "../assets/img/foto2.png";
+import foto3 from "../assets/img/foto3.png";
+import foto10 from "../assets/img/foto10.png";
+import foto11 from "../assets/img/foto11.png";
+import foto12 from "../assets/img/foto12.png";
+import foto13 from "../assets/img/foto13.png";
 
 const Galeri = () => {
   return (
@@ -21,14 +22,15 @@ const Galeri = () => {
             <div className="grid grid-cols-1 mx-auto ">
               <ImageCard image={foto1} title="" className="w-full h-96 rounded-lg" />
             </div>
-            <div className="grid grid-cols-3 gap-4">
-              <ImageCard image={foto2} title="" className="w-full h-48 rounded-lg" />
-              <ImageCard image={foto3} title="" className="w-full h-48 rounded-lg" />
-              <ImageCard image={foto4} title="" className="w-full h-20 rounded-lg" />
+            <div className="grid grid-cols-3 gap-1 justify-center">
+              <ImageCard image={foto2} title="" className="w-full h-40 rounded-lg" />
+              <ImageCard image={foto3} title="" className="w-full h-40 rounded-lg" />
+              <ImageCard image={foto10} title="" className="w-full h-40 rounded-lg" />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <ImageCard image={foto5} title="" className="w-full h-40 rounded-lg" />
-              <ImageCard image={foto6} title="" className="w-full h-20 rounded-lg" />
+            <div className="grid grid-cols-3 gap-1 justify-center">
+              <ImageCard image={foto11} title="" className="w-full h-40 rounded-lg" />
+              <ImageCard image={foto12} title="" className="w-full h-40 rounded-lg" />
+              <ImageCard image={foto13} title="" className="w-full h-40 rounded-lg" />
             </div>
           </div>
         </div>
