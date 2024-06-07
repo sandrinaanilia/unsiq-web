@@ -5,8 +5,8 @@ import Profil from "../assets/img/hamam.png";
 import searchIcon from "../assets/img/search.png";
 import alumni1 from "../assets/img/alumni1.png";
 import alumni2 from "../assets/img/alumni2.png";
-import edit from "../assets/img/edit.png";
-import deleteicon from "../assets/img/delete.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const CeritaAlumni = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -104,72 +104,55 @@ const CeritaAlumni = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-10">
-          <header className="flex justify-between items-center mb-8">
-            <h1 className="text-2xl font-semibold">Cerita Alumni</h1>
-            <span className="text-teal-600 font-bold cursor-pointer">+ Tambah Postingan</span>
-          </header>
-
-          <div className="bg-white p-6 rounded-lg shadow">
-            {/* News Item 1 */}
+        <div className="p-4 font-poppins min-h-screen">
+          <div className="bg-white shadow-md rounded-lg overflow-x-auto p-4 h-full">
             <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center">
-                <img src={alumni1} alt="News 1" className="h-16 w-16 rounded-full mr-4" />
-                <div>
-                  <h2 className="text-lg font-medium">Maroghi Ahmad Alh., S.Ag</h2>
-                  <p>Alumni th 2022</p>
-                </div>
-              </div>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => {
-                    setShowEditConfirmation(true);
-                    setSelectedSantri(santri);
-                  }}
-                  className="bg-green-500 text-white px-2 py-1 rounded"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => {
-                    setShowDeleteConfirmation(true);
-                    setSelectedSantri(santri);
-                  }}
-                  className="bg-red-500 text-white px-2 py-1 rounded"
-                >
-                  Delete
-                </button>
-              </div>
+              <h2 className="text-xl font-bold">Cerita Alumni</h2>
+              <button className="text-teal-600 font-bold text-l">+ Tambah Postingan</button>
             </div>
-            {/* News Item 2 */}
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center">
-                <img src={alumni2} alt="News 2" className="h-16 w-16 rounded-full mr-4" />
-                <div>
-                  <h2 className="text-lg font-medium">Rahmat siregar Alh., S.Ag</h2>
-                  <p>Alumni th 2023</p>
+            <div className="space-y-2">
+              {[
+                { name: "Maroghi Ahmad Alh., S.Ag", photos: [alumni1] },
+                { name: "Rahmat siregar Alh., S.Ag", photos: [alumni2] },
+              ].map((item, index) => (
+                <div key={index} className="flex items-center justify-between bg-gray-200 p-4 rounded-lg">
+                  <div className="flex items-center">
+                    {item.photos.map((photo, photoIndex) => (
+                      <img key={photoIndex} src={photo} alt="" className="w-12 h-12 mr-4 rounded-full" />
+                    ))}
+                    <span className="text-l font-semibold">{item.name}</span>
+                  </div>
+                  <div className="flex space-x-4">
+                    <button
+                      onClick={() => {
+                        setShowEditConfirmation(true);
+                        setSelectedSantri(item);
+                      }}
+                      className="bg-blue-500 text-white px-2 py-1 rounded"
+                    >
+                      <FontAwesomeIcon icon={faEye} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowEditConfirmation(true);
+                        setSelectedSantri(item);
+                      }}
+                      className="bg-green-500 text-white px-2 py-1 rounded"
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowDeleteConfirmation(true);
+                        setSelectedSantri(item);
+                      }}
+                      className="bg-red-500 text-white px-2 py-1 rounded"
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => {
-                    setShowEditConfirmation(true);
-                    setSelectedSantri(santri);
-                  }}
-                  className="bg-green-500 text-white px-2 py-1 rounded"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => {
-                    setShowDeleteConfirmation(true);
-                    setSelectedSantri(santri);
-                  }}
-                  className="bg-red-500 text-white px-2 py-1 rounded"
-                >
-                  Delete
-                </button>
-              </div>
+              ))}
             </div>
           </div>
         </div>

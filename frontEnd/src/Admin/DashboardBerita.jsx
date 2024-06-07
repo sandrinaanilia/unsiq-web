@@ -5,6 +5,8 @@ import Profil from "../assets/img/hamam.png";
 import searchIcon from "../assets/img/search.png";
 import fotoberita1 from "../assets/img/foto besar.jpg";
 import fotoberita2 from "../assets/img/berita1.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const DashboardBerita = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -273,91 +275,50 @@ const DashboardBerita = () => {
         )}
 
         {/* Main Content */}
-        <div className="flex-1 p-10">
-          <header className="flex justify-between items-center mb-8">
-            <h1 className="text-2xl font-semibold">Berita</h1>
-            <span className="text-teal-600 font-bold cursor-pointer">+ Tambah Postingan</span>
-          </header>
-
-          <div className="bg-white p-6 rounded-lg shadow">
+        <div className="p-4 font-poppins min-h-screen">
+          <div className="bg-white shadow-md rounded-lg overflow-x-auto p-4 h-full">
             <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center">
-                <img src={fotoberita1} alt="News 1" className="h-16 w-16 rounded mr-4" />
-                <div>
-                  <h2 className="text-lg font-medium">Pelaksanaan Pengajian Malam Nuzulul Qur'an</h2>
-                </div>
-              </div>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => {
-                    setShowEditConfirmation(true);
-                    setSelectedSantri(santri);
-                  }}
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
-                >
-                  View
-                </button>
-                <button
-                  onClick={() => {
-                    setShowEditConfirmation(true);
-                    setSelectedSantri(santri);
-                  }}
-                  className="bg-green-500 text-white px-2 py-1 rounded"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => {
-                    setShowDeleteConfirmation(true);
-                    setSelectedSantri(santri);
-                  }}
-                  className="bg-red-500 text-white px-2 py-1 rounded"
-                >
-                  Delete
-                </button>
-              </div>
+              <h2 className="text-xl font-bold">Berita</h2>
+              <button className="text-teal-600 font-bold text-l">+ Tambah Postingan</button>
             </div>
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center">
-                <img src={fotoberita2} alt="News 2" className="h-16 w-16 rounded mr-4" />
-                <div>
-                  <h2 className="text-lg font-medium">Grup Rebana IPQOSH Unsiq Turut Memeriahkan Acara Nuzulul Qur'an</h2>
+            <div className="space-y-2">
+              {[
+                { name: "Pelaksanaan Pengajian Malam Nuzulul Qur'an", photos: [fotoberita1] },
+                { name: "Grup Rebana IPQOSH Unsiq Turut Memeriahkan Acara Nuzulul Qur'an", photos: [fotoberita2] },
+              ].map((item, index) => (
+                <div key={index} className="flex items-center justify-between bg-gray-200 p-4 rounded-lg">
+                  <div className="flex items-center">
+                    {item.photos.map((photo, photoIndex) => (
+                      <img key={photoIndex} src={photo} alt="" className="w-12 h-12 mr-4 rounded-full" />
+                    ))}
+                    <span className="text-l font-semibold">{item.name}</span>
+                  </div>
+                  <div className="flex space-x-4">
+                    <button
+                      onClick={() => {
+                        setShowEditConfirmation(true);
+                        setSelectedSantri(item);
+                      }}
+                      className="bg-green-500 text-white px-2 py-1 rounded"
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowDeleteConfirmation(true);
+                        setSelectedSantri(item);
+                      }}
+                      className="bg-red-500 text-white px-2 py-1 rounded"
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="flex justify-end mt-6">
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => {
-                      setShowEditConfirmation(true);
-                      setSelectedSantri(santri);
-                    }}
-                    className="bg-blue-500 text-white px-2 py-1 rounded"
-                  >
-                    View
-                  </button>
-                  <button
-                    onClick={() => {
-                      setShowEditConfirmation(true);
-                      setSelectedSantri(santri);
-                    }}
-                    className="bg-green-500 text-white px-2 py-1 rounded"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => {
-                      setShowDeleteConfirmation(true);
-                      setSelectedSantri(santri);
-                    }}
-                    className="bg-red-500 text-white px-2 py-1 rounded"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
+
         {showDeleteConfirmation && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg">

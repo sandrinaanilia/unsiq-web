@@ -6,6 +6,8 @@ import Profil from "../assets/img/hamam.png";
 import searchIcon from "../assets/img/search.png";
 import Filter from "../assets/img/filter.png";
 import Cetak from "../assets/img/cetak.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const DataSantri = () => {
   const navigate = useNavigate();
@@ -139,30 +141,26 @@ const DataSantri = () => {
                     <td className="py-2 px-4 border-b border-gray-400">{santri.year}</td>
                     <td className="py-2 px-4 border-b border-gray-400">{santri.category}</td>
                     <td className="py-2 px-4 border-b border-gray-400">
-                      <ul className="flex space-x-2 text-green-500 mr-2">
-                        <li>
-                          <button
-                            onClick={() => {
-                              setShowEditConfirmation(true);
-                              setSelectedSantri(santri);
-                            }}
-                            className="bg-green-500 text-white px-2 py-1 rounded"
-                          >
-                            Edit
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            onClick={() => {
-                              setShowDeleteConfirmation(true);
-                              setSelectedSantri(santri);
-                            }}
-                            className="bg-red-500 text-white px-2 py-1 rounded"
-                          >
-                            Delete
-                          </button>
-                        </li>
-                      </ul>
+                      <div className="flex space-x-4">
+                        <button
+                          onClick={() => {
+                            setShowEditConfirmation(true);
+                            setSelectedSantri(item);
+                          }}
+                          className="bg-green-500 text-white px-2 py-1 rounded"
+                        >
+                          <FontAwesomeIcon icon={faEdit} />
+                        </button>
+                        <button
+                          onClick={() => {
+                            setShowDeleteConfirmation(true);
+                            setSelectedSantri(item);
+                          }}
+                          className="bg-red-500 text-white px-2 py-1 rounded"
+                        >
+                          <FontAwesomeIcon icon={faTrash} />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

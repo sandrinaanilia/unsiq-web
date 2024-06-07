@@ -3,6 +3,8 @@ import arrow from "../assets/img/arrow.png";
 import Sidebar from "../Components/sidebar";
 import Profil from "../assets/img/hamam.png";
 import searchIcon from "../assets/img/search.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Pengumuman = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -141,26 +143,48 @@ const Pengumuman = () => {
         </div>
 
         {/* Announcement Section */}
-        <div className="p-4">
-          <h1 className="text-2xl font-bold mb-4">Pengumuman</h1>
-          <button className="text-teal-600 font-bold mb-4" onClick={handleAddAnnouncement}>
-            + Tambah Pengumuman
-          </button>
-          <div className="space-y-4">
-            {announcements.map((ann) => (
-              <div key={ann.id} className="bg-gray-100 p-4 rounded-lg shadow-md">
-                <p>{ann.text}</p>
-                <p className="text-sm text-teal-600">{ann.autoMessage}</p>
-                <div className="flex justify-end space-x-2 mt-2">
-                  <button className="bg-teal-600 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={() => handleEditAnnouncement(ann)}>
-                    Edit
-                  </button>
-                  <button className="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none" onClick={() => handleDeleteAnnouncement(ann.id)}>
-                    Hapus
-                  </button>
-                </div>
+        <div className="p-4 font-poppins min-h-screen">
+          <div className="bg-white shadow-md rounded-lg overflow-x-auto p-4 h-full">
+            <div className="flex justify-between items-center mb-4">
+              <h1 className="text-lg font-bold mb-4">
+                <span style={{ backgroundColor: "teal-600", padding: "0.2rem 0.5rem", borderRadius: "3rem", color: "white" }}>Pengumuman</span>
+              </h1>
+            </div>
+            <button className="text-teal-600 font-bold mb-4" onClick={handleAddAnnouncement} style={{ display: "block", textAlign: "right" }}>
+              + Tambah Pengumuman
+            </button>
+            <div className="space-y-2">
+              <div className="space-y-4">
+                {announcements.map((ann) => (
+                  <div key={ann.id} className="bg-gray-200 p-4 rounded-lg shadow-md flex justify-between items-center">
+                    <div>
+                      <p>{ann.text}</p>
+                      <p className="text-sm text-teal-600">{ann.autoMessage}</p>
+                    </div>
+                    <div className="flex space-x-4">
+                      <button
+                        onClick={() => {
+                          setShowEditConfirmation(true);
+                          setSelectedSantri(item);
+                        }}
+                        className="bg-green-500 text-white px-2 py-1 rounded"
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                      <button
+                        onClick={() => {
+                          setShowDeleteConfirmation(true);
+                          setSelectedSantri(item);
+                        }}
+                        className="bg-red-500 text-white px-2 py-1 rounded"
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
 
