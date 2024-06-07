@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Navbar from "../Components/Navbar.jsx";
 import Footer from "../Components/Footer.jsx";
 import icon from "../assets/img/iconpopup.png";
+import brosur from "../assets/img/brosur.pdf";
+import syarat from "../assets/img/syarat-biaya.pdf";
+import materi from "../assets/img/materitest.pdf";
 
 function Pendaftaran() {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -24,10 +27,10 @@ function Pendaftaran() {
       <Navbar />
 
       <div className="bg-teal-600 h-96 flex items-center justify-center">
-      <div className="text-white text-center mt-9">
-        <h1 className="font-bold text-6xl md:text-5xl py-2">Informasi Pendaftaran</h1>
+        <div className="text-white text-center mt-9">
+          <h1 className="font-bold text-6xl md:text-5xl py-2">Informasi Pendaftaran</h1>
+        </div>
       </div>
-    </div>
       <div className="container mx-auto px-4 md:px-16 lg:px-40 py-8 md:py-16">
         <h1 className="text-4xl md:text-3xl font-bold text-center mb-4 md:mb-8">
           Telah Dibuka Penerimaan Santri Baru Pondok Pesantren
@@ -38,19 +41,19 @@ function Pendaftaran() {
           <div className="mb-4">
             <p>
               Lihat Brosur Pondok Pesantren unduh{" "}
-              <a href="#" className="text-teal-600 underline font-bold">
+              <a href={brosur} className="text-teal-600 underline font-bold">
                 disini
               </a>
             </p>
             <p>
               Informasi Syarat pendaftaran dan rincian biaya bisa lihat{" "}
-              <a href="#" className="text-teal-600 underline font-bold">
+              <a href={syarat} className="text-teal-600 underline font-bold">
                 disini
               </a>
             </p>
             <p>
               Materi test (Reguler) unduh di{" "}
-              <a href="#" className="text-teal-600 underline font-bold">
+              <a href={materi} className="text-teal-600 underline font-bold">
                 disini
               </a>
             </p>
