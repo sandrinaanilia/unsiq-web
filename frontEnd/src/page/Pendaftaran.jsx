@@ -23,11 +23,13 @@ function Pendaftaran() {
     <>
       <Navbar />
 
-      <div className="bg-teal-600 h-80 flex items-center justify-center">
-        <h1 className="text-white py-36 h-10 font-bold text-4xl md:text-4xl text-center">Informasi Pendaftaran</h1>
+      <div className="bg-teal-600 h-96 flex items-center justify-center">
+      <div className="text-white text-center mt-9">
+        <h1 className="font-bold text-6xl md:text-5xl py-2">Informasi Pendaftaran</h1>
       </div>
+    </div>
       <div className="container mx-auto px-4 md:px-16 lg:px-40 py-8 md:py-16">
-        <h1 className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-8">
+        <h1 className="text-4xl md:text-3xl font-bold text-center mb-4 md:mb-8">
           Telah Dibuka Penerimaan Santri Baru Pondok Pesantren
           <br />
           Tahfidzul Qur'an Mahasiswa UNSIQ 2 Tahun 2024 / 2025

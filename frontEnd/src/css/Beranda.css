@@ -18,7 +18,7 @@ body {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
+  padding: 4px;
   margin: auto;
   position: fixed;
   z-index: 10;
@@ -26,15 +26,18 @@ body {
 
 .logo {
   display: flex;
-  align-items: center;
+  align-items: center; 
+  padding: 10px 30px;
+
 }
 
 .logo img {
-  width: 60px;
+  width: 70px;
 }
 
 .logo-text {
-  margin-left: 10px;
+  margin-left: 20px;
+  font-weight: 800;
 }
 
 .menu {
@@ -283,7 +286,7 @@ body {
 .daftar-content {
   display: grid;
   grid-template-columns: 3fr;
-  justify-items: left;
+  justify-items: left;    
 }
 
 .daftar {
@@ -291,7 +294,8 @@ body {
   color: white;
   width: 100%;
   height: auto;
-  padding: 20px;
+  padding: 30px 50px;
+  font-weight: bold;
   text-align: left;
   border-radius: 12px;
   display: flex;
@@ -363,7 +367,7 @@ body {
 
 .facilities-title {
   font-size: 30px;
-  font-weight: 700;
+  font-weight: bold;
   margin-bottom: 10px; /* Mengurangi jarak bawah */
   display: inline-block; /* Membuat elemen menjadi inline-block */
   border-bottom: 4px solid white; /* Menambahkan garis bawah */
@@ -600,7 +604,7 @@ body {
   margin-top: 0;
   margin-bottom: 5px; /* Mengurangi jarak bawah */
   color: #f7f7f7;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .subtitle {
@@ -703,6 +707,7 @@ p {
 .info-item {
   margin: 10px 0;
   margin-left: 5%;
+  
 }
 
 .info-title {

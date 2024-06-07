@@ -293,7 +293,7 @@ const DashboardBerita = () => {
                     setShowEditConfirmation(true);
                     setSelectedSantri(santri);
                   }}
-                  className="bg-violet-500 text-white px-2 py-1 rounded"
+                  className="bg-blue-500 text-white px-2 py-1 rounded"
                 >
                   View
                 </button>
@@ -331,7 +331,7 @@ const DashboardBerita = () => {
                       setShowEditConfirmation(true);
                       setSelectedSantri(santri);
                     }}
-                    className="bg-violet-500 text-white px-2 py-1 rounded"
+                    className="bg-blue-500 text-white px-2 py-1 rounded"
                   >
                     View
                   </button>
