@@ -19,6 +19,8 @@ import Navbar from "../Components/Navbar.jsx";
 import Footer from "../Components/Footer.jsx";
 import Card from "../Components/Card.jsx";
 import Fasilitas from "../Components/Fasilitas.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendar, faClock } from "@fortawesome/free-solid-svg-icons";
 
 const Beranda = () => {
   return (
@@ -107,8 +109,10 @@ const Beranda = () => {
                 <h3>PELAKSANAAN PENGAJIAN MALAM NUZULUL ...</h3>
                 <p>Berkerjasama dengan DKM Baitul Qur’an KH Muntaha Al-Hafidz dalam rangka pengajian Malam Nuzulul qur’an .....</p>
                 <div className="berita-meta">
-                  <span className="date">28 Maret 2024</span>
-                  <span className="time">2 bulan lalu</span>
+                  <FontAwesomeIcon icon={faCalendar} className="mr-2 text-teal-600" />
+                  <span>28 Maret 2024</span>
+                  <FontAwesomeIcon icon={faClock} className="ml-4 text-teal-600" />
+                  <span>2 bulan lalu</span>
                 </div>
               </div>
             </a>

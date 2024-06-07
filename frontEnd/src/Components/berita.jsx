@@ -1,4 +1,4 @@
-import './App.css'; // Gantilah dengan path yang sesuai dengan file CSS Anda
+import "./App.css"; // Gantilah dengan path yang sesuai dengan file CSS Anda
 
 function Navbar() {
   return (
@@ -8,20 +8,34 @@ function Navbar() {
         <span className="logo-text">PPTQ UNSIQ 2</span>
       </div>
       <ul className="menu">
-        <li><a href="#">Beranda</a></li>
+        <li>
+          <a href="#">Beranda</a>
+        </li>
         <li className="dropdown">
           <a href="#">Profil</a>
           <ul className="dropdown-menu">
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="#">Galeri</a></li>
+            <li>
+              <a href="#">Tentang Kami</a>
+            </li>
+            <li>
+              <a href="#">Galeri</a>
+            </li>
           </ul>
         </li>
-        <li><a href="#">Berita</a></li>
-        <li><a href="#">Pendaftaran</a></li>
-        <li><a href="#">Forum</a></li>
+        <li>
+          <a href="#">Berita</a>
+        </li>
+        <li>
+          <a href="#">Pendaftaran</a>
+        </li>
+        <li>
+          <a href="#">Forum</a>
+        </li>
       </ul>
       <div className="login">
-        <a href="#" className="login-btn">Masuk</a>
+        <a href="#" className="login-btn">
+          Masuk
+        </a>
       </div>
     </nav>
   );
