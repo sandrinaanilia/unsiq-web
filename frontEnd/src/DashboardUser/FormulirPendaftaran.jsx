@@ -329,11 +329,13 @@ const FormulirPendaftaran = () => {
                       name="kategori"
                       value={formValues.kategori}
                       onChange={handleInputChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 text-sm placeholder:text-sm placeholder:pl-2 placeholder:text-gray-500"
+                      className="mt-1 block w-full bg-white hover:text-white hover:bg-teal-600 rounded-md shadow-sm"
                     >
                       <option value="reguler">Reguler</option>
-                      <option value="beasiswa">Beasiswa</option>
-                      <option value="karyawan">Karyawan</option>
+                      <option value="beasiswa">Beasiswa 5 - 10 Juz</option>
+                      <option value="beasiswa">Beasiswa 11 - 20 Juz</option>
+                      <option value="beasiswa">Beasiswa 21 - 29 Juz</option>
+                      <option value="beasiswa">Beasiswa 30 Juz</option>
                     </select>
                   </div>
                 </div>

@@ -30,7 +30,7 @@ const Beranda = () => {
       <section className="hero">
         <div className="overlay"></div>
         <div className="content">
-          <h1 className="hero-title">Selamat Datang di Pondok Pesantren Tahfidzul Qur’an Mahasiswa Unsiq II</h1>
+          <h1 className="hero-title">Selamat Datang di Pondok Pesantren Tahfidzul Qur’an Mahasiswa Putra Unsiq II</h1>
           <p className="address">Jl. Kh Abdurrohman Wahid, desa Krasak, Kecamatan Mojotengah Kabupaten Wonosobo</p>
           <p className="announcement">Penerimaan Santri baru tahun ajaran 2024/2025</p>
           <a href="/pendaftaran" className="cta-button">

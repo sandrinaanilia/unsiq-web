@@ -16,10 +16,6 @@ const Sidebar = () => {
           <i className="fas fa-home"></i>
           <span className="text-shadow">Dashboard</span>
         </button>
-        <button onClick={() => navigate("/informasipendaftaran")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
-          <i className="fas fa-info-circle"></i>
-          <span className="text-shadow">Informasi Pendaftaran</span>
-        </button>
         <button onClick={() => navigate("/datasantri")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
           <i className="fas fa-user-graduate"></i>
           <span className="text-shadow">Data Santri</span>
@@ -28,6 +24,10 @@ const Sidebar = () => {
           <i className="fas fa-bell"></i>
           <span className="text-shadow">Pengumuman</span>
         </button>
+        <button onClick={() => navigate("/pembayaranadmin")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
+          <i className="fas fa-bell"></i>
+          <span className="text-shadow">Pembayaran</span>
+        </button>
         <button onClick={() => navigate("/dashboardberita ")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
           <i className="fas fa-newspaper"></i>
           <span className="text-shadow">Berita</span>
@@ -35,10 +35,6 @@ const Sidebar = () => {
         <button onClick={() => navigate("/galeriadmin")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
           <i className="fas fa-images"></i>
           <span className="text-shadow">Galeri</span>
-        </button>
-        <button onClick={() => navigate("/forumdiskusi")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
-          <i className="fas fa-comments"></i>
-          <span className="text-shadow">Forum Diskusi</span>
         </button>
         <button onClick={() => navigate("/ceritaalumni")} className="text-white flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
           <i className="fas fa-user-friends"></i>

@@ -18,6 +18,7 @@ import UbahSandi from "./DashboardUser/UbahSandi.jsx";
 import Lonceng from "./DashboardUser/Lonceng.jsx";
 import Pengaturan from "./DashboardUser/Pengaturan.jsx";
 import Pengumuman from "./Admin/Pengumuman.jsx";
+import PembayaranAdmin from "./Admin/PembayaranAdmin.jsx";
 import BerkasDataSantri from "./Admin/BerkasDataSantri.jsx";
 import EditBerkasData from "./Admin/EditBerkasData.jsx";
 import FormulirPendaftaran from "./DashboardUser/FormulirPendaftaran.jsx";
@@ -54,6 +55,7 @@ function App() {
       <Route path="/lonceng" element={<Lonceng />} />
       <Route path="/informasipendaftaran" element={<InformasiPendaftaran />} />
       <Route path="/pengumuman" element={<Pengumuman />} />
+      <Route path="/pembayaranadmin" element={<PembayaranAdmin/>} />
       <Route path="/berkasdatasantri" element={<BerkasDataSantri />} />
       <Route path="/editberkasdata" element={<EditBerkasData />} />
       <Route path="/galeriadmin" element={<GaleriAdmin />} />
