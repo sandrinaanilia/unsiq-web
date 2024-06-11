@@ -39,8 +39,10 @@ function Pendaftaran() {
         </h1>
         <div className="bg-white rounded-lg shadow-md p-4 md:p-8">
           <div className="mb-4">
+            <h3 className="text-2xl font-bold">Wajib Dibaca Sebelum Melakukan Pendaftaran!</h3> <br />
+            <p>Syarat utama : Sudah Resmi Menjadi Mahasiswa UNSIQ 2</p>
             <p>
-              Lihat Brosur Pondok Pesantren unduh{" "}
+              Brosur Pondok Pesantren lihat{" "}
               <a href={brosur} className="text-teal-600 underline font-bold">
                 disini
               </a>
@@ -52,13 +54,13 @@ function Pendaftaran() {
               </a>
             </p>
             <p>
-              Materi test (Reguler) unduh di{" "}
+              Materi test (Reguler) lihat{" "}
               <a href={materi} className="text-teal-600 underline font-bold">
                 disini
               </a>
             </p>
             <p>
-              Surat Pernyataan unduh di{" "}
+              Surat Pernyataan lihat{" "}
               <a href="#" className="text-teal-600 underline font-bold">
                 disini
               </a>

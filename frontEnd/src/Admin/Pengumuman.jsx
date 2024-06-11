@@ -11,21 +11,24 @@ const Pengumuman = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isSettingsPopupOpen, setIsSettingsPopupOpen] = useState(false);
-  const [isLogoutPopupOpen, setIsLogoutPopupOpen] = useState(false); // State for logout popup
-  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false); // State for change password popup
+  const [isLogoutPopupOpen, setIsLogoutPopupOpen] = useState(false);
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   const [announcements, setAnnouncements] = useState([
-    { id: 1, text: "Silakan lakukan pembayaran daftar ulang dan upload bukti pembayaran sebelum 20 Mei 2024", autoMessage: "Pesan Otomatis" },
-    { id: 2, text: "Pendaftaran Anda sudah berhasil", autoMessage: "Pesan Otomatis" },
+    { id: 1, text: "Silakan lakukan pembayaran daftar ulang dan upload bukti pembayaran sebelum 20 Mei 2024", date: "2024-05-04", autoMessage: "Pesan Otomatis" },
+    { id: 2, text: "Pendaftaran Anda sudah berhasil", date: "2024-05-04", autoMessage: "Pesan Otomatis" },
   ]);
 
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [currentAnnouncement, setCurrentAnnouncement] = useState(null);
   const [newAnnouncementText, setNewAnnouncementText] = useState("");
+  const [newAnnouncementDate, setNewAnnouncementDate] = useState("");
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [announcementToDelete, setAnnouncementToDelete] = useState(null);
 
   const openSettingsPopup = () => {
     setIsSettingsPopupOpen(true);
@@ -61,7 +64,6 @@ const Pengumuman = () => {
 
   const handleChangePassword = (e) => {
     e.preventDefault();
-    // Lakukan validasi kata sandi baru
     if (newPassword !== confirmPassword) {
       setPasswordError("Kata sandi baru tidak cocok");
       return;
@@ -77,28 +79,32 @@ const Pengumuman = () => {
   const handleEditAnnouncement = (announcement) => {
     setCurrentAnnouncement(announcement);
     setNewAnnouncementText(announcement.text);
+    setNewAnnouncementDate(announcement.date);
     setIsEditPopupOpen(true);
   };
 
   const handleDeleteAnnouncement = (announcementId) => {
     setAnnouncements(announcements.filter((ann) => ann.id !== announcementId));
+    setShowDeleteConfirmation(false);
   };
 
   const handleAddAnnouncement = () => {
     setCurrentAnnouncement(null);
     setNewAnnouncementText("");
+    setNewAnnouncementDate("");
     setIsEditPopupOpen(true);
   };
 
-  const handleSaveAnnouncement = () => {
+  const handleSaveAnnouncement = (e) => {
+    e.preventDefault();
+
     if (currentAnnouncement) {
-      // Edit mode
-      setAnnouncements(announcements.map((ann) => (ann.id === currentAnnouncement.id ? { ...ann, text: newAnnouncementText } : ann)));
+      setAnnouncements(announcements.map((ann) => (ann.id === currentAnnouncement.id ? { ...ann, text: newAnnouncementText, date: newAnnouncementDate } : ann)));
     } else {
-      // Add mode
       const newAnnouncement = {
         id: announcements.length + 1,
         text: newAnnouncementText,
+        date: newAnnouncementDate,
         autoMessage: "Pesan Otomatis",
       };
       setAnnouncements([...announcements, newAnnouncement]);
@@ -106,12 +112,16 @@ const Pengumuman = () => {
     setIsEditPopupOpen(false);
   };
 
+  const handleConfirmDelete = (announcementId) => {
+    setAnnouncementToDelete(announcementId);
+    setShowDeleteConfirmation(true);
+  };
+
   return (
     <div className="flex">
       <Sidebar />
 
       <div className="flex flex-col w-full">
-        {/* Top Bar */}
         <div className="flex items-center justify-between bg-white shadow-lg p-4">
           <div className="relative">
             <button className="absolute left-2 top-2">
@@ -135,19 +145,17 @@ const Pengumuman = () => {
                 </li>
                 <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openLogoutPopup}>
                   Keluar
-                </li>{" "}
-                {/* Open logout popup */}
+                </li>
               </ul>
             )}
           </div>
         </div>
 
-        {/* Announcement Section */}
         <div className="p-4 font-poppins min-h-screen">
           <div className="bg-white shadow-md rounded-lg overflow-x-auto p-4 h-full">
             <div className="flex justify-between items-center mb-4">
-              <h1 className="text-lg font-bold mb-4">
-                <span style={{ backgroundColor: "teal-600", padding: "0.2rem 0.5rem", borderRadius: "3rem", color: "white" }}>Pengumuman</span>
+              <h1 className="text-lg font-bold mb-4 text-black">
+                <span style={{ backgroundColor: "teal-600", padding: "0.2rem 0.5rem", borderRadius: "3rem", color: "black" }}>Pengumuman</span>
               </h1>
             </div>
             <button className="text-teal-600 font-bold mb-4" onClick={handleAddAnnouncement} style={{ display: "block", textAlign: "right" }}>
@@ -159,25 +167,13 @@ const Pengumuman = () => {
                   <div key={ann.id} className="bg-gray-200 p-4 rounded-lg shadow-md flex justify-between items-center">
                     <div>
                       <p>{ann.text}</p>
-                      <p className="text-sm text-teal-600">{ann.autoMessage}</p>
+                      <p className="text-sm text-black font-bold mb-4">{ann.date}</p>
                     </div>
                     <div className="flex space-x-4">
-                      <button
-                        onClick={() => {
-                          setShowEditConfirmation(true);
-                          setSelectedSantri(item);
-                        }}
-                        className="bg-green-500 text-white px-2 py-1 rounded"
-                      >
+                      <button onClick={() => handleEditAnnouncement(ann)} className="bg-green-500 text-white px-2 py-1 rounded">
                         <FontAwesomeIcon icon={faEdit} />
                       </button>
-                      <button
-                        onClick={() => {
-                          setShowDeleteConfirmation(true);
-                          setSelectedSantri(item);
-                        }}
-                        className="bg-red-500 text-white px-2 py-1 rounded"
-                      >
+                      <button onClick={() => handleConfirmDelete(ann.id)} className="bg-red-500 text-white px-2 py-1 rounded">
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
                     </div>
@@ -188,7 +184,6 @@ const Pengumuman = () => {
           </div>
         </div>
 
-        {/* Popup for Profile */}
         {isPopupOpen && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
@@ -200,106 +195,102 @@ const Pengumuman = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="namaLengkap">Nama Lengkap:</label>
-                  <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" readOnly />
+                  <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="email">Email:</label>
-                  <input type="email" id="email" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="abdurohman@gmail.com" value="Abdurohman@gmail.com" readOnly />
+                  <input type="email" id="email" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="abdurohman@gmail.com" />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="noTelp">Nomor Telepon:</label>
-                  <input type="tel" id="noTelp" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="08977654323" value="08977654323" readOnly />
+                  <label htmlFor="telepon">No Telepon:</label>
+                  <input type="tel" id="telepon" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="081234567890" />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="peran">Peran:</label>
-                  <input type="text" id="peran" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Admin" value="Admin" readOnly />
+                <div className="flex justify-between">
+                  <button type="button" className="bg-gray-500 text-white px-4 py-2 rounded" onClick={closePopup}>
+                    Tutup
+                  </button>
+                  <button type="submit" className="bg-teal-600 text-white px-4 py-2 rounded">
+                    Simpan
+                  </button>
                 </div>
               </form>
-              <div className="flex justify-end mt-4">
-                <button className="bg-teal-600 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={closePopup}>
-                  Tutup
-                </button>
-              </div>
             </div>
           </div>
         )}
 
-        {/* Popup for Edit/Add Announcement */}
-        {isEditPopupOpen && (
-          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-xl font-bold mb-4">{currentAnnouncement ? "Edit" : "Tambah"} Pengumuman</h2>
-              <form className="flex flex-col gap-4">
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="announcementText">Teks Pengumuman:</label>
-                  <textarea
-                    id="announcementText"
-                    className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    placeholder="Tulis teks pengumuman disini"
-                    value={newAnnouncementText}
-                    onChange={(e) => setNewAnnouncementText(e.target.value)}
-                  />
-                </div>
-              </form>
-              <div className="flex justify-end mt-4 space-x-2">
-                <button className="bg-gray-500 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none" onClick={() => setIsEditPopupOpen(false)}>
-                  Batal
-                </button>
-                <button className="bg-teal-600 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={handleSaveAnnouncement}>
-                  Simpan
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Popup for Settings */}
         {isSettingsPopupOpen && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">Pengaturan</h2>
               <form className="flex flex-col gap-4">
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="ubahKataSandi">Ubah Kata Sandi:</label>
-                  <button id="ubahKataSandi" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500 bg-teal-500 text-white hover:bg-teal-600" onClick={toggleChangePassword}>
-                    Ubah Kata Sandi
+                  <label htmlFor="bahasa">Bahasa:</label>
+                  <select id="bahasa" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <option value="indonesia">Indonesia</option>
+                    <option value="english">English</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="notifikasi">Notifikasi:</label>
+                  <select id="notifikasi" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <option value="aktif">Aktif</option>
+                    <option value="nonaktif">Nonaktif</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="tema">Tema:</label>
+                  <select id="tema" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <option value="terang">Terang</option>
+                    <option value="gelap">Gelap</option>
+                  </select>
+                </div>
+                <div className="flex justify-between">
+                  <button type="button" className="bg-gray-500 text-white px-4 py-2 rounded" onClick={closeSettingsPopup}>
+                    Tutup
+                  </button>
+                  <button type="submit" className="bg-teal-600 text-white px-4 py-2 rounded">
+                    Simpan
                   </button>
                 </div>
               </form>
-              <div className="flex justify-end mt-4">
-                <button className="bg-teal-600 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none" onClick={closeSettingsPopup}>
-                  Tutup
+            </div>
+          </div>
+        )}
+
+        {isLogoutPopupOpen && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-xl font-bold mb-4">Keluar</h2>
+              <p>Anda yakin ingin keluar?</p>
+              <div className="flex justify-between mt-4">
+                <button className="bg-gray-500 text-white px-4 py-2 rounded" onClick={closeLogoutPopup}>
+                  Tidak
                 </button>
+                <button className="bg-red-500 text-white px-4 py-2 rounded">Ya, Keluar</button>
               </div>
             </div>
           </div>
         )}
 
-        {/* Popup for Change Password */}
-        {isChangePasswordOpen && (
+        {isEditPopupOpen && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-xl font-bold mb-4">Ubah Kata Sandi</h2>
-              <form className="flex flex-col gap-4" onSubmit={handleChangePassword}>
+              <h2 className="text-xl font-bold mb-4">{currentAnnouncement ? "Edit Pengumuman" : "Tambah Pengumuman"}</h2>
+              <form className="flex flex-col gap-4" onSubmit={handleSaveAnnouncement}>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="currentPassword">Kata Sandi Saat Ini:</label>
-                  <input type="password" id="currentPassword" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-600" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} required />
+                  <label htmlFor="pengumuman">Pengumuman:</label>
+                  <textarea id="pengumuman" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" value={newAnnouncementText} onChange={(e) => setNewAnnouncementText(e.target.value)} />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="newPassword">Kata Sandi Baru:</label>
-                  <input type="password" id="newPassword" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-600" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
+                  <label htmlFor="tanggal">Tanggal:</label>
+                  <input type="date" id="tanggal" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" value={newAnnouncementDate} onChange={(e) => setNewAnnouncementDate(e.target.value)} />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="confirmPassword">Konfirmasi Kata Sandi Baru:</label>
-                  <input type="password" id="confirmPassword" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-600" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-                </div>
-                {passwordError && <p className="text-red-500">{passwordError}</p>}
-                <div className="flex justify-end mt-4">
-                  <button className="bg-gray-500 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none mr-2" onClick={toggleChangePassword}>
+                <div className="flex justify-between">
+                  <button type="button" className="bg-gray-500 text-white px-4 py-2 rounded" onClick={() => setIsEditPopupOpen(false)}>
                     Batal
                   </button>
-                  <button type="submit" className="bg-teal-600 text-white p-2 rounded-md hover:bg-teal-600 focus:outline-none">
-                    Ubah
+                  <button type="submit" className="bg-teal-600 text-white px-4 py-2 rounded">
+                    Simpan
                   </button>
                 </div>
               </form>
@@ -307,25 +298,17 @@ const Pengumuman = () => {
           </div>
         )}
 
-        {/* Popup for Logout */}
-        {isLogoutPopupOpen && (
+        {showDeleteConfirmation && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-xl font-bold mb-4">Konfirmasi Keluar</h2>
-              <p className="mb-4">Apakah Anda yakin ingin keluar?</p>
-              <div className="flex justify-end mt-4 space-x-2">
-                <button className="bg-gray-500 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none" onClick={closeLogoutPopup}>
+              <h2 className="text-xl font-bold mb-4">Konfirmasi Hapus</h2>
+              <p>Apakah Anda yakin ingin menghapus pengumuman ini?</p>
+              <div className="flex justify-between mt-4">
+                <button className="bg-gray-500 text-white px-4 py-2 rounded" onClick={() => setShowDeleteConfirmation(false)}>
                   Batal
                 </button>
-                <button
-                  className="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none"
-                  onClick={() => {
-                    // Logika untuk logout
-                    console.log("Logged out");
-                    closeLogoutPopup();
-                  }}
-                >
-                  Keluar
+                <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => handleDeleteAnnouncement(announcementToDelete)}>
+                  Hapus
                 </button>
               </div>
             </div>

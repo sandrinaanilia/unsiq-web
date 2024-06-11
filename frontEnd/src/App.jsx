@@ -55,7 +55,7 @@ function App() {
       <Route path="/lonceng" element={<Lonceng />} />
       <Route path="/informasipendaftaran" element={<InformasiPendaftaran />} />
       <Route path="/pengumuman" element={<Pengumuman />} />
-      <Route path="/pembayaranadmin" element={<PembayaranAdmin/>} />
+      <Route path="/pembayaranadmin" element={<PembayaranAdmin />} />
       <Route path="/berkasdatasantri" element={<BerkasDataSantri />} />
       <Route path="/editberkasdata" element={<EditBerkasData />} />
       <Route path="/galeriadmin" element={<GaleriAdmin />} />
