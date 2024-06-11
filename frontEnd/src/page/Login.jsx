@@ -1,9 +1,23 @@
 import { useState } from 'react';
-
+import axios from 'axios';
 import welcome1 from "../assets/img/welcome1.jpeg";
 
 const Login = () => {
   const [role, setRole] = useState('Mahasiswa');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/auth/login', { email, password });
+      localStorage.setItem('token', response.data.token);
+      setMessage('Login successful!');
+    } catch (error) {
+      setMessage('Login failed! Please check your credentials and try again.');
+    }
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
@@ -30,11 +44,13 @@ const Login = () => {
           </div>
 
           {/* Login form */}
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <input
                 type="email"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600"
               />
             </div>
@@ -42,14 +58,22 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Kata sandi"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600"
               />
             </div>
             <div className="mb-4 text-right">
               <a href="#" className="text-teal-600 hover:underline">Lupa kata sandi?</a>
             </div>
-            <button className="w-full bg-teal-600 text-white py-3 px-10 rounded-md hover:bg-teal-700 transition duration-300">Masuk</button>
+            <button type="submit" className="w-full bg-teal-600 text-white py-3 px-10 rounded-md hover:bg-teal-700 transition duration-300">Masuk</button>
           </form>
+
+          {message && (
+            <div className="mt-4 text-center text-red-500">
+              <p>{message}</p>
+            </div>
+          )}
 
           {/* Register link */}
           <div className="mt-4 text-center">

@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {SignIn} from "../store/auth.js";
 
+
 const Navbar = () => {
   const navigate = useNavigate();
   const isLogin = useSelector(state=>state.isLogin)
@@ -54,7 +55,7 @@ const Navbar = () => {
           <button onClick={() => navigate("/pendaftaran")}>Pendaftaran</button>
         </li>
         <li>
-        <button onClick={() => navigate("/forum")}>Forum</button>
+        <button onClick={() => navigate("/faq")}>FAQ</button>
         </li>
       </ul>
       <div className="login-btn">
