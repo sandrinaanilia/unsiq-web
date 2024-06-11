@@ -32,7 +32,7 @@ const About = () => {
   const handleClosePopup2 = () => {
     setShowPopup2(false);
   };
-  const activities1 = [
+  const activities = [
     { time: "03.00-04.30", activity: "Bangun Pagi & Qiyamul Lail" },
     { time: "03.00-04.30", activity: "Sholat Subuh berjamaah dilanjutkan setoran" },
     { time: "03.00-04.30", activity: "Sarapan" },
@@ -43,8 +43,8 @@ const About = () => {
     { time: "03.00-04.30", activity: "Istirahat dan Tidur malam" },
   ];
 
-  const activities2 = [{ activity: " Masa Ta’aruf" }, { activity: "Ziarah" }, { activity: " Tasmin" }, { activity: "Ro’an" }, { activity: "Muhadloroh" }, { activity: " Agenda Ramadhan" }];
-  const activities3 = [{ activity: "Futsal    " }, { activity: "Tiroah" }, { activity: "Rebana" }];
+  const activities1 = [{ activity: " Masa Ta’aruf" }, { activity: "Ziarah" }, { activity: " Tasmin" }, { activity: "Ro’an" }, { activity: "Muhadloroh" }, { activity: " Agenda Ramadhan" }];
+  const activities2 = [{ activity: "Futsal    " }, { activity: "Tiroah" }, { activity: "Rebana" }];
 
   return (
     <>
@@ -56,11 +56,11 @@ const About = () => {
         </div>
       </div>
 
-      <section className="biografi bg-gray-100 py-12" id="biografi">
+      <section className="biografi py-12" id="biografi">
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center">
           <div className="biografi-content lg:w-1/2 p-10">
             <h2 className="text-2xl font-bold mb-5">BIOGRAFI PENGASUH</h2>
-            <h3 className="text-4xl mb-5">Bpk K. Hayatuddin M.Ag., Alh</h3>
+            <h3 className="text-4xl mb-5 font-bold">Bpk K. Hayatuddin M.Ag., Alh</h3>
             <h4 classname="text-4xl text-gray mb-2">Beliau merupakan pengasuh di Pondok Pesantren Tahfidzul Qur’an Mahasiswa UNSIQ 2, dan salah satu lulusan terbaik di program Pascasarjana di Universitas Sains Alqur’an Wonosobo.</h4>
           </div>
           <div className="biografi-img lg:w-1/1">
@@ -69,7 +69,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="container px-20 mx-auto bg-gray-100 py-12 text-black">
+      <section className="container px-20 mx-auto py-12 text-black">
         <h2 className="text-2xl font-extrabold mb-6 text-center">Sejarah PPTQ UNSIQ 2</h2>
         <div className="flex flex-col md:flex-row items-center gap-10 bg-teal-600 text-white rounded-2xl p-6">
           <img src={foto8} alt="Sejarah PPTQ UNSIQ 2" className="w-60 h-50 max-w-md rounded-2xl object-cover" />
@@ -84,7 +84,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className=" mx-auto px-24 bg-gray-100 py-16">
+      <section className=" mx-auto px-24 py-16">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1 ">
             <h2 className="text-3xl font-bold mb-4">Visi</h2>
@@ -97,23 +97,26 @@ const About = () => {
               <li>Berketrampilan dalam membaca kitab kuning, berbahasa Arab dan Inggris.</li>
             </ul>
           </div>
-          <img src={foto7} alt="Foto PPTQ UNSIQ 2" className="w-full h-auto max-w-md md:max-w-lg lg:max-w-xl object-cover rounded-2xl" />
+          <img src={foto7} alt="Foto PPTQ UNSIQ 2" className="h-auto max-w-xs md:max-w-lg lg:max-w-xl object-cover rounded-2xl" />
         </div>
-        <div className="justify-end grid grid-cols-1 md:grid-cols-4 gap-4 mt-10 ">
-          <button onClick={handleShowPopup} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">
-            AKTIVITAS HARIAN{" "}
-          </button>
-          <button onClick={handleShowPopup1} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">
-            AKTIVITAS BULANAN{" "}
-          </button>
-
-          <button onClick={handleShowPopup2} className="bg-teal-600 text-white text-center py-4 rounded-lg cursor-pointer hover:bg-teal-700">
-            EKSTRAKULIKULER
-          </button>
+        <div className="flex flex-col items-end mt-10">
+          <div className="justify-end grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:w-auto">
+            <button onClick={handleShowPopup} className="font-bold bg-teal-600 text-white text-center py-4 px-8 rounded-lg cursor-pointer hover:bg-teal-700 w-full">
+              AKTIVITAS HARIAN{" "}
+            </button>
+            <button onClick={handleShowPopup1} className="font-bold bg-teal-600 text-white text-center py-4 px-8 rounded-lg cursor-pointer hover:bg-teal-700 w-full">
+              AKTIVITAS BULANAN{" "}
+            </button>
+          </div>
+          <div className="w-full md:w-auto mt-4">
+            <button onClick={handleShowPopup2} className="font-bold bg-teal-600 text-white text-center py-4 px-10 rounded-lg cursor-pointer hover:bg-teal-700 w-full">
+              EKSTRAKULIKULER
+            </button>
+          </div>
         </div>
       </section>
 
-      <section className="bg-gray-100 text-center py-8">
+      <section className="text-center py-8">
         <div className="bg-teal-600 text-white text-center py-8 rounded-2xl max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold">Daftar sekarang untuk Penerimaan Santri Baru</h2>
           <p className="text-2xl">Pondok Pesantren Tahfidzul Qur’an Mahasiswa UNSIQ 2 Tahun 2024 / 2025</p>
@@ -135,7 +138,7 @@ const About = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {activities1.map((activity, index) => (
+                  {activities.map((activity, index) => (
                     <tr key={index}>
                       <td className="text-left p-2">{activity.time}</td>
                       <td className="text-left p-2">{activity.activity}</td>
@@ -158,7 +161,7 @@ const About = () => {
             <div className="overflow-y-auto max-h-96">
               <table className="w-full">
                 <tbody>
-                  {activities2.map((activity, index) => (
+                  {activities1.map((activity, index) => (
                     <tr key={index}>
                       <td className="text-left p-2">{activity.activity}</td>
                     </tr>
@@ -180,7 +183,7 @@ const About = () => {
             <div className="overflow-y-auto max-h-96">
               <table className="w-full">
                 <tbody>
-                  {activities3.map((activity, index) => (
+                  {activities2.map((activity, index) => (
                     <tr key={index}>
                       <td className="text-left p-2">{activity.activity}</td>
                     </tr>
