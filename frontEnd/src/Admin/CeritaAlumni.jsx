@@ -211,14 +211,13 @@ const CeritaAlumni = () => {
                   <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" readOnly />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label>Ubah Kata Sandi:</label>
                   <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={toggleChangePassword}>
                     Ubah Kata Sandi
                   </button>
                 </div>
+
                 <div className="flex flex-col gap-2">
-                  <label>Hapus Akun:</label>
-                  <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">Hapus Akun</button>
+                  <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">Kembali</button>
                 </div>
               </form>
             </div>

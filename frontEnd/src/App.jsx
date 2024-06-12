@@ -25,6 +25,7 @@ import EditBerkasData from "./Admin/EditBerkasData.jsx";
 import FormulirPendaftaran from "./DashboardUser/FormulirPendaftaran.jsx";
 import GaleriAdmin from "./Admin/GaleriAdmin.jsx";
 import DashboardBerita from "./Admin/DashboardBerita.jsx";
+import LihatBukti from "./Admin/LihatBukti.jsx";
 
 import ViewBerita from "./Admin/ViewBerita.jsx";
 import CeritaAlumni from "./Admin/CeritaAlumni.jsx";
@@ -64,6 +65,7 @@ function App() {
       <Route path="/dashboardberita" element={<DashboardBerita />} />
       <Route path="/viewberita" element={<ViewBerita />} />
       <Route path="/ceritaalumni" element={<CeritaAlumni />} />
+      <Route path="/lihatbukti" element={<LihatBukti />} />
     </Routes>
   );
 }
