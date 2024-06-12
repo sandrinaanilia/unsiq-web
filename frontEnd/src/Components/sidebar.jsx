@@ -14,6 +14,7 @@ const Sidebar = () => {
       {/* Menu Items */}
       <nav className="flex flex-col space-y-4 h-screen w-full px-4">
         <button onClick={() => navigate("/dashboard")} className="flex items-center space-x-2 p-2 rounded-md hover:bg-teal-600">
+         
           <i className="fas fa-home"></i>
           <span className="text-shadow">Dashboard</span>
         </button>
