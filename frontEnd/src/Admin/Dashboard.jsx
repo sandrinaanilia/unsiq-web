@@ -101,7 +101,7 @@ const Dashboard = () => {
         <div className="flex justify-center p-9 gap-6">
           <div className="bg-teal-600 text-white p-6 rounded-lg shadow-lg w-1/3 flex items-center justify-between mr-6">
             <div>
-              <h3 className="text-xl font-bold">Akun Baru</h3>
+              <h3 className="text-xl font-bold">Total Akun</h3>
               <span className="text-4xl">34</span>
             </div>
             <img src={User} alt="Account" className="w-20 h-20" />
@@ -123,7 +123,7 @@ const Dashboard = () => {
           <div className="bg-white border border-gray-300 p-10 px-10 py-12 rounded-lg shadow-lg w-96">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Pendaftar Baru</h2>
-              <a href="#" className="text-teal-600">
+              <a href="/datasantri" className="text-teal-600">
                 lihat
               </a>
             </div>
@@ -147,7 +147,7 @@ const Dashboard = () => {
                   <span>
                     {index + 1}. {name}
                   </span>
-                  <button onClick={() => navigate("/galeri")} className="bg-teal-600 text-white px-2 py-1 rounded-lg text-xs">
+                  <button onClick={() => navigate("/pembayaranadmin")} className="bg-teal-600 text-white px-2 py-1 rounded-lg text-xs">
                     Lihat Pembayaran
                   </button>
                 </li>

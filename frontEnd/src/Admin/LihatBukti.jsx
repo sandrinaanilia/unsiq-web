@@ -4,7 +4,7 @@ import arrow from "../assets/img/arrow.png";
 import Sidebar from "../Components/sidebar";
 import Profil from "../assets/img/hamam.png";
 import searchIcon from "../assets/img/search.png";
-import User from "../assets/img/iconuser.png";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const LihatBukti = () => {
   const navigate = useNavigate();
@@ -73,7 +73,6 @@ const LihatBukti = () => {
   return (
     <div className="flex">
       <Sidebar />
-
       <div className="flex flex-col w-full">
         {/* Top Bar */}
         <div className="flex items-center justify-between bg-white shadow-lg p-4">
@@ -102,6 +101,57 @@ const LihatBukti = () => {
                 </li>
               </ul>
             )}
+          </div>
+        </div>
+
+        <div className="p-4 font-poppins min-h-screen">
+          <div className="bg-white shadow-md rounded-lg overflow-x-auto p-4 h-full">
+            <div className="flex justify-between items-center mb-4">
+              <h1 className="text-lg font-bold mb-4 text-black">
+                <span className=" p-2 rounded-full text-black">Lihat Bukti Pembayaran</span>
+              </h1>
+            </div>
+            <div className="mb-4 bg-gray-100 p-4 rounded-md">
+              <p className="text-black mb-2 font-bold">10 Mei 2024</p>
+              <p className="text-gray-700 mb-2">
+                Untuk calon santri 2024/2025 silahkan membayar daftar ulang maksimal Senin, 20 Mei 2024 untuk biaya daftar ulang silahkan transfer ke no rek BCA berikut 356373738833338 Untuk rincian biaya bisa lihat
+                <a href="#" className="text-blue-600">
+                  {" "}
+                  disini
+                </a>
+              </p>
+            </div>
+            <table className="min-w-full text-left">
+              <thead>
+                <tr>
+                  <th className="py-2 px-4 border-b bg-neutral-300 border-gray-400">NAMA</th>
+                  <th className="py-2 px-4 border-b bg-neutral-300 border-gray-400">NIM</th>
+                  <th className="py-2 px-4 border-b bg-neutral-300 border-gray-400">ALAMAT</th>
+                  <th className="py-2 px-4 border-b bg-neutral-300 border-gray-400">KATEGORI</th>
+                  <th className="py-2 px-4 border-b bg-neutral-300 border-gray-400">Bukti Pembayaran</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t">
+                  <td className="py-2 px-4 border-b">Sayifulloh</td>
+                  <td className="py-2">2021150108</td>
+                  <td className="py-2">Pagerandong, Mrebet, Wonosobo</td>
+                  <td className="py-2">Beasiswa 5 Juz</td>
+                  <td className="py-2">
+                    <button className="bg-blue-500 text-white p-2 rounded">Lihat</button>
+                  </td>
+                </tr>
+                <tr className="border-t">
+                  <td className="py-2 px-4 border-b">Rafi Aji S</td>
+                  <td className="py-2">2021150112</td>
+                  <td className="py-2">Pangkalanbun, Palembang</td>
+                  <td className="py-2">Reguler</td>
+                  <td className="py-2">
+                    <button className="bg-blue-500 text-white p-2 rounded">Lihat</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -160,7 +210,6 @@ const LihatBukti = () => {
                     <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" readOnly />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label>Ubah Kata Sandi:</label>
                     <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={openChangePassword}>
                       Ubah Kata Sandi
                     </button>

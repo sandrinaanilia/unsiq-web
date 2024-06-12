@@ -292,7 +292,7 @@ const Galeri = () => {
                     Batal
                   </button>
                   <button type="submit" className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
-                    Simpan
+                    Perbarui
                   </button>
                 </div>
               </form>
