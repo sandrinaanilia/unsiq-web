@@ -1,12 +1,20 @@
 import express from "express"
 import dotenv from "dotenv"
-import { connection } from "./Database/db.js";
+import { connection } from "../backend/Database/db.js";
+import routes from '../backend/route/index.js'
+import cors from "cors"
 
-dotenv.config();
-const app = express();
+dotenv.config()
+const app = express()
 
-app.use(express.json());
-app.listen(process.env.PORT, async()=> {
-    await connection();
-    console.log(`https://localhost:${process.env.PORT}`)
-})
+app.use(express.json())
+app.use(cors())
+app.use(routes)
+
+const port = process.env.APP_PORT || 3000
+const hostname = 'localhost'
+
+app.listen(port, hostname, () => {
+    connection()
+    console.log("server running at http://localhost:"+ process.env.APP_PORT)
+});
