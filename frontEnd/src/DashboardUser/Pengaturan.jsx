@@ -122,21 +122,37 @@ const PengaturanPage = () => {
                     </button>
                   </li>
                   <li>
-                    <button
-                      className={`flex items-center py-2 px-8 mt-3 w-full text-left ${
-                        window.location.pathname === "/keluar"
-                          ? "bg-teal-600 text-white"
-                          : "text-gray-600"
-                      } hover:bg-teal-600 hover:text-white rounded-lg justify-start`}
-                      onClick={() => window.location.assign("/keluar")}
+                  <button
+                      className={`flex items-center py-2 px-8 mt-3 w-full text-left ${showPopup ? "bg-teal-600 text-white" : "text-gray-600"} hover:bg-teal-600 hover:text-white rounded-lg justify-start`}
+                      onClick={handleHapusAkun}
                     >
-                      <img
-                        src={Keluar}
-                        alt="Keluar"
-                        className="w-6 h-6 mr-4"
-                      />
+                      <img src={Keluar} alt="Keluar" className="w-6 h-6 mr-4" />
                       <span className="font-bold">Keluar</span>
                     </button>
+                    {showPopup && (
+                  <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50">
+                  <div className="bg-white rounded-3xl shadow-lg p-10 w-96">
+                    <h2 className="text-xl text-center font-bold mb-4">
+                      Keluar dari Akun Anda?
+                    </h2>    
+                    <div className="flex justify-center">
+                   
+                     <button
+                          className="border border-gray-400 hover:bg-gray-200 text-gray-800 font-bold py-2 px-6 rounded mr-3"
+                          onClick={handleCancelHapus}
+                        >
+                          Tidak
+                        </button>
+                        <button
+                          className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-6 rounded"
+                          onClick={handleConfirmHapus}
+                        >
+                          Keluar
+                        </button>
+                      </div>
+                      </div>
+                      </div>
+                    )}
                   </li>
                 </ul>
               </nav>
