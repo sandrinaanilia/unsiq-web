@@ -4,6 +4,7 @@ import arrow from "../assets/img/arrow.png";
 import Sidebar from "../Components/sidebar";
 import Profil from "../assets/img/hamam.png";
 import searchIcon from "../assets/img/search.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesomeIcon
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const LihatBukti = () => {
@@ -18,6 +19,9 @@ const LihatBukti = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [showEditConfirmation, setShowEditConfirmation] = useState(false);
+  const [selectedSantri, setSelectedSantri] = useState(null); // Add this state to manage the selected santri
 
   const openSettingsPopup = () => {
     setIsSettingsPopupOpen(true);
@@ -111,12 +115,12 @@ const LihatBukti = () => {
                 <span className=" p-2 rounded-full text-black">Lihat Bukti Pembayaran</span>
               </h1>
             </div>
-            <div className="mb-4 bg-gray-100 p-4 rounded-md">
+            <div className="mb-4 bg-neutral-200 border-gray-300 p-4 rounded-md">
               <p className="text-black mb-2 font-bold">10 Mei 2024</p>
               <p className="text-gray-700 mb-2">
-                Untuk calon santri 2024/2025 silahkan membayar daftar ulang maksimal Senin, 20 Mei 2024 untuk biaya daftar ulang silahkan transfer ke no rek BCA berikut 356373738833338 Untuk rincian biaya bisa lihat
-                <a href="#" className="text-blue-600">
-                  {" "}
+                Untuk calon santri 2024/2025 silahkan membayar daftar ulang maksimal Senin, 20 Mei 2024 untuk biaya daftar ulang silahkan transfer ke no rek BCA berikut <span className="text-teal-600">356373738833338</span>. Untuk rincian
+                biaya bisa lihat
+                <a href="#" className="text-teal-600">
                   disini
                 </a>
               </p>
@@ -138,7 +142,17 @@ const LihatBukti = () => {
                   <td className="py-2">Pagerandong, Mrebet, Wonosobo</td>
                   <td className="py-2">Beasiswa 5 Juz</td>
                   <td className="py-2">
-                    <button className="bg-blue-500 text-white p-2 rounded">Lihat</button>
+                    <div className="flex space-x-4">
+                      <button
+                        onClick={() => {
+                          setShowEditConfirmation(true);
+                          setSelectedSantri(item);
+                        }}
+                        className="bg-blue-500 text-white px-2 py-1 rounded"
+                      >
+                        <FontAwesomeIcon icon={faEye} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
                 <tr className="border-t">
@@ -147,7 +161,17 @@ const LihatBukti = () => {
                   <td className="py-2">Pangkalanbun, Palembang</td>
                   <td className="py-2">Reguler</td>
                   <td className="py-2">
-                    <button className="bg-blue-500 text-white p-2 rounded">Lihat</button>
+                    <div className="flex space-x-4">
+                      <button
+                        onClick={() => {
+                          setShowEditConfirmation(true);
+                          setSelectedSantri(item);
+                        }}
+                        className="bg-blue-500 text-white px-2 py-1 rounded"
+                      >
+                        <FontAwesomeIcon icon={faEye} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -168,27 +192,65 @@ const LihatBukti = () => {
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="namaLengkap">Nama Lengkap:</label>
-                    <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" readOnly />
+                    <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="abdurohman@gmail.com" value="Abdurohman@gmail.com" readOnly />
+                    <input type="email" id="email" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Email" value="admin@gmail.com" />
+                  </div>
+                  <button type="button" className="bg-teal-500 text-white px-4 py-2 rounded-md mt-4" onClick={closePopup}>
+                    Tutup
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+          {/* Popup for Change Password */}
+          {isChangePasswordOpen && (
+            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+              <div className="bg-white rounded-lg shadow-lg p-8">
+                <h2 className="text-xl font-bold mb-4">Ganti Kata Sandi</h2>
+                <form className="flex flex-col gap-4" onSubmit={handleChangePassword}>
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="currentPassword">Kata Sandi Saat Ini:</label>
+                    <input
+                      type="password"
+                      id="currentPassword"
+                      className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      placeholder="Kata Sandi Saat Ini"
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                    />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="noTelp">Nomor Telepon:</label>
-                    <input type="tel" id="noTelp" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="08977654323" value="08977654323" readOnly />
+                    <label htmlFor="newPassword">Kata Sandi Baru:</label>
+                    <input
+                      type="password"
+                      id="newPassword"
+                      className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      placeholder="Kata Sandi Baru"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                    />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="jabatan">Jabatan:</label>
-                    <input type="text" id="jabatan" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Sekretaris 2" value="Sekretaris 2" readOnly />
+                    <label htmlFor="confirmPassword">Konfirmasi Kata Sandi Baru:</label>
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      placeholder="Konfirmasi Kata Sandi Baru"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="kataSandi">Kata Sandi:</label>
-                    <input type="password" id="kataSandi" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="*********" value="Abd*******98" readOnly />
-                  </div>
-                  <div className="flex justify-end">
-                    <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closePopup}>
-                      Simpan
+                  {passwordError && <p className="text-red-500 text-sm mt-2">{passwordError}</p>}
+                  <div className="flex justify-between">
+                    <button type="button" className="bg-gray-500 text-white px-4 py-2 rounded-md mt-4" onClick={closeChangePassword}>
+                      Batal
+                    </button>
+                    <button type="submit" className="bg-teal-500 text-white px-4 py-2 rounded-md mt-4">
+                      Ganti Kata Sandi
                     </button>
                   </div>
                 </form>
@@ -200,100 +262,36 @@ const LihatBukti = () => {
             <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
               <div className="bg-white rounded-lg shadow-lg p-8">
                 <h2 className="text-xl font-bold mb-4">Pengaturan</h2>
-                <form className="flex flex-col gap-4">
-                  <div className="flex items-center gap-2">
-                    <img src={Profil} alt="Profile" className="w-12 h-12 rounded-full" />
-                    <span className="text-black font-bold">Admin</span>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="namaLengkap">Nama Lengkap:</label>
-                    <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" readOnly />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={openChangePassword}>
-                      Ubah Kata Sandi
+                <div className="flex flex-col gap-4">
+                  <div className="flex justify-between">
+                    <span className="text-black">Ganti Kata Sandi</span>
+                    <button className="bg-teal-500 text-white px-4 py-2 rounded-md" onClick={openChangePassword}>
+                      Ganti
                     </button>
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500" onClick={closeSettingsPopup}>
-                      Kembali
-                    </button>
-                  </div>
-                </form>
+                </div>
+                <button type="button" className="bg-gray-500 text-white px-4 py-2 rounded-md mt-4" onClick={closeSettingsPopup}>
+                  Tutup
+                </button>
               </div>
             </div>
           )}
-
-          {/* Popup for Change Password */}
-          {isChangePasswordOpen && (
-            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
-              <div className="bg-white rounded-lg shadow-lg p-8">
-                <h2 className="text-xl font-bold mb-4">Ubah Kata Sandi</h2>
-                <form onSubmit={handleChangePassword} className="flex flex-col gap-4">
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="currentPassword">Kata Sandi Saat Ini:</label>
-                    <input
-                      type="password"
-                      id="currentPassword"
-                      className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      placeholder="Masukkan kata sandi saat ini"
-                      value={currentPassword}
-                      onChange={(e) => setCurrentPassword(e.target.value)}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="newPassword">Kata Sandi Baru:</label>
-                    <input
-                      type="password"
-                      id="newPassword"
-                      className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      placeholder="Masukkan kata sandi baru"
-                      value={newPassword}
-                      onChange={(e) => setNewPassword(e.target.value)}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="confirmPassword">Konfirmasi Kata Sandi Baru:</label>
-                    <input
-                      type="password"
-                      id="confirmPassword"
-                      className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      placeholder="Konfirmasi kata sandi baru"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                    {passwordError && <span className="text-red-500">{passwordError}</span>}
-                  </div>
-                  <div className="flex justify-end gap-4">
-                    <button type="button" className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeChangePassword}>
-                      Batal
-                    </button>
-                    <button type="submit" className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
-                      Simpan
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
-
           {/* Popup for Logout */}
           {isLogoutPopupOpen && (
             <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
               <div className="bg-white rounded-lg shadow-lg p-8">
-                <h2 className="text-xl font-bold mb-4">Keluar dari akun anda?</h2>
-                <div className="flex justify-end gap-4">
-                  <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeLogoutPopup}>
-                    Tidak
+                <h2 className="text-xl font-bold mb-4">Keluar</h2>
+                <p>Apakah Anda yakin ingin keluar?</p>
+                <div className="flex justify-between mt-4">
+                  <button type="button" className="bg-gray-500 text-white px-4 py-2 rounded-md" onClick={closeLogoutPopup}>
+                    Batal
                   </button>
                   <button
-                    className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                    type="button"
+                    className="bg-red-500 text-white px-4 py-2 rounded-md"
                     onClick={() => {
                       // Add your logout logic here
-                      console.log("Logout!");
-                      closeLogoutPopup();
-                      navigate("/");
-                      <a href="/beranda" className="font-bold text-teal-600"></a>;
+                      navigate("/login");
                     }}
                   >
                     Keluar

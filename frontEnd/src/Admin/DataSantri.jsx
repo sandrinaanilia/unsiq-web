@@ -174,16 +174,17 @@ const DataSantri = () => {
 
         {/* Delete Confirmation Modal */}
         {showDeleteConfirmation && (
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <h2 className="text-lg font-semibold mb-4">Hapus</h2>
-              <p>Apakah Anda yakin ingin menghapus data santri ini?</p>
-              <div className="flex justify-end mt-6">
-                <button onClick={handleCancelDelete} className="mr-2 px-4 py-2 bg-gray-300 rounded">
-                  Batal
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="absolute inset-0 bg-gray-500 opacity-50"></div> {/* Gray overlay */}
+            <div className="relative bg-white p-6 rounded-lg shadow-lg font-bold w-80">
+              <h2 className="mb-4">Apa Anda yakin ingin menghapus data ini?</h2>
+              <div className="flex flex-col">
+                <button onClick={handleDelete} className="px-6 py-2 bg-red-600 text-white border border-gray-600 rounded mb-2">
+                  Yakin
                 </button>
-                <button onClick={handleDelete} className="px-4 py-2 bg-red-500 text-white rounded">
-                  Hapus
+                <div className="h-2"></div> {/* Space */}
+                <button onClick={handleCancelDelete} className="px-6 py-2 bg-white text-black border border-gray-600 rounded">
+                  Batal
                 </button>
               </div>
             </div>
@@ -193,7 +194,7 @@ const DataSantri = () => {
         {/* Edit Confirmation Modal */}
         {showEditConfirmation && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="bg-white p-8 rounded-lg shadow-lg">
+            <div className="bg-white p-8 rounded-lg shadow-lg max-h-full overflow-y-auto">
               <h2 className="text-xl text-teal-600 font-extrabold mb-4">Edit Berkas Data Santri</h2>
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-4 mb-4">
@@ -201,74 +202,97 @@ const DataSantri = () => {
                     <label htmlFor="namaLengkap" className="text-gray-700">
                       Nama Lengkap
                     </label>
-                    <input type="text" id="namaLengkap" value={namaLengkap} onChange={(e) => setNamaLengkap(e.target.value)} className="w-full p-2 border border-gray-400 rounded" />
-                  </div>{" "}
+                    <input type="text" id="namaLengkap" value={namaLengkap} onChange={(e) => setNamaLengkap(e.target.value)} className="w-full p-2 border border-gray-400 rounded-lg" />
+                  </div>
                   <div>
                     <label htmlFor="programStudi" className="text-gray-700">
                       Program Studi
                     </label>
-                    <input type="text" id="programStudi" value={programStudi} onChange={(e) => setProgramStudi(e.target.value)} className="w-full p-2 border border-gray-400 rounded" />
+                    <input type="text" id="programStudi" value={programStudi} onChange={(e) => setProgramStudi(e.target.value)} className="w-full p-2 border border-gray-400 rounded-lg" />
                   </div>
                   <div>
                     <label htmlFor="tempatLahir" className="text-gray-700">
                       Tempat Lahir
                     </label>
-                    <input type="text" id="tempatLahir" value={tempatLahir} onChange={(e) => setTempatLahir(e.target.value)} className="w-full p-2 border  border-gray-400 rounded" />
+                    <input type="text" id="tempatLahir" value={tempatLahir} onChange={(e) => setTempatLahir(e.target.value)} className="w-full p-2 border border-gray-400 rounded-lg" />
                   </div>
                   <div>
                     <label htmlFor="nim" className="text-gray-700">
                       NIM
                     </label>
-                    <input type="text" id="nim" value={nim} onChange={(e) => setNim(e.target.value)} className="w-full p-2 border border-gray-400 rounded" />
+                    <input type="text" id="nim" value={nim} onChange={(e) => setNim(e.target.value)} className="w-full p-2 border border-gray-400 rounded-lg" />
                   </div>
                   <div>
                     <label htmlFor="tanggalLahir" className="text-gray-700">
                       Tanggal Lahir
                     </label>
-                    <input type="date" id="tanggalLahir" value={tanggalLahir} onChange={(e) => setTanggalLahir(e.target.value)} className="w-full p-2 border border-gray-400 text-gray-400 rounded" />
+                    <input type="date" id="tanggalLahir" value={tanggalLahir} onChange={(e) => setTanggalLahir(e.target.value)} className="w-full p-2 border border-gray-400 text-gray-400 rounded-lg" />
                   </div>
                   <div>
                     <label htmlFor="tahunMasuk" className="text-gray-700">
                       Tahun Masuk
                     </label>
-                    <input type="number" id="tahunMasuk" value={tahunMasuk} onChange={(e) => setTahunMasuk(e.target.value)} className="w-full p-2 border border-gray-400 rounded" />
+                    <input type="number" id="tahunMasuk" value={tahunMasuk} onChange={(e) => setTahunMasuk(e.target.value)} className="w-full p-2 border border-gray-400 rounded-lg" />
                   </div>
                   <div>
                     <label htmlFor="nik" className="text-gray-700">
                       NIK
                     </label>
-                    <input type="text" id="nik" value={nik} onChange={(e) => setNik(e.target.value)} className="w-full p-2 border border-gray-400 rounded" />
-                  </div>
-                  <div>
-                    <label htmlFor="nisn" className="text-gray-700">
-                      NISN
-                    </label>
-                    <input type="text" id="nisn" value={nisn} onChange={(e) => setNisn(e.target.value)} className="w-full p-2 border border-gray-400 rounded" />
+                    <input type="text" id="nik" value={nik} onChange={(e) => setNik(e.target.value)} className="w-full p-2 border border-gray-400 rounded-lg" />
                   </div>
                   <div>
                     <label htmlFor="namaAyahIbu" className="text-gray-700">
                       Nama Ayah/Ibu
                     </label>
-                    <input type="text" id="namaAyahIbu" value={namaAyahIbu} onChange={(e) => setNamaAyahIbu(e.target.value)} className="w-full p-2 border border-gray-400 rounded" />
+                    <input type="text" id="namaAyahIbu" value={namaAyahIbu} onChange={(e) => setNamaAyahIbu(e.target.value)} className="w-full p-2 border border-gray-400 rounded-lg" />
+                  </div>
+                  <div>
+                    <label htmlFor="nisn" className="text-gray-700">
+                      NISN
+                    </label>
+                    <input type="text" id="nisn" value={nisn} onChange={(e) => setNisn(e.target.value)} className="w-full p-2 border border-gray-400 rounded-lg" />
                   </div>
                   <div>
                     <label htmlFor="kategori" className="text-gray-700">
                       Kategori
                     </label>
-                    <input type="text" id="kategori" value={kategori} onChange={(e) => setKategori(e.target.value)} className="w-full p-2 border border-gray-400 rounded" />
+                    <input type="text" id="kategori" value={kategori} onChange={(e) => setKategori(e.target.value)} className="w-full p-2 border border-gray-400 rounded-lg" />
                   </div>
                   <div>
                     <label htmlFor="noTelpOrangTua" className="text-gray-700">
                       No Telp Orang Tua
                     </label>
-                    <input type="text" id="noTelpOrangTua" value={noTelpOrangTua} onChange={(e) => setNoTelpOrangTua(e.target.value)} className="w-full p-2 border border-gray-400 rounded" />
+                    <input type="text" id="noTelpOrangTua" value={noTelpOrangTua} onChange={(e) => setNoTelpOrangTua(e.target.value)} className="w-full p-2 border border-gray-400 rounded-lg" />
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <h3 className="text-lg text-gray-700 mb-2">Berkas-Berkas</h3>
+                  <div className="mb-4">
+                    <label htmlFor="pasFoto" className="text-gray-700">
+                      Pas Foto 3x4
+                    </label>
+                    <div className="flex items-center">
+                      <button type="button" className="ml-2 px-1 py-1 text-gray-700 bg-gray-200 rounded-lg">
+                        Unduh
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="suratPernyataan" className="text-gray-700">
+                      Surat Pernyataan
+                    </label>
+                    <div className="flex items-center">
+                      <button type="button" className="ml-2 px-1 py-1 text-gray-700 bg-gray-200 rounded-lg">
+                        Unduh
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="flex justify-end mt-6">
-                  <button onClick={() => setShowEditConfirmation(false)} className="mr-2 text-gray-700 px-4 py-2 border border-gray-600 hover:bg-teal-600 hover:text-white rounded">
+                  <button onClick={() => setShowEditConfirmation(false)} className="mr-2 text-teal-600 px-4 py-2 border border-gray-600 rounded-lg">
                     Batal
                   </button>
-                  <button type="submit" className="px-4 py-2 hover:text-white hover:bg-teal-600 border border-gray-600 text-gray-700 rounded">
+                  <button type="submit" className="px-4 py-2 text-white bg-teal-600 rounded-lg">
                     Perbarui
                   </button>
                 </div>
