@@ -3,25 +3,24 @@ import arrow from "../assets/img/arrow.png";
 import user from "../assets/img/user3.png";
 import lonceng from "../assets/img/lonceng.png";
 import { useNavigate } from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import {SignIn} from "../store/auth.js";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { SignIn } from "../store/auth.js";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const isLogin = useSelector(state=>state.isLogin)
-  const dispatch = useDispatch()
-  const [loginState, setLoginState] = useState(isLogin)
+  const isLogin = useSelector((state) => state.isLogin);
+  const dispatch = useDispatch();
+  const [loginState, setLoginState] = useState(isLogin);
   useEffect(() => {
-    setLoginState(isLogin)
+    setLoginState(isLogin);
   }, [isLogin]);
 
-  const handleLogin = ()=>{
-    dispatch(SignIn())
+  const handleLogin = () => {
+    dispatch(SignIn());
     // setLoginState(true)
     // console.log(isLogin)
-  }
+  };
 
   return (
     <nav className="navbar">
@@ -44,26 +43,24 @@ const Navbar = () => {
               <button onClick={() => navigate("/about")}>Tentang Kami</button>
             </li>
             <li>
-            <button onClick={() => navigate("/galeri")}>Galeri</button>
+              <button onClick={() => navigate("/galeri")}>Galeri</button>
             </li>
           </ul>
         </li>
         <li>
-        <button onClick={() => navigate("/#c2")}>Berita</button>
+          <button onClick={() => navigate("/#c2")}>Berita</button>
         </li>
         <li>
           <button onClick={() => navigate("/pendaftaran")}>Pendaftaran</button>
         </li>
         <li>
-        <button onClick={() => navigate("/faq")}>FAQ</button>
+          <button onClick={() => navigate("/faq")}>FAQ</button>
         </li>
       </ul>
       <div className="login-btn">
-       
-            <div className="flex justify-end flex-row">  
-            <button onClick={() => navigate("/login")}>Masuk</button>
-            </div>
-      
+        <div className="flex justify-end flex-row">
+          <button onClick={() => navigate("/login")}>Masuk</button>
+        </div>
       </div>
     </nav>
   );

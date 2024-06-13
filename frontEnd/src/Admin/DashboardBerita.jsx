@@ -183,14 +183,12 @@ const DashboardBerita = () => {
                   <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" readOnly />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label>Ubah Kata Sandi:</label>
                   <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={toggleChangePassword}>
                     Ubah Kata Sandi
                   </button>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label>Hapus Akun:</label>
-                  <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">Hapus Akun</button>
+                  <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">Kembali</button>
                 </div>
               </form>
             </div>
@@ -327,10 +325,10 @@ const DashboardBerita = () => {
 
               <div className="flex justify-end mt-6">
                 <button onClick={handleCancelDelete} className="mr-2 px-4 py-2 bg-gray-300 rounded">
-                  Cancel
+                  Batal
                 </button>
                 <button onClick={handleDelete} className="px-4 py-2 bg-red-500  text-white rounded">
-                  Delete
+                  Hapus
                 </button>
               </div>
             </div>
@@ -339,7 +337,7 @@ const DashboardBerita = () => {
         {showEditConfirmation && (
           <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-5xl">
-              <h2 className="text-2xl text-teal-600 font-bold mb-4">Tambah Informasi</h2>
+              <h2 className="text-2xl text-teal-600 font-bold mb-4">Edit Postingan</h2>
               <form onSubmit={handleSubmit}>
                 <div className="flex mb-4 space-x-4">
                   <label htmlFor="judul" className="block text-gray-700 text-sm font-bold mb-2">
@@ -370,7 +368,7 @@ const DashboardBerita = () => {
                     Batal
                   </button>
                   <button type="submit" className="bg-teal-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                    Unggah
+                    Perbarui
                   </button>
                 </div>
               </form>

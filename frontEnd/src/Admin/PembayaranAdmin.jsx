@@ -201,21 +201,33 @@ const PembayaranAdmin = () => {
                 <div className="flex items-center gap-2">
                   <img src={Profil} alt="Profile" className="w-12 h-12 rounded-full" />
                   <div>
-                    <p className="text-black font-bold">Abdurohman Hamam</p>
-                    <p className="text-gray-600">Admin</p>
+                    <p className="text-black font-bold">Admin</p>
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Nama</label>
+                  <label className="font-bold text-black">Nama Lengkap</label>
                   <input type="text" value="Abdurohman Hamam" readOnly className="border border-gray-300 p-2 rounded-lg" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-bold text-black">Email</label>
-                  <input type="email" value="hamam@gmail.com" readOnly className="border border-gray-300 p-2 rounded-lg" />
+                  <input type="email" value="abdurohman@gmail.com" readOnly className="border border-gray-300 p-2 rounded-lg" />
                 </div>
+                <div className="flex flex-col gap-2">
+                  <label className="font-bold text-black">Nomor Telepon</label>
+                  <input type="email" value="08977654323" readOnly className="border border-gray-300 p-2 rounded-lg" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="font-bold text-black">Jabatan</label>
+                  <input type="email" value="Sekertaris 2" readOnly className="border border-gray-300 p-2 rounded-lg" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="kataSandi">Kata Sandi:</label>
+                  <input type="password" id="kataSandi" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="*********" value="Abd*******98" readOnly />
+                </div>
+
                 <div className="flex justify-end">
                   <button type="button" onClick={closePopup} className="px-4 py-2 bg-teal-600 text-white rounded-lg">
-                    Tutup
+                    Simpan
                   </button>
                 </div>
               </form>
@@ -225,33 +237,30 @@ const PembayaranAdmin = () => {
 
         {isSettingsPopupOpen && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
-            <div className="bg-white rounded-lg shadow-lg p-8 w-96">
+            <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">Pengaturan</h2>
               <form className="flex flex-col gap-4">
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Email</label>
-                  <input type="email" value="hamam@gmail.com" readOnly className="border border-gray-300 p-2 rounded-lg" />
+                <div className="flex items-center gap-2">
+                  <img src={Profil} alt="Profile" className="w-12 h-12 rounded-full" />
+                  <div>
+                    <p className="text-black font-bold">Admin</p>
+                  </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Kata Sandi Saat Ini</label>
-                  <input type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} className="border border-gray-300 p-2 rounded-lg" />
+                  <label className=" text-black">Nama Lengkap:</label>
+                  <input type="text" value="Abdurohman Hamam" readOnly className="border border-gray-300 p-2 rounded-lg" />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Kata Sandi Baru</label>
-                  <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="border border-gray-300 p-2 rounded-lg" />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Konfirmasi Kata Sandi Baru</label>
-                  <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="border border-gray-300 p-2 rounded-lg" />
-                  {passwordError && <p className="text-red-500">{passwordError}</p>}
-                </div>
-                <div className="flex justify-end gap-4">
-                  <button type="button" onClick={closeSettingsPopup} className="px-4 py-2 bg-gray-500 text-white rounded-lg">
-                    Tutup
-                  </button>
-                  <button type="button" onClick={handleChangePassword} className="px-4 py-2 bg-teal-600 text-white rounded-lg">
-                    Simpan
-                  </button>
+                  <div className=" text-white px-4 py-2 rounded-md text-center bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <button type="button" onClick={handleChangePassword} className="px-4 py-2 bg-teal-600 text-white rounded-md">
+                      Ubah Kata Sandi
+                    </button>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <button type="button" onClick={closeSettingsPopup} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                      Kembali
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>
@@ -261,13 +270,21 @@ const PembayaranAdmin = () => {
         {isLogoutPopupOpen && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-xl font-bold mb-4">Konfirmasi Keluar</h2>
-              <p className="mb-4 text-black">Apakah Anda yakin ingin keluar?</p>
+              <h2 className="text-xl font-bold mb-4">Keluar dari akun anda?</h2>
               <div className="flex justify-end gap-4">
-                <button type="button" onClick={closeLogoutPopup} className="px-4 py-2 bg-gray-500 text-white rounded-lg">
-                  Batal
+                <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeLogoutPopup}>
+                  Tidak
                 </button>
-                <button type="button" className="px-4 py-2 bg-red-600 text-white rounded-lg">
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  onClick={() => {
+                    // Add your logout logic here
+                    console.log("Logout!");
+                    closeLogoutPopup();
+                    navigate("/");
+                    <a href="/beranda" className="font-bold text-teal-600"></a>;
+                  }}
+                >
                   Keluar
                 </button>
               </div>

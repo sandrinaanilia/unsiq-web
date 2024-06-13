@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function EditBerkasData() {
   const navigate = useNavigate();
-  const [namaLengkap, setNamaLengkap] = useState('');
-  const [tempatLahir, setTempatLahir] = useState('');
-  const [tanggalLahir, setTanggalLahir] = useState('');
-  const [programStudi, setProgramStudi] = useState('');
-  const [nim, setNim] = useState('');
-  const [tahunMasuk, setTahunMasuk] = useState('');
-  const [nik, setNik] = useState('');
-  const [kategori, setKategori] = useState('');
-  const [nisn, setNisn] = useState('');
-  const [namaAyahIbu, setNamaAyahIbu] = useState('');
-  const [noTelpOrangTua, setNoTelpOrangTua] = useState('');
+  const [namaLengkap, setNamaLengkap] = useState("");
+  const [tempatLahir, setTempatLahir] = useState("");
+  const [tanggalLahir, setTanggalLahir] = useState("");
+  const [programStudi, setProgramStudi] = useState("");
+  const [nim, setNim] = useState("");
+  const [tahunMasuk, setTahunMasuk] = useState("");
+  const [nik, setNik] = useState("");
+  const [kategori, setKategori] = useState("");
+  const [nisn, setNisn] = useState("");
+  const [namaAyahIbu, setNamaAyahIbu] = useState("");
+  const [noTelpOrangTua, setNoTelpOrangTua] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,7 +47,8 @@ function EditBerkasData() {
                 type="text"
                 id="namaLengkap"
                 className="appearance-none border-gray-400 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value="Sayifullah hadiningrat" readOnly
+                value="Sayifullah hadiningrat"
+                readOnly
                 onChange={(e) => setNamaLengkap(e.target.value)}
               />
             </div>
@@ -170,16 +171,10 @@ function EditBerkasData() {
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-bold mb-4">
-                Berkas - berkas
-              </label>
-              <label className="block text-gray-700 font-bold mb-4">
-              Pas foto 3x4
-              </label>
+              <label className="block text-gray-700 font-bold mb-4">Berkas - berkas</label>
+              <label className="block text-gray-700 font-bold mb-4">Pas foto 3x4</label>
               <div className="flex gap-2">
-                <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus-shadow-outline">
-                  Unduh
-                </button>
+                <button className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus-shadow-outline">Unduh</button>
               </div>
             </div>
           </div>
@@ -198,19 +193,14 @@ function EditBerkasData() {
             </div>
           </div>
           <div className="flex justify-end space-x-2">
-          <button onClick={() => navigate("/berkasdatasantri")} className="border border-black hover:bg-teal-600 hover:text-white text-teal-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                            Batal
-                          </button>
-         
-
-            <button
-                type="submit"
-                className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-                Perbarui
+            <button onClick={() => navigate("/berkasdatasantri")} className="border border-black hover:bg-teal-600 hover:text-white text-teal-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Batal
             </button>
-            </div>
 
+            <button type="submit" className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Perbarui
+            </button>
+          </div>
         </form>
       </div>
     </div>

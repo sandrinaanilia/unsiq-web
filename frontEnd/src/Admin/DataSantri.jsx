@@ -47,10 +47,10 @@ const DataSantri = () => {
   const [selectedSantri, setSelectedSantri] = useState(null);
 
   const data = [
-    { name: "Sayifulloh", nim: "2021150108", year: 2024, category: "Beasiswa 5 Juz" },
+    { name: "Sayifulloh", nim: "2021150108", year: 2024, category: "Beasiswa 5-10 Juz" },
     { name: "Rafi Aji S", nim: "2021150112", year: 2024, category: "Reguler" },
-    { name: "Sayifulloh", nim: "2021150145", year: 2024, category: "Beasiswa 5 Juz" },
-    { name: "Sayifulloh", nim: "2021150108", year: 2024, category: "Beasiswa 5 Juz" },
+    { name: "Sayifulloh", nim: "2021150145", year: 2024, category: "Beasiswa 5-10 Juz" },
+    { name: "Sayifulloh", nim: "2021150108", year: 2024, category: "Beasiswa 5-10 Juz" },
   ];
 
   const filteredData = data.filter((santri) => (selectedFilter === "All" || santri.category === selectedFilter) && (santri.name.toLowerCase().includes(searchTerm.toLowerCase()) || santri.nim.includes(searchTerm)));
@@ -96,7 +96,7 @@ const DataSantri = () => {
               <button className={`mr-2 py-2 px-4 rounded-lg focus:outline-none ${selectedFilter === "Reguler" ? "bg-teal-600 text-white" : "bg-gray-100"}`} onClick={() => setSelectedFilter("Reguler")}>
                 Reguler
               </button>
-              <button className={`py-2 px-4 rounded-lg focus:outline-none ${selectedFilter === "Beasiswa 5 Juz" ? "bg-teal-600 text-white" : "bg-gray-100"}`} onClick={() => setSelectedFilter("Beasiswa 5 Juz")}>
+              <button className={`py-2 px-4 rounded-lg focus:outline-none ${selectedFilter === "Beasiswa 5-10 Juz" ? "bg-teal-600 text-white" : "bg-gray-100"}`} onClick={() => setSelectedFilter("Beasiswa 5-10 Juz")}>
                 Beasiswa
               </button>
             </div>
@@ -113,7 +113,10 @@ const DataSantri = () => {
             <select id="categoryFilter" value={selectedFilter} onChange={(e) => setSelectedFilter(e.target.value)} className="bg-neutral-200 p-2 rounded-lg focus:outline-none">
               <option value="All">All</option>
               <option value="Reguler">Reguler</option>
-              <option value="Beasiswa 5 Juz">Beasiswa 5 Juz</option>
+              <option value="Beasiswa 5-10 Juz">Beasiswa 5-10 Juz</option>
+              <option value="Beasiswa 11-20 Juz">Beasiswa 11-20 Juz</option>
+              <option value="Beasiswa 21-29 Juz">Beasiswa 21-29 Juz</option>
+              <option value="Beasiswa 30 Juz">Beasiswa 30 Juz</option>
             </select>
           </div>
           <div className="bg-white shadow-md rounded-lg overflow-x-auto">
@@ -173,14 +176,14 @@ const DataSantri = () => {
         {showDeleteConfirmation && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg">
-              <h2 className="text-lg font-semibold mb-4">Delete Confirmation</h2>
-              <p>Are you sure you want to delete this santri?</p>
+              <h2 className="text-lg font-semibold mb-4">Hapus</h2>
+              <p>Apakah Anda yakin ingin menghapus data santri ini?</p>
               <div className="flex justify-end mt-6">
                 <button onClick={handleCancelDelete} className="mr-2 px-4 py-2 bg-gray-300 rounded">
-                  Cancel
+                  Batal
                 </button>
                 <button onClick={handleDelete} className="px-4 py-2 bg-red-500 text-white rounded">
-                  Delete
+                  Hapus
                 </button>
               </div>
             </div>

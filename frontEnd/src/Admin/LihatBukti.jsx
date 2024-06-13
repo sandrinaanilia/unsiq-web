@@ -4,15 +4,20 @@ import arrow from "../assets/img/arrow.png";
 import Sidebar from "../Components/sidebar";
 import Profil from "../assets/img/hamam.png";
 import searchIcon from "../assets/img/search.png";
-import User from "../assets/img/iconuser.png";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
-const Dashboard = () => {
+const LihatBukti = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isSettingsPopupOpen, setIsSettingsPopupOpen] = useState(false);
-  const [isLogoutPopupOpen, setIsLogoutPopupOpen] = useState(false); // State for logout popup
+  const [isLogoutPopupOpen, setIsLogoutPopupOpen] = useState(false);
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const openSettingsPopup = () => {
     setIsSettingsPopupOpen(true);
@@ -42,13 +47,17 @@ const Dashboard = () => {
     setIsPopupOpen(false);
   };
 
-  const toggleChangePassword = () => {
-    setIsChangePasswordOpen(!isChangePasswordOpen);
+  const openChangePassword = () => {
+    setIsChangePasswordOpen(true);
+  };
+
+  const closeChangePassword = () => {
+    setIsChangePasswordOpen(false);
   };
 
   const handleChangePassword = (e) => {
     e.preventDefault();
-    // Lakukan validasi kata sandi baru
+    // Validate new password
     if (newPassword !== confirmPassword) {
       setPasswordError("Kata sandi baru tidak cocok");
       return;
@@ -64,7 +73,6 @@ const Dashboard = () => {
   return (
     <div className="flex">
       <Sidebar />
-
       <div className="flex flex-col w-full">
         {/* Top Bar */}
         <div className="flex items-center justify-between bg-white shadow-lg p-4">
@@ -90,81 +98,64 @@ const Dashboard = () => {
                 </li>
                 <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openLogoutPopup}>
                   Keluar
-                </li>{" "}
-                {/* Open logout popup */}
+                </li>
               </ul>
             )}
           </div>
         </div>
 
-        {/* Summary Boxes */}
-        <div className="flex justify-center p-9 gap-6">
-          <div className="bg-teal-600 text-white p-6 rounded-lg shadow-lg w-1/3 flex items-center justify-between mr-6">
-            <div>
-              <h3 className="text-xl font-bold">Total Akun</h3>
-              <span className="text-4xl">34</span>
+        <div className="p-4 font-poppins min-h-screen">
+          <div className="bg-white shadow-md rounded-lg overflow-x-auto p-4 h-full">
+            <div className="flex justify-between items-center mb-4">
+              <h1 className="text-lg font-bold mb-4 text-black">
+                <span className=" p-2 rounded-full text-black">Lihat Bukti Pembayaran</span>
+              </h1>
             </div>
-            <img src={User} alt="Account" className="w-20 h-20" />
-          </div>
-          <div className="bg-green-500 text-white p-6 rounded-lg shadow-lg w-1/3 flex items-center justify-between">
-            <div>
-              <h3 className="text-xl font-bold">Pendaftar Diterima</h3>
-              <span className="text-4xl">0</span>
+            <div className="mb-4 bg-gray-100 p-4 rounded-md">
+              <p className="text-black mb-2 font-bold">10 Mei 2024</p>
+              <p className="text-gray-700 mb-2">
+                Untuk calon santri 2024/2025 silahkan membayar daftar ulang maksimal Senin, 20 Mei 2024 untuk biaya daftar ulang silahkan transfer ke no rek BCA berikut 356373738833338 Untuk rincian biaya bisa lihat
+                <a href="#" className="text-blue-600">
+                  {" "}
+                  disini
+                </a>
+              </p>
             </div>
-            <div className="text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M16.707 4.293a1 1 0 00-1.414 0L9 10.586 4.707 6.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" clipRule="evenodd" />
-              </svg>
-            </div>
+            <table className="min-w-full text-left">
+              <thead>
+                <tr>
+                  <th className="py-2 px-4 border-b bg-neutral-300 border-gray-400">NAMA</th>
+                  <th className="py-2 px-4 border-b bg-neutral-300 border-gray-400">NIM</th>
+                  <th className="py-2 px-4 border-b bg-neutral-300 border-gray-400">ALAMAT</th>
+                  <th className="py-2 px-4 border-b bg-neutral-300 border-gray-400">KATEGORI</th>
+                  <th className="py-2 px-4 border-b bg-neutral-300 border-gray-400">Bukti Pembayaran</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t">
+                  <td className="py-2 px-4 border-b">Sayifulloh</td>
+                  <td className="py-2">2021150108</td>
+                  <td className="py-2">Pagerandong, Mrebet, Wonosobo</td>
+                  <td className="py-2">Beasiswa 5 Juz</td>
+                  <td className="py-2">
+                    <button className="bg-blue-500 text-white p-2 rounded">Lihat</button>
+                  </td>
+                </tr>
+                <tr className="border-t">
+                  <td className="py-2 px-4 border-b">Rafi Aji S</td>
+                  <td className="py-2">2021150112</td>
+                  <td className="py-2">Pangkalanbun, Palembang</td>
+                  <td className="py-2">Reguler</td>
+                  <td className="py-2">
+                    <button className="bg-blue-500 text-white p-2 rounded">Lihat</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <div className="p-3 flex flex-wrap gap-8 justify-center">
-          <div className="bg-white border border-gray-300 p-10 px-10 py-12 rounded-lg shadow-lg w-96">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Pendaftar Baru</h2>
-              <a href="/datasantri" className="text-teal-600">
-                lihat
-              </a>
-            </div>
-            <ul>
-              {["Sayifulloh", "Boy", "Feri"].map((name, index) => (
-                <li key={index} className="flex justify-between items-center border-b-2 py-2">
-                  <span>
-                    {index + 1}. {name}
-                  </span>
-                  <span>5 Mei 2024 22:30</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="bg-white border border-gray-300 p-10 px-8 py-12 rounded-lg shadow-lg w-96">
-            <h2 className="text-lg font-bold mb-4">Informasi Pembayaran</h2>
-            <ul>
-              {["Sayifulloh", "Boy", "Feri"].map((name, index) => (
-                <li key={index} className="flex justify-between items-center border-b-2 py-2">
-                  <span>
-                    {index + 1}. {name}
-                  </span>
-                  <button onClick={() => navigate("/pembayaranadmin")} className="bg-teal-600 text-white px-2 py-1 rounded-lg text-xs">
-                    Lihat Pembayaran
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* New Activity Section */}
-          <div className="bg-white p-6 border border-gray-300 rounded-lg shadow-lg w-100">
-            <h2 className="text-2xl font-bold mb-4">Aktivitas</h2>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>Pendataan Mahasiswa reguler dan beasiswa serta upload surat pernyataan dan daftar ulang</li>
-              <li>Tagihan iuran kas bulanan dan agenda qurban</li>
-              <li>Upload berita terbaru terkait data absen mengaji</li>
-            </ul>
-          </div>
-
           {/* Popup for Profile */}
           {isPopupOpen && (
             <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
@@ -219,17 +210,73 @@ const Dashboard = () => {
                     <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" readOnly />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={toggleChangePassword}>
+                    <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={openChangePassword}>
                       Ubah Kata Sandi
                     </button>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">Kembali</button>
+                    <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500" onClick={closeSettingsPopup}>
+                      Kembali
+                    </button>
                   </div>
                 </form>
               </div>
             </div>
           )}
+
+          {/* Popup for Change Password */}
+          {isChangePasswordOpen && (
+            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+              <div className="bg-white rounded-lg shadow-lg p-8">
+                <h2 className="text-xl font-bold mb-4">Ubah Kata Sandi</h2>
+                <form onSubmit={handleChangePassword} className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="currentPassword">Kata Sandi Saat Ini:</label>
+                    <input
+                      type="password"
+                      id="currentPassword"
+                      className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      placeholder="Masukkan kata sandi saat ini"
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="newPassword">Kata Sandi Baru:</label>
+                    <input
+                      type="password"
+                      id="newPassword"
+                      className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      placeholder="Masukkan kata sandi baru"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="confirmPassword">Konfirmasi Kata Sandi Baru:</label>
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      placeholder="Konfirmasi kata sandi baru"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    {passwordError && <span className="text-red-500">{passwordError}</span>}
+                  </div>
+                  <div className="flex justify-end gap-4">
+                    <button type="button" className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeChangePassword}>
+                      Batal
+                    </button>
+                    <button type="submit" className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                      Simpan
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
           {/* Popup for Logout */}
           {isLogoutPopupOpen && (
             <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
@@ -245,6 +292,8 @@ const Dashboard = () => {
                       // Add your logout logic here
                       console.log("Logout!");
                       closeLogoutPopup();
+                      navigate("/");
+                      <a href="/beranda" className="font-bold text-teal-600"></a>;
                     }}
                   >
                     Keluar
@@ -259,4 +308,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default LihatBukti;

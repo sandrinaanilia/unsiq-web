@@ -145,7 +145,7 @@ const Galeri = () => {
               <img src={arrow} alt="Dropdown Arrow" className={`w-2 h-2 ml-2 ${isDropdownOpen ? "rotate-0" : "rotate-180"}`} />
             </div>
             {isDropdownOpen && (
-              <ul className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
+              <ul className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg z-50">
                 <li className="p-2 hover:bg-gray-200 cursor-pointer" onClick={openPopup}>
                   Profile
                 </li>
@@ -162,7 +162,7 @@ const Galeri = () => {
 
         {/* Popup for Profile */}
         {isPopupOpen && (
-          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">Profil</h2>
               <form className="flex flex-col gap-4">
@@ -192,7 +192,7 @@ const Galeri = () => {
                 </div>
                 <div className="flex justify-end">
                   <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closePopup}>
-                    Tutup
+                    Simpan
                   </button>
                 </div>
               </form>
@@ -202,47 +202,28 @@ const Galeri = () => {
 
         {/* Popup for Settings */}
         {isSettingsPopupOpen && (
-          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">Pengaturan</h2>
               <div className="flex flex-col gap-2">
-                <label htmlFor="ubahPassword">Ubah Kata Sandi:</label>
-                <input
-                  type="password"
-                  id="ubahPassword"
-                  className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  value={currentPassword}
-                  onChange={(e) => setCurrentPassword(e.target.value)}
-                  placeholder="Kata Sandi Lama"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="kataSandiBaru">Kata Sandi Baru:</label>
-                <input
-                  type="password"
-                  id="kataSandiBaru"
-                  className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="Kata Sandi Baru"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="konfirmasiKataSandi">Konfirmasi Kata Sandi:</label>
-                <input
-                  type="password"
-                  id="konfirmasiKataSandi"
-                  className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Konfirmasi Kata Sandi Baru"
-                />
-              </div>
-              {passwordError && <p className="text-red-500">{passwordError}</p>}
-              <div className="flex justify-end">
-                <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={handleChangePassword}>
-                  Simpan
-                </button>
+                <form className="flex flex-col gap-4">
+                  <div className="flex items-center gap-2">
+                    <img src={Profil} alt="Profile" className="w-12 h-12 rounded-full" />
+                    <span className="text-black font-bold">Admin</span>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="namaLengkap">Nama Lengkap:</label>
+                    <input type="text" id="namaLengkap" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Abdurohman Hamam" value="Abdurohman Hamam" readOnly />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={toggleChangePassword}>
+                      Ubah Kata Sandi
+                    </button>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">Kembali</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -250,15 +231,23 @@ const Galeri = () => {
 
         {/* Popup for Logout */}
         {isLogoutPopupOpen && (
-          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-xl font-bold mb-4">Keluar</h2>
-              <p className="mb-4">Apakah Anda yakin ingin keluar?</p>
+              <h2 className="text-xl font-bold mb-4">Keluar dari akun anda?</h2>
               <div className="flex justify-end gap-4">
-                <button className="bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeLogoutPopup}>
-                  Batal
+                <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeLogoutPopup}>
+                  Tidak
                 </button>
-                <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-teal-500">Keluar</button>
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  onClick={() => {
+                    // Add your logout logic here
+                    console.log("Logout!");
+                    closeLogoutPopup();
+                  }}
+                >
+                  Keluar
+                </button>
               </div>
             </div>
           </div>
@@ -272,7 +261,7 @@ const Galeri = () => {
               <div key={item.id} className="relative group">
                 <img src={item.img} alt={`Gambar ${item.id}`} className="w-full h-48 object-cover rounded-md" />
                 <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-md">{item.text}</div>
-                <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
                   <button className="bg-white text-black px-2 py-1 rounded-md mr-2" onClick={() => openGalleryModal("Edit", item)}>
                     Edit
                   </button>
@@ -290,18 +279,20 @@ const Galeri = () => {
 
         {/* Gallery Modal */}
         {isGalleryModalOpen && (
-          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">{galleryModalMode === "Tambah" ? "Tambah Gambar" : "Edit Gambar"}</h2>
               <form className="flex flex-col gap-4" onSubmit={handleGallerySubmit}>
+                {/* Input untuk memilih file baru */}
                 <input type="file" accept="image/*" onChange={handleImageChange} />
+                {/* Menampilkan gambar yang dipilih */}
                 {selectedImage && <img src={selectedImage} alt="Selected" className="w-full h-48 object-cover rounded-md" />}
                 <div className="flex justify-end gap-4">
                   <button type="button" className="bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeGalleryModal}>
                     Batal
                   </button>
                   <button type="submit" className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
-                    Simpan
+                    Perbarui
                   </button>
                 </div>
               </form>
@@ -311,7 +302,7 @@ const Galeri = () => {
 
         {/* Delete Modal */}
         {isDeleteModalOpen && (
-          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">Hapus Gambar</h2>
               <p>Apakah Anda yakin ingin menghapus foto ini?</p>
