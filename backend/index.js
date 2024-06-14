@@ -1,20 +1,18 @@
-import express from "express"
-import dotenv from "dotenv"
-import { connection } from "../backend/Database/db.js";
-import routes from '../backend/route/index.js'
-import cors from "cors"
+import express from "express";
+import authRoutes from "./route/index.js";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import cors from "cors";
+import { connection } from "./Database/db.js";
+dotenv.config();
 
-dotenv.config()
-const app = express()
+const app = express();
 
-app.use(express.json())
-app.use(cors())
-app.use(routes)
-
-const port = process.env.PORT || 3000
-const hostname = 'localhost'
-
-app.listen(port, hostname, () => {
-    connection()
-    console.log("server running at http://localhost:"+ process.env.PORT)
+app.use(bodyParser.json());
+app.use(cors());
+app.use(authRoutes);
+app.listen(process.env.PORT, async () => {
+  await connection();
+  console.log(`Server Running in http://localhost:${process.env.PORT}`);
 });
+export default app;
