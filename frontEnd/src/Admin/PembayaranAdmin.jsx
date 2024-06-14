@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import arrow from "../assets/img/arrow.png";
 import Sidebar from "../Components/sidebar";
 import Profil from "../assets/img/hamam.png";
@@ -30,6 +31,17 @@ const PembayaranAdmin = () => {
   const [newPaymentDate, setNewPaymentDate] = useState("");
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [paymentToDelete, setPaymentToDelete] = useState(null);
+
+  const handleDelete = () => {
+    console.log("Deleting santri:", selectedSantri);
+    setShowDeleteConfirmation(false);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false);
+  };
+
+  const navigate = useNavigate();
 
   const openSettingsPopup = () => {
     setIsSettingsPopupOpen(true);
@@ -117,8 +129,7 @@ const PembayaranAdmin = () => {
   };
 
   const viewPaymentProof = () => {
-    // Navigate to the payment proof page
-    // Example: window.location.href = '/path-to-payment-proof';
+    navigate("/lihatbukti");
   };
 
   return (
@@ -168,9 +179,9 @@ const PembayaranAdmin = () => {
             <div className="space-y-2">
               <div className="space-y-4">
                 {payments.map((pay) => (
-                  <div key={pay.id} className="bg-gray-200 p-4 rounded-lg shadow-md flex flex-col space-y-2">
+                  <div key={pay.id} className="bg-neutral-200 p-4 rounded-lg shadow-md flex flex-col space-y-2">
                     <div className="flex justify-between">
-                      <p className="text-black font-bold">{pay.date}</p> {/* Tanggal dengan warna hitam dan tebal */}
+                      <p className="text-black font-bold">{pay.date}</p>
                     </div>
                     <p className="text-black">{pay.text}</p>
                     <div className="flex justify-between">
@@ -197,37 +208,28 @@ const PembayaranAdmin = () => {
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">Profil</h2>
-              <form className="flex flex-col gap-4">
-                <div className="flex items-center gap-2">
-                  <img src={Profil} alt="Profile" className="w-12 h-12 rounded-full" />
-                  <div>
-                    <p className="text-black font-bold">Admin</p>
-                  </div>
+              <form className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block font-bold mb-1">
+                    Nama:
+                  </label>
+                  <input type="text" id="name" name="name" className="w-full p-2 border border-gray-300 rounded" />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Nama Lengkap</label>
-                  <input type="text" value="Abdurohman Hamam" readOnly className="border border-gray-300 p-2 rounded-lg" />
+                <div>
+                  <label htmlFor="email" className="block font-bold mb-1">
+                    Email:
+                  </label>
+                  <input type="email" id="email" name="email" className="w-full p-2 border border-gray-300 rounded" />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Email</label>
-                  <input type="email" value="abdurohman@gmail.com" readOnly className="border border-gray-300 p-2 rounded-lg" />
+                <div>
+                  <label htmlFor="address" className="block font-bold mb-1">
+                    Alamat:
+                  </label>
+                  <input type="text" id="address" name="address" className="w-full p-2 border border-gray-300 rounded" />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Nomor Telepon</label>
-                  <input type="email" value="08977654323" readOnly className="border border-gray-300 p-2 rounded-lg" />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Jabatan</label>
-                  <input type="email" value="Sekertaris 2" readOnly className="border border-gray-300 p-2 rounded-lg" />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="kataSandi">Kata Sandi:</label>
-                  <input type="password" id="kataSandi" className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="*********" value="Abd*******98" readOnly />
-                </div>
-
                 <div className="flex justify-end">
-                  <button type="button" onClick={closePopup} className="px-4 py-2 bg-teal-600 text-white rounded-lg">
-                    Simpan
+                  <button type="button" className="bg-teal-500 text-white px-4 py-2 rounded" onClick={closePopup}>
+                    Tutup
                   </button>
                 </div>
               </form>
@@ -239,30 +241,46 @@ const PembayaranAdmin = () => {
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">Pengaturan</h2>
-              <form className="flex flex-col gap-4">
-                <div className="flex items-center gap-2">
-                  <img src={Profil} alt="Profile" className="w-12 h-12 rounded-full" />
-                  <div>
-                    <p className="text-black font-bold">Admin</p>
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="notifications" className="block font-bold mb-1">
+                    Notifikasi:
+                  </label>
+                  <div className="flex items-center space-x-4">
+                    <label className="flex items-center">
+                      <input type="radio" name="notifications" className="mr-2" />
+                      Aktifkan
+                    </label>
+                    <label className="flex items-center">
+                      <input type="radio" name="notifications" className="mr-2" />
+                      Nonaktifkan
+                    </label>
                   </div>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <label className=" text-black">Nama Lengkap:</label>
-                  <input type="text" value="Abdurohman Hamam" readOnly className="border border-gray-300 p-2 rounded-lg" />
+                <div>
+                  <label htmlFor="privacy" className="block font-bold mb-1">
+                    Privasi:
+                  </label>
+                  <select id="privacy" name="privacy" className="w-full p-2 border border-gray-300 rounded">
+                    <option value="public">Publik</option>
+                    <option value="private">Pribadi</option>
+                  </select>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <div className=" text-white px-4 py-2 rounded-md text-center bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
-                    <button type="button" onClick={handleChangePassword} className="px-4 py-2 bg-teal-600 text-white rounded-md">
-                      Ubah Kata Sandi
-                    </button>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <button type="button" onClick={closeSettingsPopup} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
-                      Kembali
-                    </button>
-                  </div>
+                <div>
+                  <label htmlFor="language" className="block font-bold mb-1">
+                    Bahasa:
+                  </label>
+                  <select id="language" name="language" className="w-full p-2 border border-gray-300 rounded">
+                    <option value="indonesian">Bahasa Indonesia</option>
+                    <option value="english">English</option>
+                  </select>
                 </div>
-              </form>
+                <div className="flex justify-end">
+                  <button type="button" className="bg-teal-500 text-white px-4 py-2 rounded" onClick={closeSettingsPopup}>
+                    Tutup
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -270,21 +288,13 @@ const PembayaranAdmin = () => {
         {isLogoutPopupOpen && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-xl font-bold mb-4">Keluar dari akun anda?</h2>
-              <div className="flex justify-end gap-4">
-                <button className="bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500" onClick={closeLogoutPopup}>
-                  Tidak
+              <h2 className="text-xl font-bold mb-4">Konfirmasi Keluar</h2>
+              <p>Apakah Anda yakin ingin keluar?</p>
+              <div className="flex justify-end space-x-4 mt-4">
+                <button type="button" className="bg-gray-500 text-white px-4 py-2 rounded" onClick={closeLogoutPopup}>
+                  Batal
                 </button>
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-                  onClick={() => {
-                    // Add your logout logic here
-                    console.log("Logout!");
-                    closeLogoutPopup();
-                    navigate("/");
-                    <a href="/beranda" className="font-bold text-teal-600"></a>;
-                  }}
-                >
+                <button type="button" className="bg-red-500 text-white px-4 py-2 rounded">
                   Keluar
                 </button>
               </div>
@@ -292,25 +302,67 @@ const PembayaranAdmin = () => {
           </div>
         )}
 
+        {isChangePasswordOpen && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-xl font-bold mb-4">Ganti Kata Sandi</h2>
+              <form onSubmit={handleChangePassword}>
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="currentPassword" className="block font-bold mb-1">
+                      Kata Sandi Saat Ini:
+                    </label>
+                    <input type="password" id="currentPassword" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} className="w-full p-2 border border-gray-300 rounded" required />
+                  </div>
+                  <div>
+                    <label htmlFor="newPassword" className="block font-bold mb-1">
+                      Kata Sandi Baru:
+                    </label>
+                    <input type="password" id="newPassword" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="w-full p-2 border border-gray-300 rounded" required />
+                  </div>
+                  <div>
+                    <label htmlFor="confirmPassword" className="block font-bold mb-1">
+                      Konfirmasi Kata Sandi Baru:
+                    </label>
+                    <input type="password" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="w-full p-2 border border-gray-300 rounded" required />
+                  </div>
+                  {passwordError && <p className="text-red-500">{passwordError}</p>}
+                </div>
+                <div className="flex justify-end mt-4">
+                  <button type="submit" className="bg-teal-500 text-white px-4 py-2 rounded">
+                    Ganti Kata Sandi
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
         {isEditPopupOpen && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
-            <div className="bg-white rounded-lg shadow-lg p-8 w-96">
+            <div className="bg-white rounded-lg shadow-lg p-8">
               <h2 className="text-xl font-bold mb-4">{currentPayment ? "Edit Pembayaran" : "Tambah Pembayaran"}</h2>
-              <form className="flex flex-col gap-4" onSubmit={handleSavePayment}>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Tanggal</label>
-                  <input type="date" value={newPaymentDate} onChange={(e) => setNewPaymentDate(e.target.value)} className="border border-gray-300 p-2 rounded-lg" required />
+              <form onSubmit={handleSavePayment}>
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="paymentText" className="block font-bold mb-1">
+                      Teks Pembayaran:
+                    </label>
+                    <textarea id="paymentText" value={newPaymentText} onChange={(e) => setNewPaymentText(e.target.value)} className="w-full p-2 border border-gray-300 rounded" required />
+                  </div>
+                  <div>
+                    <label htmlFor="paymentDate" className="block font-bold mb-1">
+                      Tanggal Pembayaran:
+                    </label>
+                    <input type="date" id="paymentDate" value={newPaymentDate} onChange={(e) => setNewPaymentDate(e.target.value)} className="w-full p-2 border border-gray-300 rounded" required />
+                  </div>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-black">Deskripsi</label>
-                  <textarea value={newPaymentText} onChange={(e) => setNewPaymentText(e.target.value)} className="border border-gray-300 p-2 rounded-lg" required />
-                </div>
-                <div className="flex justify-end gap-4">
-                  <button type="button" onClick={() => setIsEditPopupOpen(false)} className="px-4 py-2 bg-gray-500 text-white rounded-lg">
-                    Batal
-                  </button>
-                  <button type="submit" className="px-4 py-2 bg-teal-600 text-white rounded-lg">
+                <div className="flex justify-end mt-4">
+                  <button type="submit" className="bg-teal-500 text-white px-4 py-2 rounded">
                     Simpan
+                  </button>
+                  <button type="button" className="bg-gray-500 text-white px-4 py-2 rounded ml-2" onClick={() => setIsEditPopupOpen(false)}>
+                    Batal
                   </button>
                 </div>
               </form>
@@ -319,16 +371,17 @@ const PembayaranAdmin = () => {
         )}
 
         {showDeleteConfirmation && (
-          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-xl font-bold mb-4">Konfirmasi Hapus</h2>
-              <p className="mb-4 text-black">Apakah Anda yakin ingin menghapus pembayaran ini?</p>
-              <div className="flex justify-end gap-4">
-                <button type="button" onClick={() => setShowDeleteConfirmation(false)} className="px-4 py-2 bg-gray-500 text-white rounded-lg">
-                  Batal
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="absolute inset-0 bg-gray-500 opacity-50"></div> {/* Gray overlay */}
+            <div className="relative bg-white p-6 rounded-lg shadow-lg font-bold w-80">
+              <h2 className="mb-4">Apa Anda yakin ingin menghapus pembayaran ini?</h2>
+              <div className="flex flex-col">
+                <button onClick={handleDelete} className="px-6 py-2 bg-red-600 text-white border border-gray-600 rounded mb-2">
+                  Yakin
                 </button>
-                <button type="button" onClick={() => handleDeletePayment(paymentToDelete)} className="px-4 py-2 bg-red-600 text-white rounded-lg">
-                  Hapus
+                <div className="h-2"></div> {/* Space */}
+                <button onClick={handleCancelDelete} className="px-6 py-2 bg-white text-black border border-gray-600 rounded">
+                  Batal
                 </button>
               </div>
             </div>

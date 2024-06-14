@@ -6,7 +6,7 @@ import searchIcon from "../assets/img/search.png";
 import alumni1 from "../assets/img/alumni1.png";
 import alumni2 from "../assets/img/alumni2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const CeritaAlumni = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,7 +19,29 @@ const CeritaAlumni = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [showEditConfirmation, setShowEditConfirmation] = useState(false);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+  };
+
+  const handleJudulChange = (e) => setJudul(e.target.value);
+  const handleTanggalChange = (e) => setTanggal(e.target.value);
+  const handleDeskripsiChange = (e) => setDeskripsi(e.target.value);
+  const handleFileChange = (e) => setFile(e.target.files[0]);
+
+  const onClose = () => setShowEditConfirmation(false);
+
+  const handleDelete = () => {
+    console.log("Deleting santri:", selectedSantri);
+    setShowDeleteConfirmation(false);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false);
+  };
   const openSettingsPopup = () => {
     setIsSettingsPopupOpen(true);
   };
@@ -123,15 +145,6 @@ const CeritaAlumni = () => {
                     <span className="text-l font-semibold">{item.name}</span>
                   </div>
                   <div className="flex space-x-4">
-                    <button
-                      onClick={() => {
-                        setShowEditConfirmation(true);
-                        setSelectedSantri(item);
-                      }}
-                      className="bg-blue-500 text-white px-2 py-1 rounded"
-                    >
-                      <FontAwesomeIcon icon={faEye} />
-                    </button>
                     <button
                       onClick={() => {
                         setShowEditConfirmation(true);
@@ -297,6 +310,64 @@ const CeritaAlumni = () => {
                   Keluar
                 </button>
               </div>
+            </div>
+          </div>
+        )}
+        {showDeleteConfirmation && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="absolute inset-0 bg-gray-500 opacity-50"></div> {/* Gray overlay */}
+            <div className="relative bg-white p-6 rounded-lg shadow-lg font-bold w-80">
+              <h2 className="mb-4">Apa Anda yakin ingin menghapus berita ini?</h2>
+              <div className="flex flex-col">
+                <button onClick={handleDelete} className="px-6 py-2 bg-red-600 text-white border border-gray-600 rounded mb-2">
+                  Yakin
+                </button>
+                <div className="h-2"></div> {/* Space */}
+                <button onClick={handleCancelDelete} className="px-6 py-2 bg-white text-black border border-gray-600 rounded">
+                  Batal
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        {showEditConfirmation && (
+          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-5xl">
+              <h2 className="text-2xl text-teal-600 font-bold mb-4">Edit Postingan</h2>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="flex items-center space-x-4">
+                  <label htmlFor="judul" className="flex-shrink-0 w-24 text-gray-700 text-sm font-bold">
+                    Judul
+                  </label>
+                  <input type="text" id="judul" className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={judul} onChange={handleJudulChange} />
+                </div>
+                <div className="flex items-center space-x-4">
+                  <label htmlFor="tanggal" className="flex-shrink-0 w-24 text-gray-700 text-sm font-bold">
+                    Tanggal
+                  </label>
+                  <input type="date" id="tanggal" className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={tanggal} onChange={handleTanggalChange} />
+                </div>
+                <div className="flex items-center space-x-4">
+                  <label htmlFor="deskripsi" className="flex-shrink-0 w-24 text-gray-700 text-sm font-bold">
+                    Deskripsi
+                  </label>
+                  <textarea id="deskripsi" className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={deskripsi} onChange={handleDeskripsiChange} />
+                </div>
+                <div className="flex items-center space-x-4">
+                  <label className="flex-shrink-0 w-24 text-gray-700 text-sm font-bold" htmlFor="photo">
+                    Tambah Foto
+                  </label>
+                  <input type="file" id="file" className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={handleFileChange} />
+                </div>
+                <div className="flex justify-end mt-6">
+                  <button onClick={() => setShowEditConfirmation(false)} className="mr-2 text-teal-600 px-4 py-2 border border-gray-600 rounded-lg">
+                    Batal
+                  </button>
+                  <button type="submit" className="px-4 py-2 text-white bg-teal-600 rounded-lg">
+                    Perbarui
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         )}

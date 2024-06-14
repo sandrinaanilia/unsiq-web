@@ -25,6 +25,24 @@ const DashboardBerita = () => {
   const [tanggal, setTanggal] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
   const [file, setFile] = useState(null);
+  const [isAddPostPopupOpenTambah, setIsAddPostPopupOpenTambah] = useState(false);
+
+  const openViewPopup = (berita) => {
+    setSelectedBerita(berita);
+    setShowViewPopup(true);
+  };
+
+  const closeViewPopup = () => {
+    setShowViewPopup(false);
+  };
+
+  const openAddPostPopupTambah = () => {
+    setIsAddPostPopupOpen(true);
+  };
+
+  const closeAddPostPopupTambah = () => {
+    setIsAddPostPopupOpen(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -277,7 +295,9 @@ const DashboardBerita = () => {
           <div className="bg-white shadow-md rounded-lg overflow-x-auto p-4 h-full">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Berita</h2>
-              <button className="text-teal-600 font-bold text-l">+ Tambah Postingan</button>
+              <button className="text-teal-600 font-bold text-l" onClick={openAddPostPopupTambah}>
+                + Tambah Postingan
+              </button>
             </div>
             <div className="space-y-2">
               {[
@@ -292,6 +312,15 @@ const DashboardBerita = () => {
                     <span className="text-l font-semibold">{item.name}</span>
                   </div>
                   <div className="flex space-x-4">
+                    <button
+                      onClick={() => {
+                        setShowEditConfirmation(true);
+                        setSelectedSantri(item);
+                      }}
+                      className="bg-blue-500 text-white px-2 py-1 rounded"
+                    >
+                      <FontAwesomeIcon icon={faEye} />
+                    </button>
                     <button
                       onClick={() => {
                         setShowEditConfirmation(true);
@@ -317,18 +346,61 @@ const DashboardBerita = () => {
           </div>
         </div>
 
+        {isAddPostPopupOpenTambah && (
+          <div className="flex flex-col items-center bg-gray-100 min-h-screen p-6">
+            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-5xl">
+              <h1 className="text-2xl font-bold mb-4 text-teal-600">Tambah Berita</h1>
+              <div className="flex mb-4 space-x-4">
+                <div className="w-1/3">
+                  <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="photo">
+                    Tambah Foto
+                  </label>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg h-80 w-80 flex justify-center items-center">
+                    <span className="text-gray-500">Foto 1</span>
+                  </div>
+                </div>
+                <div className="w-2/3 flex flex-col space-y-4">
+                  <div className="w-full">
+                    <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="title">
+                      Judul Berita
+                    </label>
+                    <input id="title" type="text" className="shadow appearance-none border rounded w-2/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan judul" />
+                  </div>
+                  <div className="w-full">
+                    <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="date">
+                      Tanggal
+                    </label>
+                    <input id="date" type="date" className="shadow appearance-none border rounded w-2/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan tanggal" />
+                  </div>
+                  <div className="w-full flex space-x-4 items-end">
+                    <div className="flex-grow">
+                      <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="description">
+                        Deskripsi
+                      </label>
+                      <textarea id="description" className="shadow appearance-none border rounded h-40 w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan deskripsi" />
+                    </div>
+                    <div className="flex space-x-4 mb-2">
+                      <button className="border border-teal-600 text-teal-600 py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">Batal</button>
+                      <button className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">Unggah</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         {showDeleteConfirmation && (
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <p>Apa anda yakin ingin menghapus</p>
-              <p className="text-center">postingan ini?</p>
-
-              <div className="flex justify-end mt-6">
-                <button onClick={handleCancelDelete} className="mr-2 px-4 py-2 bg-gray-300 rounded">
-                  Batal
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="absolute inset-0 bg-gray-500 opacity-50"></div> {/* Gray overlay */}
+            <div className="relative bg-white p-6 rounded-lg shadow-lg font-bold w-80">
+              <h2 className="mb-4">Apa Anda yakin ingin menghapus berita ini?</h2>
+              <div className="flex flex-col">
+                <button onClick={handleDelete} className="px-6 py-2 bg-red-600 text-white border border-gray-600 rounded mb-2">
+                  Yakin
                 </button>
-                <button onClick={handleDelete} className="px-4 py-2 bg-red-500  text-white rounded">
-                  Hapus
+                <div className="h-2"></div> {/* Space */}
+                <button onClick={handleCancelDelete} className="px-6 py-2 bg-white text-black border border-gray-600 rounded">
+                  Batal
                 </button>
               </div>
             </div>
@@ -338,36 +410,36 @@ const DashboardBerita = () => {
           <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-5xl">
               <h2 className="text-2xl text-teal-600 font-bold mb-4">Edit Postingan</h2>
-              <form onSubmit={handleSubmit}>
-                <div className="flex mb-4 space-x-4">
-                  <label htmlFor="judul" className="block text-gray-700 text-sm font-bold mb-2">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="flex items-center space-x-4">
+                  <label htmlFor="judul" className="flex-shrink-0 w-24 text-gray-700 text-sm font-bold">
                     Judul
                   </label>
-                  <input type="text" id="judul" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={judul} onChange={handleJudulChange} />
+                  <input type="text" id="judul" className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={judul} onChange={handleJudulChange} />
                 </div>
-                <div className="mb-4">
-                  <label htmlFor="tanggal" className="block text-gray-700 text-sm font-bold mb-2">
+                <div className="flex items-center space-x-4">
+                  <label htmlFor="tanggal" className="flex-shrink-0 w-24 text-gray-700 text-sm font-bold">
                     Tanggal
                   </label>
-                  <input type="date" id="tanggal" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={tanggal} onChange={handleTanggalChange} />
+                  <input type="date" id="tanggal" className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={tanggal} onChange={handleTanggalChange} />
                 </div>
-                <div className="mb-4">
-                  <label htmlFor="deskripsi" className="block text-gray-700 text-sm font-bold mb-2">
+                <div className="flex items-center space-x-4">
+                  <label htmlFor="deskripsi" className="flex-shrink-0 w-24 text-gray-700 text-sm font-bold">
                     Deskripsi
                   </label>
-                  <textarea id="deskripsi" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={deskripsi} onChange={handleDeskripsiChange} />
+                  <textarea id="deskripsi" className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={deskripsi} onChange={handleDeskripsiChange} />
                 </div>
-                <div className="mb-4">
-                  <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="photo">
+                <div className="flex items-center space-x-4">
+                  <label className="flex-shrink-0 w-24 text-gray-700 text-sm font-bold" htmlFor="photo">
                     Tambah Foto
                   </label>
-                  <input type="file" id="file" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={handleFileChange} />
+                  <input type="file" id="file" className="flex-1 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={handleFileChange} />
                 </div>
-                <div className="flex justify-end">
-                  <button type="button" onClick={onClose} className="bg-gray-400 border border-radius-teal-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded mr-2">
+                <div className="flex justify-end mt-6">
+                  <button onClick={() => setShowEditConfirmation(false)} className="mr-2 text-teal-600 px-4 py-2 border border-gray-600 rounded-lg">
                     Batal
                   </button>
-                  <button type="submit" className="bg-teal-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                  <button type="submit" className="px-4 py-2 text-white bg-teal-600 rounded-lg">
                     Perbarui
                   </button>
                 </div>
