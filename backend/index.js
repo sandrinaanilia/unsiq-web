@@ -11,10 +11,10 @@ app.use(express.json())
 app.use(cors())
 app.use(routes)
 
-const port = process.env.APP_PORT || 3000
+const port = process.env.PORT || 3000
 const hostname = 'localhost'
 
 app.listen(port, hostname, () => {
     connection()
-    console.log("server running at http://localhost:"+ process.env.APP_PORT)
+    console.log("server running at http://localhost:"+ process.env.PORT)
 });
