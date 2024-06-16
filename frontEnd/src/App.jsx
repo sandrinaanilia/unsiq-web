@@ -10,6 +10,7 @@ import Berita2 from "./page/Berita2.jsx";
 import Berita3 from "./page/Berita3.jsx";
 import Berita4 from "./page/Berita4.jsx";
 import FAQ from "./page/FAQ.jsx";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Dashboard from "./Admin/Dashboard.jsx";
 import DataSantri from "./Admin/DataSantri.jsx";
@@ -29,11 +30,10 @@ import LihatBukti from "./Admin/LihatBukti.jsx";
 
 import ViewBerita from "./Admin/ViewBerita.jsx";
 import CeritaAlumni from "./Admin/CeritaAlumni.jsx";
-
-import { Route, Routes } from "react-router-dom";
 import BeritaBesar from "./page/BeritaBesar.jsx";
 
 function App() {
+  const token = true;
   return (
     <Routes>
       <Route path="/" element={<Beranda />} />
@@ -66,6 +66,14 @@ function App() {
       <Route path="/viewberita" element={<ViewBerita />} />
       <Route path="/ceritaalumni" element={<CeritaAlumni />} />
       <Route path="/lihatbukti" element={<LihatBukti />} />
+      {/* Routes accessible only to non-logged-in users */}
+      {/* <Route path="/login" element={token ? <Navigate to="/" /> : <Login />} /> */}
+      {/* <Route path="/register" element={token ? <Navigate to="/" /> : <Register />} /> */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Routes accessible only to logged-in users */}
+      {/* {token && <></>} */}
     </Routes>
   );
 }

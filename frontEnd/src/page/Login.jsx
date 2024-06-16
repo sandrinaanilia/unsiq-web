@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import welcome1 from "../assets/img/welcome1.jpeg";
 
 const Login = () => {
   const [role, setRole] = useState("Mahasiswa");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -14,9 +16,10 @@ const Login = () => {
     try {
       const response = await axios.post("http://localhost:3000/login", { email, password });
       localStorage.setItem("token", response.data.token);
-      setMessage("Login successful!");
+      setMessage("Login successful!, mengalihkan ke DashboardUser");
+      navigate("/formulirpendaftaran");
 
-      console.log(response.data);
+      //console.log(response.data);
     } catch (error) {
       setMessage("Login failed! Please check your credentials and try again.");
     }
