@@ -1,17 +1,18 @@
-import gambar from "../assets/img/LOGO.png"; // Perbaikan jalur impor gambar
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { SignIn } from "../store/auth.js";
+import gambar from "../assets/img/LOGO.png";
 import arrow from "../assets/img/arrow.png";
 import user from "../assets/img/user3.png";
 import lonceng from "../assets/img/lonceng.png";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { SignIn } from "../store/auth.js";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const isLogin = useSelector((state) => state.isLogin);
   const dispatch = useDispatch();
   const [loginState, setLoginState] = useState(isLogin);
+
   useEffect(() => {
     setLoginState(isLogin);
   }, [isLogin]);
@@ -59,7 +60,14 @@ const Navbar = () => {
       </ul>
       <div className="login-btn">
         <div className="flex justify-end flex-row">
-          <button onClick={() => navigate("/login")}>Masuk</button>
+          {loginState ? (
+            <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/profile")}>
+              <img src={user} alt="Profile" className="w-8 h-8 rounded-full" />
+              <span className="hidden sm:block">Profil</span>
+            </div>
+          ) : (
+            <button onClick={() => navigate("/login")}>Masuk</button>
+          )}
         </div>
       </div>
     </nav>

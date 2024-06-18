@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar.jsx";
 import Footer from "../Components/Footer.jsx";
@@ -30,6 +30,8 @@ const UbahSandi = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [profilePicture, setProfilePicture] = useState(DashboardUser);
+  const fileInputRef = useRef(null);
 
   const handleHapusAkun = () => {
     setShowPopup(true);
@@ -49,21 +51,67 @@ const UbahSandi = () => {
     setShowModal(true);
     // Here you can add additional logic to handle the password change
   };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+
+  const handleProfilePictureChange = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setProfilePicture(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <>
       <Navbar />
       <div className="flex justify-center py-8 px-10 min-h-screen">
-  <div className="mb-10 mt-20 item-center">
-    <div className="bg-white mb-5 mr-10 shadow-xl rounded-xl flex items-center p-4">
-      <div className="relative w-16 h-16">
-        <img src={DashboardUser} alt="Profile" className="rounded-full w-16 h-16 object-cover" />
-        <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full border">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
-        </div>
-      </div>
+        <div className="mb-10 mt-20 item-center">
+          <div className="bg-white mb-5 mr-10 shadow-xl rounded-xl flex items-center p-4">
+            <div className="relative w-16 h-16">
+              <img
+                src={profilePicture}
+                alt="Profile"
+                className="rounded-full w-16 h-16 object-cover"
+              />
+              <input
+                type="file"
+                ref={fileInputRef}
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+                accept="image/*"
+              />
+              <div
+                className="absolute bottom-0 right-0 bg-white p-1 rounded-full border cursor-pointer"
+                onClick={handleProfilePictureChange}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-4 w-4 text-teal-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4" />
+                </svg>
+              </div>
+            </div>
       <div className="ml-4">
         <span className="text-xl font-bold text-gray-800">Farhan Alamsyah</span>
       </div>
@@ -97,7 +145,7 @@ const UbahSandi = () => {
               </li>
               <li>
                 <button
-                  className={`flex items-center py-2 px-8 mt-3 w-full text-left ${window.location.pathname === "/pengaturanprofil" ? "bg-teal-600 text-white" : "text-gray-600"} hover:bg-teal-600 hover:text-white rounded-lg justify-start`}
+                  className={`flex items-center py-2 px-8 mt-3 w-full text-left ${window.location.pathname === "/pengaturan" ? "bg-teal-600 text-white" : "text-gray-600"} hover:bg-teal-600 hover:text-white rounded-lg justify-start`}
                   onClick={() => window.location.assign("/pengaturan")}
                 >
                   <img src={Pengaturan} alt="Pengaturan Profil" className="w-6 h-6 mr-4" />

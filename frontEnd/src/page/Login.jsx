@@ -1,28 +1,29 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import welcome1 from "../assets/img/welcome1.jpeg";
 
 const Login = () => {
   const [role, setRole] = useState("Mahasiswa");
   const [email, setEmail] = useState("");
-  const navigate = useNavigate();
-
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  console.log(email);
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3000/login", { email, password });
       localStorage.setItem("token", response.data.token);
-      setMessage("Login successful!, mengalihkan ke DashboardUser");
+      setMessage("Login successful! Redirecting to Formulir Pendaftaran...");
       navigate("/formulirpendaftaran");
-
-      //console.log(response.data);
     } catch (error) {
       setMessage("Login failed! Please check your credentials and try again.");
     }
+  };
+
+  const handleRegisterClick = () => {
+    navigate("/register");
   };
 
   return (
@@ -34,10 +35,20 @@ const Login = () => {
 
           {/* Toggle buttons */}
           <div className="flex mb-6 rounded-md hover:bg-teal-700 transition duration-300">
-            <button className={`flex-1 py-2 rounded-l-lg focus:outline-none ${role === "Mahasiswa" ? "bg-teal-600 text-white font-bold" : "bg-emerald-50 text-emerald-600 font-bold"}`} onClick={() => setRole("Mahasiswa")}>
+            <button
+              className={`flex-1 py-2 rounded-l-lg focus:outline-none ${
+                role === "Mahasiswa" ? "bg-teal-600 text-white font-bold" : "bg-emerald-50 text-emerald-600 font-bold"
+              }`}
+              onClick={() => setRole("Mahasiswa")}
+            >
               Mahasiswa
             </button>
-            <button className={`flex-1 py-2 rounded-r-lg focus:outline-none ${role === "Admin" ? "bg-teal-600 text-white font-bold" : "bg-emerald-50 text-emerald-600 font-bold"}`} onClick={() => setRole("Admin")}>
+            <button
+              className={`flex-1 py-2 rounded-r-lg focus:outline-none ${
+                role === "Admin" ? "bg-teal-600 text-white font-bold" : "bg-emerald-50 text-emerald-600 font-bold"
+              }`}
+              onClick={() => setRole("Admin")}
+            >
               Admin
             </button>
           </div>
@@ -45,17 +56,32 @@ const Login = () => {
           {/* Login form */}
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600" />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600"
+              />
             </div>
             <div className="mb-4">
-              <input type="password" placeholder="Kata sandi" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600" />
+              <input
+                type="password"
+                placeholder="Kata sandi"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600"
+              />
             </div>
             <div className="mb-4 text-right">
               <a href="#" className="text-teal-600 hover:underline">
                 Lupa kata sandi?
               </a>
             </div>
-            <button type="submit" className="w-full bg-teal-600 text-white py-3 px-10 rounded-md hover:bg-teal-700 transition duration-300">
+            <button
+              type="submit"
+              className="w-full bg-teal-600 text-white py-3 px-10 rounded-md hover:bg-teal-700 transition duration-300"
+            >
               Masuk
             </button>
           </form>
@@ -66,13 +92,16 @@ const Login = () => {
             </div>
           )}
 
-          {/* Register link */}
+          {/* Register button */}
           <div className="mt-4 text-center">
             <p>
               Belum punya akun?{" "}
-              <a href="/register" className="text-teal-600 hover:underline">
+              <button
+                onClick={handleRegisterClick}
+                className="text-teal-600 hover:underline focus:outline-none"
+              >
                 Daftar Disini
-              </a>
+              </button>
             </p>
           </div>
         </div>
