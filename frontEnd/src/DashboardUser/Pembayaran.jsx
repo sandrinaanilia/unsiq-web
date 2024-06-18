@@ -15,7 +15,7 @@ const Pembayaran = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   const handleAccountClick = () => {
-    alert('Nomor rekening BCA: 356373738833338');
+    alert("Nomor rekening BCA: 356373738833338");
   };
 
   const handleDetailsClick = () => {
@@ -29,7 +29,7 @@ const Pembayaran = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      console.log('Selected file:', file);
+      console.log("Selected file:", file);
       // Add logic to upload the file here
     }
   };
@@ -72,65 +72,41 @@ const Pembayaran = () => {
               <nav className="p-6">
                 <ul>
                   <li>
-                    <NavLink
-                      to="/formulirpendaftaran"
-                      activeClassName="bg-teal-600 text-white"
-                      className="flex items-center py-2 px-8 mt-3 w-full text-left text-gray-600 hover:bg-teal-600 hover:text-white rounded-lg justify-start"
-                    >
+                    <NavLink to="/formulirpendaftaran" activeClassName="bg-teal-600 text-white" className="flex items-center py-2 px-8 mt-3 w-full text-left text-gray-600 hover:bg-teal-600 hover:text-white rounded-lg justify-start">
                       <img src={Paper} alt="Formulir Pendaftaran" className="w-6 h-6 mr-4" />
                       <span className="font-bold">Formulir Pendaftaran</span>
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink
-                      to="/pembayaran"
-                      activeClassName="bg-teal-600 text-white"
-                      className="flex items-center py-2 px-8 mt-3 w-full text-left text-gray-600 hover:bg-teal-600 hover:text-white rounded-lg justify-start"
-                    >
+                    <NavLink to="/pembayaran" activeClassName="bg-teal-600 text-white" className="flex items-center py-2 px-8 mt-3 w-full text-left text-gray-600 hover:bg-teal-600 hover:text-white rounded-lg justify-start">
                       <img src={PembayaranIcon} alt="Pembayaran" className="w-6 h-6 mr-4" />
                       <span className="font-bold">Pembayaran</span>
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink
-                      to="/pengaturanprofil"
-                      activeClassName="bg-teal-600 text-white"
-                      className="flex items-center py-2 px-8 mt-3 w-full text-left text-gray-600 hover:bg-teal-600 hover:text-white rounded-lg justify-start"
-                    >
+                    <NavLink to="/pengaturanprofil" activeClassName="bg-teal-600 text-white" className="flex items-center py-2 px-8 mt-3 w-full text-left text-gray-600 hover:bg-teal-600 hover:text-white rounded-lg justify-start">
                       <img src={Pengaturan} alt="Pengaturan Profil" className="w-6 h-6 mr-4" />
                       <span className="font-bold">Pengaturan Profil</span>
                     </NavLink>
                   </li>
                   <li>
-                    <button
-                      className={`flex items-center py-2 px-8 mt-3 w-full text-left ${showPopup ? "bg-teal-600 text-white" : "text-gray-600"} hover:bg-teal-600 hover:text-white rounded-lg justify-start`}
-                      onClick={handleHapusAkun}
-                    >
+                    <button className={`flex items-center py-2 px-8 mt-3 w-full text-left ${showPopup ? "bg-teal-600 text-white" : "text-gray-600"} hover:bg-teal-600 hover:text-white rounded-lg justify-start`} onClick={handleHapusAkun}>
                       <img src={Keluar} alt="Keluar" className="w-6 h-6 mr-4" />
                       <span className="font-bold">Keluar</span>
                     </button>
                     {showPopup && (
-                  <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50">
-                  <div className="bg-white rounded-3xl shadow-lg p-10 w-96">
-                    <h2 className="text-xl text-center font-bold mb-4">
-                      Keluar dari Akun Anda?
-                    </h2>    
-                    <div className="flex justify-center">
-                   
-                     <button
-                          className="border border-gray-400 hover:bg-gray-200 text-gray-800 font-bold py-2 px-6 rounded mr-3"
-                          onClick={handleCancelHapus}
-                        >
-                          Tidak
-                        </button>
-                        <button
-                          className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-6 rounded"
-                          onClick={handleConfirmHapus}
-                        >
-                          Keluar
-                        </button>
-                      </div>
-                      </div>
+                      <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50">
+                        <div className="bg-white rounded-3xl shadow-lg p-10 w-96">
+                          <h2 className="text-xl text-center font-bold mb-4">Keluar dari Akun Anda?</h2>
+                          <div className="flex justify-center">
+                            <button className="border border-gray-400 hover:bg-gray-200 text-gray-800 font-bold py-2 px-6 rounded mr-3" onClick={handleCancelHapus}>
+                              Tidak
+                            </button>
+                            <button className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-6 rounded" onClick={handleConfirmHapus}>
+                              Keluar
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     )}
                   </li>
@@ -151,7 +127,8 @@ const Pembayaran = () => {
               Untuk calon santri 2024/2025 silahkan membayar daftar ulang paling lambat Senin, 19 Agustus 2024 untuk biaya daftar ulang silahkan transfer ke no rek BCA berikut{" "}
               <button onClick={handleAccountClick} className="text-teal-600 font-bold">
                 356373738833338
-              </button>.
+              </button>
+              .
             </p>
             <p>
               Untuk rincian biaya bisa lihat{" "}
@@ -160,18 +137,10 @@ const Pembayaran = () => {
               </button>
             </p>
 
-            <button
-              className="mt-4 bg-teal-600 text-white shadow-xl px-4 py-2 rounded-md flex items-center justify-center"
-              onClick={handleUploadBuktiPembayaran}
-            >
+            <button className="mt-4 bg-teal-600 text-white shadow-xl px-4 py-2 rounded-md flex items-center justify-center" onClick={handleUploadBuktiPembayaran}>
               Upload Bukti Pembayaran
             </button>
-            <input
-              type="file"
-              ref={fileInputRef}
-              style={{ display: 'none' }}
-              onChange={handleFileChange}
-            />
+            <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFileChange} />
           </div>
         </div>
       </div>
