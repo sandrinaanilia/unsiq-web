@@ -19,8 +19,6 @@ const Navbar = () => {
 
   const handleLogin = () => {
     dispatch(SignIn());
-    // setLoginState(true)
-    // console.log(isLogin)
   };
 
   return (
@@ -59,12 +57,16 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="login-btn">
-        <div className="flex justify-end flex-row">
+        <div className="flex justify-end flex-row items-center gap-4">
           {loginState ? (
-            <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/profile")}>
-              <img src={user} alt="Profile" className="w-8 h-8 rounded-full" />
-              <span className="hidden sm:block">Profil</span>
-            </div>
+            <>
+              <div className="flex items-center cursor-pointer" onClick={() => navigate("/lonceng")}>
+                <img src={lonceng} alt="Notifications" className="w-8 h-8" />
+              </div>
+              <div className="flex items-center cursor-pointer" onClick={() => navigate("/formulirpendaftaran")}>
+                <img src={user} alt="Profile" className="w-8 h-8 rounded-full" />
+              </div>
+            </>
           ) : (
             <button onClick={() => navigate("/login")}>Masuk</button>
           )}
