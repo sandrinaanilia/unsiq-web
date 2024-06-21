@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar.jsx";
 import Footer from "../Components/Footer.jsx";
+import axios from 'axios';
 import DashboardUser from "../assets/img/dashboarduser.png";
 import PembayaranIcon from "../assets/img/dollar.png";
 import Pengaturan from "../assets/img/setting.png";
@@ -14,6 +15,8 @@ const Pembayaran = () => {
   const fileInputRef = useRef(null);
   const [showPopup, setShowPopup] = useState(false);
   const [profilePicture, setProfilePicture] = useState(DashboardUser);
+  const [isFileUploaded, setIsFileUploaded] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState('');
 
   const handleAccountClick = () => {
     alert("Nomor rekening BCA: 356373738833338");
@@ -40,28 +43,32 @@ const Pembayaran = () => {
   const handleCancelHapus = () => {
     setShowPopup(false);
   };
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
-  };
 
-  const handleProfilePictureChange = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setProfilePicture(event.target.result);
-      };
-      reader.readAsDataURL(file);
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const response = await axios.post('/api/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+        if (response.status === 200) {
+          setUploadStatus('Upload successful');
+          setIsFileUploaded(true);
+        } else {
+          setUploadStatus('Upload failed');
+        }
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        setUploadStatus('Upload failed');
+      }
     }
   };
+
   return (
     <>
       <Navbar />
@@ -71,7 +78,7 @@ const Pembayaran = () => {
             <div className="relative w-16 h-16">
               <img src={profilePicture} alt="Profile" className="rounded-full w-16 h-16 object-cover" />
               <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFileChange} accept="image/*" />
-              <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full border cursor-pointer" onClick={handleProfilePictureChange}>
+              <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full border cursor-pointer" onClick={handleUploadBuktiPembayaran}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
@@ -166,9 +173,10 @@ const Pembayaran = () => {
             </p>
 
             <button className="mt-4 bg-teal-600 text-white shadow-xl px-4 py-2 rounded-md flex items-center justify-center" onClick={handleUploadBuktiPembayaran}>
-              Upload Bukti Pembayaran
+              {isFileUploaded ? "Bukti Pembayaran" : "Upload Bukti Pembayaran"}
             </button>
             <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFileChange} />
+            {uploadStatus && <p className="mt-2 text-red-500">{uploadStatus}</p>}
           </div>
         </div>
       </div>

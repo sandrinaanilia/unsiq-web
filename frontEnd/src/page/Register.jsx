@@ -6,8 +6,6 @@ import Logo from "../assets/img/welcome2.jpeg";
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [role, setRole] = useState("Mahasiswa");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -39,16 +37,6 @@ function Register() {
           <div className="w-full max-w-md">
             <h2 className="text-3xl font-bold text-teal-600 mb-2">Buat Akun</h2>
             <p className="text-gray-400 mb-8">gunakan email Anda untuk pendaftaran</p>
-
-            {/* Toggle buttons */}
-            <div className="flex mb-6 rounded-md hover:bg-teal-700 transition duration-300">
-              <button className={`flex-1 py-2 rounded-l-lg focus:outline-none ${role === "Mahasiswa" ? "bg-teal-600 text-white font-bold" : "bg-emerald-50 text-emerald-600 font-bold"}`} onClick={() => setRole("Mahasiswa")}>
-                Mahasiswa
-              </button>
-              <button className={`flex-1 py-2 rounded-r-lg focus:outline-none ${role === "Admin" ? "bg-teal-600 text-white font-bold" : "bg-emerald-50 text-emerald-600 font-bold"}`} onClick={() => setRole("Admin")}>
-                Admin
-              </button>
-            </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
