@@ -321,13 +321,7 @@ const DashboardBerita = () => {
                     >
                       <FontAwesomeIcon icon={faEye} />
                     </button>
-                    <button
-                      onClick={() => {
-                        setShowEditConfirmation(true);
-                        setSelectedSantri(item);
-                      }}
-                      className="bg-green-500 text-white px-2 py-1 rounded"
-                    >
+                    <button className="bg-green-500 text-white px-2 py-1 rounded">
                       <FontAwesomeIcon icon={faEdit} />
                     </button>
                     <button

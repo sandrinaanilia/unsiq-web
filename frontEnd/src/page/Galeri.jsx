@@ -21,24 +21,30 @@ const Galeri = () => {
       </div>
       <section className="galeri py-8 bg-gray-100">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-4">
-            <div className="grid grid-cols-1 mx-auto ">
-              <ImageCard image={galeribsr} title="" className="h-96 rounded-lg mt-8" />
+          <div className="grid grid-cols-1 gap-8">
+            <div className="flex justify-center">
+              <ImageCard image={galeribsr} title="" className="h-120 w-full rounded-lg mt-8" />
             </div>
-            <div className="grid grid-cols-3 gap-1 justify-center">
-              <ImageCard image={galeri1} title="" className="w-full h-40 rounded-lg" />
-              <ImageCard image={galeri2} title="" className="w-full h-40 rounded-lg" />
-              <ImageCard image={galeri3} title="" className="w-full h-40 rounded-lg" />
+            <div className="flex justify-center">
+              <div className="grid grid-cols-3 gap-4">
+                <ImageCard image={galeri1} title="" className="w-full h-80 rounded-lg" />
+                <ImageCard image={galeri2} title="" className="w-full h-80 rounded-lg" />
+                <ImageCard image={galeri3} title="" className="w-full h-80 rounded-lg" />
+              </div>
             </div>
-            <div className="grid grid-cols-3 gap-1 justify-center">
-              <ImageCard image={galeri4} title="" className="w-full h-40 rounded-lg" />
-              <ImageCard image={galeri5} title="" className="w-full h-40 rounded-lg" />
-              <ImageCard image={galeri6} title="" className="w-full h-40 rounded-lg" />
+            <div className="flex justify-center">
+              <div className="grid grid-cols-3 gap-4">
+                <ImageCard image={galeri4} title="" className="w-full h-80 rounded-lg" />
+                <ImageCard image={galeri5} title="" className="w-full h-80 rounded-lg" />
+                <ImageCard image={galeri6} title="" className="w-full h-80 rounded-lg" />
+              </div>
             </div>
-            <div className="grid grid-cols-3 gap-1 justify-center">
-              <ImageCard image={galeri7} title="" className="w-full h-40 rounded-lg" />
-              <ImageCard image={galeri8} title="" className="w-full h-40 rounded-lg" />
-              <ImageCard image={galeri9} title="" className="w-full h-40 rounded-lg" />
+            <div className="flex justify-center">
+              <div className="grid grid-cols-3 gap-4">
+                <ImageCard image={galeri7} title="" className="w-full h-100 rounded-lg" />
+                <ImageCard image={galeri8} title="" className="w-full h-80 rounded-lg" />
+                <ImageCard image={galeri9} title="" className="w-full h-80 rounded-lg" />
+              </div>
             </div>
           </div>
         </div>
