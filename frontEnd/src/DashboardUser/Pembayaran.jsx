@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar.jsx";
 import Footer from "../Components/Footer.jsx";
+import axios from "axios";
 import DashboardUser from "../assets/img/dashboarduser.png";
 import PembayaranIcon from "../assets/img/dollar.png";
 import Pengaturan from "../assets/img/setting.png";
@@ -14,6 +15,8 @@ const Pembayaran = () => {
   const fileInputRef = useRef(null);
   const [showPopup, setShowPopup] = useState(false);
   const [profilePicture, setProfilePicture] = useState(DashboardUser);
+  const [isFileUploaded, setIsFileUploaded] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState("");
 
   const handleAccountClick = () => {
     alert("Nomor rekening BCA: 356373738833338");
@@ -40,39 +43,43 @@ const Pembayaran = () => {
   const handleCancelHapus = () => {
     setShowPopup(false);
   };
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
-  };
 
-  const handleProfilePictureChange = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setProfilePicture(event.target.result);
-      };
-      reader.readAsDataURL(file);
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await axios.post("/api/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        if (response.status === 200) {
+          setUploadStatus("Upload successful");
+          setIsFileUploaded(true);
+        } else {
+          setUploadStatus("Upload failed");
+        }
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        setUploadStatus("Upload failed");
+      }
     }
   };
+
   return (
     <>
       <Navbar />
-      <div className="flex justify-center py-8 px-10 min-h-screen">
-        <div className="mb-10 mt-20 item-center">
-          <div className="bg-white mb-5 mr-10 shadow-xl rounded-xl flex items-center p-4">
+      <div className="flex justify-center min-h-screen px-10 py-8">
+        <div className="mt-20 mb-10 item-center">
+          <div className="flex items-center p-4 mb-5 mr-10 bg-white shadow-xl rounded-xl">
             <div className="relative w-16 h-16">
-              <img src={profilePicture} alt="Profile" className="rounded-full w-16 h-16 object-cover" />
+              <img src={profilePicture} alt="Profile" className="object-cover w-16 h-16 rounded-full" />
               <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFileChange} accept="image/*" />
-              <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full border cursor-pointer" onClick={handleProfilePictureChange}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="absolute bottom-0 right-0 p-1 bg-white border rounded-full cursor-pointer" onClick={handleUploadBuktiPembayaran}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
               </div>
@@ -83,23 +90,28 @@ const Pembayaran = () => {
           </div>
 
           <div className="flex">
-            <div className="w-1/8 bg-white shadow-xl rounded-lg mr-10 flex flex-col max-h-96">
+            <div className="flex flex-col mr-10 bg-white rounded-lg shadow-xl w-1/8 max-h-96">
               <nav className="p-6">
                 <ul>
                   <li>
-                    <NavLink to="/formulirpendaftaran" activeClassName="bg-teal-600 text-white" className="flex items-center py-2 px-8 mt-3 w-full text-left text-gray-600 hover:bg-teal-600 hover:text-white rounded-lg justify-start">
+                    <button
+                      className={`flex items-center py-2 px-8 mt-3 w-full text-left ${
+                        window.location.pathname === "/formulirpendaftaran" ? "bg-teal-600 text-white" : "text-gray-600"
+                      } hover:bg-teal-600 hover:text-white rounded-lg justify-start`}
+                      onClick={() => window.location.assign("/formulirpendaftaran")}
+                    >
                       <img src={Paper} alt="Formulir Pendaftaran" className="w-6 h-6 mr-4" />
                       <span className="font-bold">Formulir Pendaftaran</span>
-                    </NavLink>
+                    </button>
                   </li>
                   <li>
-                    <NavLink to="/pembayaran" activeClassName="bg-teal-600 text-white" className="flex items-center py-2 px-8 mt-3 w-full text-left bg-teal-600 text-white hover:bg-teal-600 hover:text-white rounded-lg justify-start">
+                    <NavLink to="/pembayaran" activeClassName="bg-teal-600 text-white" className="flex items-center justify-start w-full px-8 py-2 mt-3 text-left text-gray-600 rounded-lg hover:bg-teal-600 hover:text-white">
                       <img src={PembayaranIcon} alt="Pembayaran" className="w-6 h-6 mr-4" />
                       <span className="font-bold">Pembayaran</span>
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/pengaturan" activeClassName="bg-teal-600 text-white" className="flex items-center py-2 px-8 mt-3 w-full text-left text-gray-600 hover:bg-teal-600 hover:text-white rounded-lg justify-start">
+                    <NavLink to="/pengaturan" activeClassName="bg-teal-600 text-white" className="flex items-center justify-start w-full px-8 py-2 mt-3 text-left text-gray-600 rounded-lg hover:bg-teal-600 hover:text-white">
                       <img src={Pengaturan} alt="Pengaturan Profil" className="w-6 h-6 mr-4" />
                       <span className="font-bold">Pengaturan Profil</span>
                     </NavLink>
@@ -110,14 +122,14 @@ const Pembayaran = () => {
                       <span className="font-bold">Keluar</span>
                     </button>
                     {showPopup && (
-                      <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50">
-                        <div className="bg-white rounded-3xl shadow-lg p-10 w-96">
-                          <h2 className="text-xl text-center font-bold mb-4">Keluar dari Akun Anda?</h2>
+                      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
+                        <div className="p-10 bg-white shadow-lg rounded-3xl w-96">
+                          <h2 className="mb-4 text-xl font-bold text-center">Keluar dari Akun Anda?</h2>
                           <div className="flex justify-center">
-                            <button className="border border-gray-400 hover:bg-gray-200 text-gray-800 font-bold py-2 px-6 rounded mr-3" onClick={handleCancelHapus}>
+                            <button className="px-6 py-2 mr-3 font-bold text-gray-800 border border-gray-400 rounded hover:bg-gray-200" onClick={handleCancelHapus}>
                               Tidak
                             </button>
-                            <button className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-6 rounded" onClick={handleConfirmHapus}>
+                            <button className="px-6 py-2 font-bold text-white bg-teal-600 rounded hover:bg-teal-700" onClick={handleConfirmHapus}>
                               Keluar
                             </button>
                           </div>
@@ -132,30 +144,31 @@ const Pembayaran = () => {
         </div>
 
         <div className="w-3/4 mx-auto mt-20">
-          <div className="bg-teal-600 text-white text-left py-5 px-4 rounded-xl">
+          <div className="px-4 py-5 text-left text-white bg-teal-600 rounded-xl">
             <h1 className="text-base font-bold">Upload dan klik Simpan Perubahan </h1>
           </div>
-          <div className="bg-white p-6 mt-5 rounded-xl min-h-screen shadow-md">
+          <div className="min-h-screen p-6 mt-5 bg-white shadow-md rounded-xl">
             <h1 className="ml-0 text-xl font-bold text-black">Admin UNSIQ II</h1>
-            <h4 className="text-gray-500 mb-2">04 Mei 2024</h4>
+            <h4 className="mb-2 text-gray-500">04 Mei 2024</h4>
             <p>
               Untuk calon santri 2024/2025 silahkan membayar daftar ulang paling lambat Senin, 19 Agustus 2024 untuk biaya daftar ulang silahkan transfer ke no rek BCA berikut{" "}
-              <button onClick={handleAccountClick} className="text-teal-600 font-bold">
+              <button onClick={handleAccountClick} className="font-bold text-teal-600">
                 356373738833338
               </button>
               .
             </p>
             <p>
               Untuk rincian biaya bisa lihat{" "}
-              <button onClick={handleDetailsClick} className="text-teal-600 font-bold">
+              <button onClick={handleDetailsClick} className="font-bold text-teal-600">
                 disini
               </button>
             </p>
 
-            <button className="mt-4 bg-teal-600 text-white shadow-xl px-4 py-2 rounded-md flex items-center justify-center" onClick={handleUploadBuktiPembayaran}>
+            <button className="flex items-center justify-center px-4 py-2 mt-4 text-white bg-teal-600 rounded-md shadow-xl" onClick={handleUploadBuktiPembayaran}>
               Upload Bukti Pembayaran
             </button>
             <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFileChange} />
+            {uploadStatus && <p className="mt-2 text-red-500">{uploadStatus}</p>}
           </div>
         </div>
       </div>

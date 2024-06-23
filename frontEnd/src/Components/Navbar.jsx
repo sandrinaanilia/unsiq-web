@@ -56,7 +56,7 @@ const Navbar = () => {
           <button onClick={() => navigate("/faq")}>FAQ</button>
         </li>
       </ul>
-      <div className="login-btn">
+      <div className={loginState ? "profil-btn" : "login-btn"}>
         <div className="flex justify-end flex-row items-center gap-4">
           {loginState ? (
             <>
